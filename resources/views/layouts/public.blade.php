@@ -10,14 +10,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="../js/funzioni.js"></script>
     </head>
-    <body>
+    @php
+        $route=Route::currentRouteName();
+    @endphp
+    <body class="{{ $route == 'home1' ? 'sfondo-1' : '' }}">
         <!-- Public Navbar -->
         @include('layouts._nav_public')
-        
+
         <section>
             @yield('content')
         </section>
-        
+
         <footer>
             <div class="contenitore-flex text-white">
                 <div class="margin-t-mid margin-b-15">
