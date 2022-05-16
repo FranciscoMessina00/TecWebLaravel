@@ -29,4 +29,14 @@ class PublicController extends Controller {
             ->with('accomodations', $accomodations)
             ->with('level', 1);
     }
+    
+    public function login()
+    {
+        return view('login');
+    }
+    
+    public function signup()
+    {
+        return view('signup');
+    }
 }

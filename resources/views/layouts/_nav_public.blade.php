@@ -17,18 +17,35 @@
                             $route=Route::currentRouteName();
                         @endphp
                         
-                        <li class="nav-item {{ $route == 'home' ? 'active' : '' }}">
+                        <li class="nav-item {{ $route == 'home1' ? 'active' : '' }}">
                             <a href="{{ route('home1') }}" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item {{ $route == 'catalog' ? 'active' : '' }}">
                             <a href="{{ route('catalog') }}" class="nav-link">Catalogo</a>
                         </li>
+                        
+                        @if($route=='login')
+                        <li class="nav-item">
+                            <div class="tm-btn tm-btn-gray text-white no-select nav-link">Non hai un account?</div>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{ route('signup') }}" class="tm-btn nav-link">Registrati</a>
+                        </li>
+                        @elseif($route=='signup')
+                        <li class="nav-item">
+                            <div class="text-white tm-btn tm-btn-gray no-select nav-link">Hai già un account?</div>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{ route('login') }}" class="tm-btn nav-link">Accedi</a>
+                        </li>
+                        @else
                         <li class="nav-item {{ $route == 'login' ? 'active' : '' }}">
-                            <a href="{{ route('login') }}" class="nav-link">Log-in</a>
+                            <a href="{{ route('login') }}" class="nav-link">Accedi</a>
                         </li>
                         <li class="nav-item {{ $route == 'signup' ? 'active' : '' }}">
                             <a href="{{ route('signup') }}" class="nav-link">Registrati</a>
                         </li>
+                        @endif
                     </ul>                        
                 </div>
 
