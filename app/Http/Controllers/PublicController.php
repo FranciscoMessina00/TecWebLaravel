@@ -39,4 +39,13 @@ class PublicController extends Controller {
     {
         return view('signup');
     }
+    
+    public function insertUser(UserRequest $request)
+    {
+        /*Creo un nuovo utente della classe User e lo salve nel DB*/
+        $product = new User;
+        $product->fill($request->validated());
+        
+        return redirect()->action('PublicController@login');;
+    }
 }
