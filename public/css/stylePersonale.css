@@ -330,6 +330,12 @@ h1{
 .justify-right{
     justify-content: right!important
 }
+.errors{
+    color:red;
+    padding-top: 5px;
+    font-size: 12px;
+    text-align: left;
+}
 
 .tm-header-inner {
     display: -webkit-flex;

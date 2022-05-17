@@ -23,16 +23,17 @@
                         <option value="studente">Studente</option>
                         <option value="locatore">Locatore</option>
                     </select>
+                    @if ($errors->first('tipology'))
+                    <ul class="errors">
+                        @foreach ($errors->get('tipology') as $message)
+                        <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
                 </div>
-                
-                @if ($errors->first('tipology'))
-                <ul class="errors">
-                    @foreach ($errors->get('tipology') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-                
+
+
+
             </div>
             <!-- fine selezione chi sei -->
             <!-- inizio mail-->
@@ -64,16 +65,17 @@
                 </div>
                 <div class="margin-b-40">
                     <input class="form-element" id="username" type="text" name="username" placeholder="Inserisci username">
+                    @if ($errors->first('username'))
+                    <ul class="errors">
+                        @foreach ($errors->get('username') as $message)
+                        <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
                 </div>
-                
-                @if ($errors->first('username'))
-                <ul class="errors">
-                    @foreach ($errors->get('username') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-                
+
+
+
             </div>
             <div>
                 <div class="text-left">
@@ -120,16 +122,17 @@
                 </div>
                 <div class="margin-b-40">
                     <input class="form-element" id="pass" type="password" name="password" placeholder="Inserisci password">
+                    @if ($errors->first('password'))
+                    <ul class="errors">
+                        @foreach ($errors->get('password') as $message)
+                        <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
                 </div>
-                
-                @if ($errors->first('password'))
-                <ul class="errors">
-                    @foreach ($errors->get('password') as $message)
-                    <li>{{ $message }}</li>
-                    @endforeach
-                </ul>
-                @endif
-                
+
+
+
             </div>
             <div>
                 <div class="text-left">
