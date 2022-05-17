@@ -3,8 +3,9 @@ namespace App\Models\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Accomodation extends Model{
+class User extends Model{
     public $timestamps = false;
-    protected $primaryKey = 'accId';
+    protected $primaryKey = 'userId';
+    protected $guarded = ['userId'];
     
 }

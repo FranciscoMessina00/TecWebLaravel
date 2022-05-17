@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Catalog;
+use App\Models\Resources\User;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Log;
 
 class PublicController extends Controller {
@@ -40,12 +42,37 @@ class PublicController extends Controller {
         return view('signup');
     }
     
-    public function insertUser(UserRequest $request)
+    public function addUser(UserRequest $request)
     {
-        /*Creo un nuovo utente della classe User e lo salve nel DB*/
-        $product = new User;
-        $product->fill($request->validated());
+        /*Valido i dati della form*/
+        $request->validated();
         
-        return redirect()->action('PublicController@login');;
+        /*Creo un nuovo utente della classe User e lo salve nel DB*/
+        $user = new User;
+        
+        /*Converto in integer il valore di selettore*/
+        switch($request->input('tipology'))
+        {
+            case('locatore'):
+            {
+                $userTipology = 0;
+                break;
+            }
+            case('studente'):
+            {
+                $userTipology = 1;
+                break;
+            }
+        }
+        
+        /*Assegno le proprietà alla nuova istanza di User*/
+        $user->tipology = $userTipology;
+        $user->username = $request->input('username');
+        $user->password = $request->input('password');
+        
+        
+        $user->save();
+        
+        return redirect()->action('PublicController@login');
     }
 }

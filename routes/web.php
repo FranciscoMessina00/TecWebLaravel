@@ -17,8 +17,8 @@ Route::get('/', 'PublicController@home')       /*Home livello 1*/
 Route::get('/signup', 'PublicController@signup')    /*Registrazione utente*/
         ->name('signup');
 
-Route::post('/signup', 'PublicController@insertUser')    /*Registrazione utente*/
-        ->name('signup');
+Route::post('/signup', 'PublicController@addUser')    /*Inserimento nuovo utente*/
+        ->name('signup.add');
 
 Route::get('/login', 'PublicController@login')  /*Login utente*/
         ->name('login');
