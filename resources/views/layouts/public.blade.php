@@ -17,7 +17,7 @@
         <!-- Public Navbar -->
         @include('layouts._nav_public')
         
-        <br>
+        {{ $route == 'home1' ? '' : '<br>' }}
         <section>
             @yield('content')
         </section>
