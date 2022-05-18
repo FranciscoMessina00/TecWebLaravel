@@ -13,6 +13,8 @@
             <h4 class="margin-b-20">Quick Links</h4>
             <ul>
                 <li><a href="{{ route('faq') }}">F.A.Q.</a></li>
+                <li><a href="{{ route('rules') }}">Regolamento generale d'uso.</a></li>
+                <li><a href="{{ route('services') }}">Modalità accesso ai servizi</a></li>
             </ul>
         </div>
         <div class="margin-t-mid margin-b-15">
