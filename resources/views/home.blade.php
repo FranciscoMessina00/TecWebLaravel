@@ -26,7 +26,7 @@
                 <h2 class="margin-t-x-small"><strong>Appartamento: Bellavista</strong></h2>
                 <div class="offerta ">
                 <div class="fill pad-lr-large">
-                    <img src="../files/Salotto catalogo.png" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+                    <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
                 </div>
                     <br><br>
                 <div>
@@ -86,7 +86,7 @@
 
     <div class="contenitore-flex">
         <div class="fill display-img" style="width:50%">
-            <img src="../files/Lavoro di gruppo.png" alt="Immagine" style="width:100%"/>
+            <img src="{{ asset('images/Lavoro di gruppo.png') }}" alt="Immagine" style="width:100%"/>
         </div>
         <div class="text-center sfondo-grigio-chiaro">
             <h1 class="margin-t-mid text-x-large"><strong>ABOUT US</strong></h1>
@@ -109,7 +109,7 @@
             </p>
         </div>
         <div class="fill display-img" style="width:50%">
-            <img src="../files/Lavoro di gruppo.png" alt="Immagine" style="width:110%"/>
+            <img src="{{ asset('images/Lavoro di gruppo.png') }}" alt="Immagine" style="width:110%"/>
         </div>
     </div>
 </div>

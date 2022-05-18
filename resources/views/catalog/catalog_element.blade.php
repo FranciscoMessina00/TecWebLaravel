@@ -1,6 +1,6 @@
 <div class="offerta contenitore-flex">
     <div class="img-catalogo pad-r-large">
-        <img src="../files/Salotto catalogo.png" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+        <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
     </div>
     <div>
         <h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2>
