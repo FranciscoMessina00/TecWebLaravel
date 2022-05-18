@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Log-In</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylePersonale.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- inizio barra in alto -->
+        <div class="tm-header">
+            <div class="container-fluid">
+                <div class="tm-header-inner">                    
+                    <div class="tm-logo-img-container">
+                        <img src="FLAK_logo.png" alt="logo" style="display: none"/>
+                    </div>
+                    <!-- navbar -->
+                    <nav class="navbar tm-main-nav">
+
+                        <button class="navbar-toggler hidden-md-up" type="button" data-toggle="colapse" data-target="#tmNavbar" onclick="toggleMenu('tmNavbar')">
+                            &#9776;
+                        </button>
+
+                        <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item active">
+                                    <a href="homepage.html" class="nav-link">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="catalogo.html" class="nav-link">Catalogo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="login.html" class="nav-link">Statistiche</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="registrati.html" class="nav-link">FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="homepage.html" class="nav-link">Log-out</a>
+                                </li>
+                            </ul>                        
+                        </div>
+
+                    </nav>  
+
+                </div>                                  
+            </div>            
+        </div>
+        <!-- fine barra in alto -->
+        <br>
+        <!-- inizio zona di accesso-->
+
+        <div class="margin-t-x-large margin-b-40 text-center">
+            <div class="container-big auto-margin-lr pad-lr-large ">
+                <h2 class="text-center margin-b-40 margin-t-small text-gold text-large">Statistiche generali</h2>
+                <div class="text-center margin-t-small-neg container-mid auto-margin-lr">
+                    <form class="contenitore-flex">
+                        <div class="pad-lr-small border-r">
+                            <h2>Quando</h2>
+                            <div class="contenitore-flex">
+                                <input type="date" id="min" class="form-element">
+                                <h2 class="auto-margin-tb">-</h2>
+                                <input type="date" id="max" class="form-element">
+                            </div>
+                        </div>
+                        <div class="pad-lr-small border-r">
+
+                            <h2>
+                                Tipologia
+                            </h2>
+                            <select id="tipo" name="tipo" class="form-element">
+                                <option value="none" selected>Entrambi</option>
+                                <option value="appartamento">Appartamento</option>
+                                <option value="postoLetto">Posto letto</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="margin-t-small text-center auto-margin-tb">
+                            <input class="tm-btn" type="submit" value="Filtra">
+                        </div>
+                    </form>
+                    <div>
+                        <table border class="text-center margin-t-small auto-margin-lr">
+                        <tr><th>Tipologia</th><th>Totale offerte</th><th>Offerte opzionate</th><th>Alloggi locati</th></tr>
+                        <tr><td>Appartamento</td><td>12</td><td>23</td><td>4</td></tr>
+                        <tr><td>Posto letto</td><td>42</td><td>27</td><td>12</td></tr>
+                        <tr class="border-t-2"><td>Totale</td><td>234</td><td>43</td><td>54</td></tr>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- fine zona di accesso-->
+        <!-- inizio footer -->
+        <footer>
+            <div class="contenitore-flex text-white">
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Chi siamo</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Quick Links</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Customer Care</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Contact Us</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <script src="funzioni.js"></script>
+    </body>
+</html>
