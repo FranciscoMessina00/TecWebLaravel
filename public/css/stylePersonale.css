@@ -364,7 +364,7 @@ th{
 }
 
 .tm-logo-img-container {
-    background-image: url('FLAK_logo.png');
+    background-image: url('../images/FLAK_logo.png');
     background-size: 100%;
     background-position: left;
     background-repeat: no-repeat;
@@ -484,7 +484,7 @@ th{
     background-color:transparent
 }
 .tm-home-img-container {
-    background-image: url('Salotto.png');
+    background-image: url('../images/Salotto.png');
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
