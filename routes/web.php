@@ -26,10 +26,11 @@ Route::get('/login', 'PublicController@login')  /*Login utente*/
 Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
         ->name('catalog');
 
+Route::get('/faq', 'PublicController@showFaq')
+        ->name('faq');    /*Attiva vista FAQ*/
+
 
 /*Attivazione diretta viste*/
-Route::view('/faq', 'faq')->name('faq');    /*Attiva vista FAQ*/
-
 Route::view('/rules', 'rules')->name('rules');    /*Attiva vista Regolamento generale d'uso*/
 
 Route::view('/services', 'services')->name('services');    /*Attiva vista Modalità accesso ai servizi*/

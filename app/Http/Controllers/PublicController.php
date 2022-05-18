@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+/*Import Application Models*/
 use App\Models\Catalog;
+
+/*Import Resource Models*/
 use App\Models\Resources\User;
+use App\Models\Resources\Faq;
+
+/*Import Form Requests*/
 use App\Http\Requests\UserRequest;
+
+/*Tools*/
 use Illuminate\Support\Facades\Log;
+
 
 class PublicController extends Controller {
 
@@ -26,10 +35,27 @@ class PublicController extends Controller {
         /*Estraggo dal DB la lista di tutte gli alloggi*/
         $accomodations = $this->_catalogModel->getAccomodations();
         
+        /*In futuro da sostituire quando verrà implementata l'autenticazione*/
+        $level = 1;
+        
         /*Attivo la vista che mostra il catalogo con gli alloggi estratti*/
         return view('catalog')
             ->with('accomodations', $accomodations)
-            ->with('level', 1);
+            ->with('level', $level);
+    }
+    
+    public function showFaq()
+    {
+        /*Estraggo dal DB la lista di tutte le faq*/
+        $faqs = Faq::get();
+        
+        /*In futuro da sostituire quando verrà implementata l'autenticazione*/
+        $level = 1;
+        
+        /*Attivo la vista che mostra la pagina delle faq*/
+        return view('faq')
+            ->with('faqs', $faqs)
+            ->with('level', $level);
     }
     
     public function login()
