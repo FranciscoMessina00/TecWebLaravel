@@ -12,9 +12,9 @@
         <div class="margin-t-mid margin-b-15">
             <h4 class="margin-b-20">Quick Links</h4>
             <ul>
-                <li><a href="{{ route('faq') }}">F.A.Q.</a></li>
-                <li><a href="{{ route('rules') }}">Regolamento generale d'uso.</a></li>
-                <li><a href="{{ route('services') }}">Modalità accesso ai servizi</a></li>
+                <li><a href="{{ route('faq') }}" class="text-white">F.A.Q.</a></li>
+                <li><a href="{{ route('rules') }}" class="text-white">Regolamento generale d'uso.</a></li>
+                <li><a href="{{ route('services') }}" class="text-white">Modalità accesso ai servizi</a></li>
             </ul>
         </div>
         <div class="margin-t-mid margin-b-15">
