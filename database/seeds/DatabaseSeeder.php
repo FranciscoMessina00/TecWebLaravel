@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
             ['accId' => 1, 'name' => 'Appartamento Bella Vista', 'tipology' => 0, 'address'=>'via tizio caio, 16'],
             ['accId' => 2, 'name' => 'Appartamento Brutta Vista', 'tipology' => 0, 'address'=>'via tizio, 16'],
             ['accId' => 3, 'name' => 'Posto letto da Maria', 'tipology' => 1, 'address'=>'via caio, 16'],
+            ['accId' => 4, 'name' => 'Appartamento Bella Vista', 'tipology' => 0, 'address'=>'via tizio caio, 16'],
+            ['accId' => 5, 'name' => 'Appartamento Brutta Vista', 'tipology' => 0, 'address'=>'via tizio, 16'],
+            ['accId' => 6, 'name' => 'Posto letto da Maria', 'tipology' => 1, 'address'=>'via caio, 16']
         ]);
         
         DB::table('faqs')->insert([

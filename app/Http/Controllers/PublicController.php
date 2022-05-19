@@ -33,7 +33,7 @@ class PublicController extends Controller {
     public function showCatalog()
     {
         /*Estraggo dal DB la lista di tutte gli alloggi*/
-        $accomodations = $this->_catalogModel->getAccomodations();
+        $accomodations = $this->_catalogModel->getAccomodations(1);
         
         /*In futuro da sostituire quando verrà implementata l'autenticazione*/
         $level = 1;
@@ -47,7 +47,7 @@ class PublicController extends Controller {
     public function showFaq()
     {
         /*Estraggo dal DB la lista di tutte le faq*/
-        $faqs = Faq::get();
+        $faqs = Faq::paginate(1);
         
         /*In futuro da sostituire quando verrà implementata l'autenticazione*/
         $level = 1;
