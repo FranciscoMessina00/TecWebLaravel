@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Catalogo</title>
+        <link rel="stylesheet" href="stylePersonale.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="{{ asset('js/funzioni.js') }}"></script>
+    </head>
+    <body>
+        <div class="tm-header">
+            <div class="container-fluid">
+                <div class="tm-header-inner">                    
+                    <div class="tm-logo-img-container">
+                        <img src="FLAK_logo.png" alt="logo" style="display: none"/>
+                    </div>
+                    <!-- navbar -->
+                    <nav class="navbar tm-main-nav">
+
+                        <button class="navbar-toggler hidden-md-up" type="button" data-toggle="colapse" data-target="#tmNavbar" onclick="toggleMenu('tmNavbar')">
+                            &#9776;
+                        </button>
+
+                        <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <a href="Homepage.html" class="nav-link">Home</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="catalogo.html" class="nav-link">Catalogo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="login.html" class="nav-link">Log-in</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="registrati.html" class="nav-link">Registrati</a>
+                                </li>
+                            </ul>                        
+                        </div>
+                    </nav>
+                </div>                                  
+            </div>            
+        </div>
+        <br>
+
+        <div class="margin-t-x-large margin-b-40 contenitore-flex-2">
+<!--        Inizio zona filtri-->
+            <div class="margin-lr barra-filtri pad-lr-small">
+                <h1 class="text-center text-gold ">Filtri</h1>
+                <div class="pad-tb-x-small pad-lr-small margin-t-x-small border-t text-center">
+                    <label for="tipo">
+                        Tipologia
+                    </label>
+                    <select id="tipo" name="tipo" class="form-element" onchange="cambioForm('tipo')">
+                        <option value="none" disabled selected>Seleziona un'opzione</option>
+                        <option value="appartamento">Appartamento</option>
+                        <option value="postoLetto">Posto letto</option>
+                    </select>
+                </div>
+
+                <div id='appartamento'>
+                    <form id="form1" class="text-center" method="get">
+                        <div class="nascondi">
+                            <input class="form-element" type="text" name="tipo" value="1">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="dove1">Dove</label>
+                            <input class="form-element" type="text" id="dove1" name="dove" placeholder="Dove">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label>Prezzo</label>
+                            <div class="contenitore-flex">
+                                <input class="form-element" type="number" id="prezzo-min1" name="prezzoMin" placeholder="Min">
+                                <h3 class="auto-margin-tb">€</h3>
+                                <h3 class="auto-margin-tb">-</h3>
+                                <input class="form-element" type="number" id="prezzo-max1" name="prezzoMax" placeholder="Max"><h3 class="auto-margin-tb">€</h3>
+                            </div>
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label>Periodo di locazione</label>
+                            <div class="contenitore-flex">
+                                <input class="form-element" type="date" name="dataMin" id="data-min1">
+                                <h3 class="auto-margin-tb">-</h3>
+                                <input class="form-element" type="date" name="dataMax" id="data-max1">
+                            </div>
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="dimApp">Dimensione appartamento</label>
+                            <input class="form-element" type="number" id="dimApp" name="dimApp" placeholder="Dimensione appartamento">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="numCamere">Numero di camere</label>
+                            <input class="form-element" type="number" id="numCamere" name="numCamere" placeholder="Numero camere">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="numLetti">Numero di posti letto</label>
+                            <input class="form-element" type="number" id="numLetti" name="numLetti" placeholder="Numero posti letto">
+                        </div>
+
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label>
+                                Servizi appartamento
+                            </label>
+                            <ul class="text-left servizi">
+                                <li><input type="checkbox" id="servizio1" name="servizio1" value="servizio1"><label for="servizio1"> App1</label></li>
+                                <li><input type="checkbox" id="servizio2" name="servizio2" value="servizio2"><label for="servizio2"> App2</label></li>
+                                <li><input type="checkbox" id="servizio3" name="servizio3" value="servizio3"><label for="servizio3"> App3</label></li>
+                                <li><input type="checkbox" id="servizio4" name="servizio4" value="servizio4"><label for="servizio4"> App4</label></li>
+                                <li><input type="checkbox" id="servizio5" name="servizio5" value="servizio5"><label for="servizio5"> App5</label></li>
+                                <li><input type="checkbox" id="servizio6" name="servizio6" value="servizio6"><label for="servizio6"> App6</label></li>
+                                <li><input type="checkbox" id="servizio7" name="servizio7" value="servizio7"><label for="servizio7"> App7</label></li>
+                            </ul>
+                        </div>
+                        <div id='filtra1' class="margin-t-small text-center">
+                            <input class="tm-btn" type="submit" value="Filtra">
+                        </div>
+                    </form>
+                </div>
+
+                <div id='postoLetto'>
+                    <form id="form2" class="text-center" method="get">
+                        <div class="nascondi">
+                            <input class="form-element" type="text" name="tipo" value="2">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="dove2">Dove</label>
+                            <input class="form-element" type="text" id="dove2" name="dove" placeholder="Dove">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="dove2">Prezzo</label>
+                            <div class="contenitore-flex">
+                                <input class="form-element" type="number" id="prezzo-min2" name="prezzoMin" placeholder="Min">
+                                <h3 class="auto-margin-tb">€</h3>
+                                <h3 class="auto-margin-tb">-</h3>
+                                <input class="form-element" type="number" id="prezzo-max2" name="prezzoMax" placeholder="Max"><h3 class="auto-margin-tb">€</h3>
+                            </div>
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label>Periodo di locazione</label>
+                            <div class="contenitore-flex">
+                                <input class="form-element" type="date" name="dataMin" id="data-min2">
+                                <h3 class="auto-margin-tb">-</h3>
+                                <input class="form-element" type="date" name="dataMax" id="data-max2">
+                            </div>
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="dimPl">Dimensione posto letto</label>
+                            <input class="form-element" type="number" id="dimPl" name="dimPl" placeholder="Dimensione posto letto">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="numCamere">Numero di letti nella camera</label>
+                            <input class="form-element" type="number" id="numLettiCam" name="numLettiCam" placeholder="Numero letti nella camera">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label for="numLetti">Numero di posti letto nell'alloggio</label>
+                            <input class="form-element" type="number" id="numLettiAll" name="numLettiAll" placeholder="Numero posti letto alloggio">
+                        </div>
+                        <div class="pad-lr-small margin-t-x-small">
+                            <label>
+                                Servizi posto letto
+                            </label>
+                            <ul class="text-left servizi">
+                                <li><input type="checkbox" id="servizio8" name="servizio1" value="servizio1"><label for="servizio8"> Pl1</label></li>
+                                <li><input type="checkbox" id="servizio9" name="servizio2" value="servizio2"><label for="servizio9"> Pl2</label></li>
+                                <li><input type="checkbox" id="servizio10" name="servizio3" value="servizio3"><label for="servizio10"> Pl3</label></li>
+                                <li><input type="checkbox" id="servizio11" name="servizio4" value="servizio4"><label for="servizio11"> Pl4</label></li>
+                                <li><input type="checkbox" id="servizio12" name="servizio5" value="servizio5"><label for="servizio12"> Pl5</label></li>
+                                <li><input type="checkbox" id="servizio13" name="servizio6" value="servizio6"><label for="servizio13"> Pl6</label></li>
+                                <li><input type="checkbox" id="servizio14" name="servizio7" value="servizio7"><label for="servizio14"> Pl7</label></li>
+                            </ul>
+                        </div>
+                        <div id='filtra2' class="margin-t-small text-center">
+                            <input class="tm-btn" type="submit" value="Filtra">
+                        </div>
+                    </form>
+                </div>
+            </div>
+<!--        Fine zona filtri-->
+            <div class="container-big margin-lr pad-lr-mid">
+                <h1 class="text-center text-gold">Catalogo delle offerte</h1>
+                <div class="offerta contenitore-flex">
+                    <div class="img-catalogo pad-r-large">
+                        <img src="Salotto catalogo.png" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+                    </div>
+                    <div>
+                        <h2 class='margin-b-15 text-center'>Appartamento: Bellavista</h2>
+
+                        <div>
+                            <div>
+                                Dettagli:
+                                <br><br>
+                                <ul class="servizi">
+                                    <li>Servizio 1</li>
+                                    <li>Servizio 2</li>
+                                    <li>Servizio 3</li>
+                                    <li>Servizio 4</li>
+                                    <li>Servizio 5</li>
+                                    <li>Servizio 6</li>
+                                    <li>Servizio 7</li>
+                                    <li>Servizio 8</li>
+                                    <li>Servizio 9</li>
+                                    <li>Servizio 10</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="offerta contenitore-flex">
+                    <div class="img-catalogo pad-r-large">
+                        <img src="Salotto.png" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+                    </div>
+                    <div>
+                        <h2 class='margin-b-15 text-center'>Appartamento: Bellavista</h2>
+
+                        <div>
+                            <div>
+                                Dettagli:
+                                <br><br>
+                                <ul class="servizi">
+                                    <li>Servizio 1</li>
+                                    <li>Servizio 2</li>
+                                    <li>Servizio 3</li>
+                                    <li>Servizio 4</li>
+                                    <li>Servizio 5</li>
+                                    <li>Servizio 6</li>
+                                    <li>Servizio 7</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="offerta contenitore-flex">
+                    <div class="img-catalogo pad-r-large">
+                        <img src="Immagine appartamento.jpg" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+                    </div>
+                    <div>
+                        <h2 class='margin-b-15 text-center'>Appartamento: Bellavista</h2>
+
+                        <div>
+                            <div>
+                                Dettagli:
+                                <br><br>
+                                <ul class="servizi">
+                                    <li>Servizio 1</li>
+                                    <li>Servizio 2</li>
+                                    <li>Servizio 3</li>
+                                    <li>Servizio 4</li>
+                                    <li>Servizio 5</li>
+                                    <li>Servizio 6</li>
+                                    <li>Servizio 7</li>
+                                    <li>Servizio 8</li>
+                                </ul>
+                                <br><br>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="offerta contenitore-flex">
+                    <div class="img-catalogo pad-r-large">
+                        <img src="Salotto catalogo.png" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+                    </div>
+                    <div>
+                        <h2 class='margin-b-15 text-center'>Appartamento: Bellavista</h2>
+                        <div class="contenitore-flex">
+                            <div>
+                                <div>
+                                    Dettagli:
+                                    <br><br>
+                                    <ul class="servizi">
+                                        <li>Servizio 1</li>
+                                        <li>Servizio 2</li>
+                                        <li>Servizio 3</li>
+                                        <li>Servizio 4</li>
+                                        <li>Servizio 5</li>
+                                        <li>Servizio 6</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="contenitore-flex text-white">
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Chi siamo</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Quick Links</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Customer Care</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Contact Us</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        
+    </body>
+</html>
