@@ -4,10 +4,23 @@
     </div>
     <div>
         <h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2>
-
-        <div>
-            <h4>Richieste: {{$accomodation->requests}}</h4>
+        @php
+            $route=Route::currentRouteName();
+        @endphp
+        
+        @if($route=='my-accomodations')
+        <div class="contenitore-flex ">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <div class="tm-btn tm-btn-gray text-white no-select nav-link margin-b-15">{{$accomodation->requests}} richiest{{$accomodation->requests==1 ? 'a' : 'e'}}</div>
+                </li>
+                <li class="nav-item active">
+                    <a href="catalogo.html" class="tm-btn nav-link margin-b-15">Assegna</a>
+                </li>
+            </ul>
         </div>
+        @endif
+        
         <br><br>
         <div>
             <h4>Dettagli:</h4>

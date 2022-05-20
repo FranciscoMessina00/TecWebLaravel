@@ -8,4 +8,9 @@ class User extends Model{
     protected $primaryKey = 'userId';
     protected $guarded = ['userId'];
     
+    public function accomodations()
+    {
+        return $this->hasMany(Accomodation::class, 'userId', 'userId');
+    }
+    
 }

@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', 'PublicController@home')       /*Home livello 1*/
         ->name('home1');
 
@@ -34,3 +35,8 @@ Route::get('/faq', 'PublicController@showFaq')
 Route::view('/rules', 'rules')->name('rules');    /*Attiva vista Regolamento generale d'uso*/
 
 Route::view('/services', 'services')->name('services');    /*Attiva vista Modalità accesso ai servizi*/
+
+
+
+Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I miei alloggi*/
+        ->name('my-accomodations');
