@@ -1,5 +1,5 @@
 <?php
-    $maxDisplay = 3;
+    $maxDisplay = 4;
 
     $currentPage = $paginator->currentPage();
     $lastPage = $paginator->lastPage();

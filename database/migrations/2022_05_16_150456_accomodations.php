@@ -19,6 +19,7 @@ class Accomodations extends Migration
             $table->string('name');
             $table->string('address');
             $table->integer('tipology');
+            $table->integer('requests');
         });
     }
 
