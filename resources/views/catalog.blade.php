@@ -11,9 +11,12 @@
 
     <div class="container-big margin-lr pad-lr-mid">
         <h1 class="text-center text-gold">Catalogo delle offerte</h1>
-        @foreach($accomodations as $accomodation)
-            @include('catalog.catalog_element')
-        @endforeach
+            @foreach($accomodations as $accomodation)
+                <div class="offerta">
+                    @include('catalog.catalog_element')
+                </div>
+            @endforeach
+
     </div>
 </div>
 <!--Paginazione-->

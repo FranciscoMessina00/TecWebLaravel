@@ -16,9 +16,12 @@ class Accomodations extends Migration
         Schema::create('accomodations', function(Blueprint $table)
         {
             $table->bigIncrements('accId');
+            $table->bigInteger('userId')->unsigned();
+            $table->foreign('userId')->references('userId')->on('users');
             $table->string('name');
             $table->string('address');
             $table->integer('tipology');
+            $table->integer('requests');
         });
     }
 

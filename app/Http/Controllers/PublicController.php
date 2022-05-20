@@ -26,8 +26,11 @@ class PublicController extends Controller {
     
     public function home()
     {
+        $spotAccomdations = $this->_catalogModel->getSpotAccomodations();
+        
         return view('home')
-            ->with('level', 1);
+            ->with('level', 1)
+            ->with('accomodations', $spotAccomdations);
     }
     
     public function home3()
@@ -38,8 +41,10 @@ class PublicController extends Controller {
     
     public function showCatalog()
     {
+        $allloggiPerPagina = 3;
+        
         /*Estraggo dal DB la lista di tutte gli alloggi*/
-        $accomodations = $this->_catalogModel->getAccomodations(1);
+        $accomodations = $this->_catalogModel->getAccomodations($allloggiPerPagina);
         
         /*In futuro da sostituire quando verrà implementata l'autenticazione*/
         $level = 1;
