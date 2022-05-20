@@ -490,6 +490,18 @@ th{
     background-repeat: no-repeat;
     height: 500px;
 }
+.tm-rectangle1
+{
+    position: absolute;
+    top: 534px;
+    left: 28px;
+    width: 1643px;
+    height: 138px;
+    background: rgba(203, 131, 0, 0.29);
+    border: 1px solid rgba(211,153,52,0.4);
+    box-sizing: border-box;
+    border-radius: 20px;
+}
 
 @media screen and (min-width:801px){
     .navbar-toggleable-sm{

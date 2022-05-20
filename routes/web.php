@@ -14,6 +14,9 @@
 Route::get('/', 'PublicController@home')       /*Home livello 1*/
         ->name('home1');
 
+Route::get('/3', 'PublicController@home3')       /*Home livello 3*/
+        ->name('home3');
+
 Route::get('/signup', 'PublicController@signup')    /*Registrazione utente*/
         ->name('signup');
 
@@ -26,10 +29,25 @@ Route::get('/login', 'PublicController@login')  /*Login utente*/
 Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
         ->name('catalog');
 
+Route::get('/catalogstudent', 'PublicController@showCatalog3')  /*Apertura catalogo student*/
+        ->name('catalogstudent');
+
+
 Route::get('/faq', 'PublicController@showFaq')
         ->name('faq');    /*Attiva vista FAQ*/
 
+Route::get('/faqstudente', 'PublicController@showFaq3')
+        ->name('faqstudente');    /*Attiva vista FAQ*/
 
+
+Route::get('/account', 'PublicController@account')
+        ->name('account');
+
+Route::get('/messaggi', 'PublicController@showmessaggi')
+        ->name('messaggi');    
+
+Route::get('/logout', 'PublicController@logout')  /*Login utente*/
+        ->name('logout');
 /*Attivazione diretta viste*/
 Route::view('/rules', 'rules')->name('rules');    /*Attiva vista Regolamento generale d'uso*/
 

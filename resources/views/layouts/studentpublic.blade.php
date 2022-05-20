@@ -13,12 +13,12 @@
     @php
         $route=Route::currentRouteName();
     @endphp
-    <body class="{{ $route == 'home1' ? 'sfondo-1' : '' }}">
+    <body class="{{ $route == 'home3'}}">
         <!-- Public Navbar -->
-        @include('layouts._nav_public')
+        @include('layouts._navstudent_public')
         
       
-        {{ $route == 'home1' ? '' : '<br>' }}
+        {{ $route == 'home3' ? '' : '<br>' }}
         <section>
             @yield('content')
         </section>

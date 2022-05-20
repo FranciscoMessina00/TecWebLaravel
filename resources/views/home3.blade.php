@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.studentpublic')
 
 @section('title', 'Homepage')
 
@@ -8,11 +8,9 @@
             <img src="../files/Salotto.png" alt="Immagine di un salotto" style="display: none">
     </div>
 
-    @if($level!=3)
-        @include('catalog.catalog_button')
-    @else
+    
         @include('student.search_bar')
-    @endif
+    
     
     
 
@@ -116,3 +114,4 @@
     </div>
 </div>
 @endsection
+
