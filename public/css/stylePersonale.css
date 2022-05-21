@@ -332,7 +332,7 @@ th{
     font-size: 32px;
 }
 .text-mid{
-    font-size: 20px;
+    font-size: 25px;
 }
 .text-small{
     font-size: 10px;
@@ -600,7 +600,10 @@ th{
         -moz-columns: 1;
     }
 }
-
+.errors{
+    color:red;
+    text-align: left
+}
 .messaggio{
     width:80%
 }
