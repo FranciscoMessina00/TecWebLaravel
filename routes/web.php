@@ -58,3 +58,11 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 
 Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
