@@ -27,6 +27,8 @@ Route::post('/register', 'Auth\RegisterController@register')    /*Inserimento nu
 Route::get('/login', 'Auth\LoginController@showLoginForm')  /*Login utente*/
         ->name('login');
 
+Route::post('login', 'Auth\LoginController@login'); /*controllo login*/
+
 Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
         ->name('catalog');
 

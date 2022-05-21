@@ -19,11 +19,12 @@
                 {{ Form::label('tipology', 'Chi sei?', ['class' => 'text-mid']) }}
             </div>
             <div class="margin-b-40">
-                <select id="selettore" name="tipology" class="form-element">
+<!--                <select id="selettore" name="tipology" class="form-element">
                     <option value="none" disabled selected>Seleziona un'opzione</option>
                     <option value="studente">Studente</option>
                     <option value="locatore">Locatore</option>
-                </select>
+                </select>-->
+                {{ Form::select('tipology', ['2' => 'Locatore', '3' => 'Studente'], 3, ['class' => 'form-element','id' => 'tipology']) }}
                 @if ($errors->first('tipology'))
                 <ul class="errors">
                     @foreach ($errors->get('tipology') as $message)
@@ -192,7 +193,8 @@
         <!-- fine pass-->
         <!-- invia dati -->
         <div class="margin-t-small text-center">
-            <input class="tm-btn" type="submit" value="REGISTRATI">
+<!--            <input class="tm-btn" type="submit" value="REGISTRATI">-->
+            {{ Form::submit('REGISTRATI', ['class' => 'tm-btn']) }}
         </div>
         {{ Form::close() }}
     </div>
