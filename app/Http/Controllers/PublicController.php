@@ -39,6 +39,18 @@ class PublicController extends Controller {
         ->with('level',3);
     }
     
+    public function homeadmin()
+    {
+        return view('homeadmin')
+        ->with('level',4);
+    }
+    
+    public function statistiche()
+    {
+        return view('statistiche')
+        ->with('level',4);
+    }
+    
     public function showCatalog()
     {
         $allloggiPerPagina = 3;
@@ -69,6 +81,20 @@ class PublicController extends Controller {
             ->with('level', $level);
     }
     
+    public function showCatalog4()
+    {
+        /*Estraggo dal DB la lista di tutte gli alloggi*/
+        $accomodations = $this->_catalogModel->getAccomodations(1);
+        
+        /*In futuro da sostituire quando verrà implementata l'autenticazione*/
+        $level = 4;
+        
+        /*Attivo la vista che mostra il catalogo con gli alloggi estratti*/
+        return view('catalogadmin')
+            ->with('accomodations', $accomodations)
+            ->with('level', $level);
+    }
+    
     public function showFaq()
     {
         /*Estraggo dal DB la lista di tutte le faq*/
@@ -93,6 +119,20 @@ class PublicController extends Controller {
         
         /*Attivo la vista che mostra la pagina delle faq*/
         return view('faqstudente')
+            ->with('faqs', $faqs)
+            ->with('level', $level);
+    }
+    
+    public function showFaq4()
+    {
+        /*Estraggo dal DB la lista di tutte le faq*/
+        $faqs = Faq::paginate(1);
+        
+        /*In futuro da sostituire quando verrà implementata l'autenticazione*/
+        $level = 3;
+        
+        /*Attivo la vista che mostra la pagina delle faq*/
+        return view('faqadmin')
             ->with('faqs', $faqs)
             ->with('level', $level);
     }

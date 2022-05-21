@@ -18,6 +18,12 @@ Route::get('/', 'PublicController@home')       /*Home livello 1*/
 Route::get('/3', 'PublicController@home3')       /*Home livello 3*/
         ->name('home3');
 
+Route::get('/4', 'PublicController@homeadmin')       /*Home livello 4*/
+        ->name('homeadmin');
+
+Route::get('/statistiche', 'PublicController@statistiche')       /*statistiche*/
+        ->name('statistiche');
+
 Route::get('/signup', 'PublicController@signup')    /*Registrazione utente*/
         ->name('signup');
 
@@ -33,13 +39,17 @@ Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
 Route::get('/catalogstudent', 'PublicController@showCatalog3')  /*Apertura catalogo student*/
         ->name('catalogstudent');
 
+Route::get('/catalogadmin', 'PublicController@showCatalog4')  /*Apertura catalogo admin*/
+        ->name('catalogadmin');
 
 Route::get('/faq', 'PublicController@showFaq')
         ->name('faq');    /*Attiva vista FAQ*/
 
 Route::get('/faqstudente', 'PublicController@showFaq3')
-        ->name('faqstudente');    /*Attiva vista FAQ*/
+        ->name('faqstudente');    /*Attiva vista FAQ studente*/
 
+Route::get('/faqadmin', 'PublicController@showFaq4')
+        ->name('faqadmin');    /*Attiva vista FAQ admin*/
 
 Route::get('/account', 'PublicController@account')
         ->name('account');
