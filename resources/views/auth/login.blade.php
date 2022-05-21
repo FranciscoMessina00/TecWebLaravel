@@ -1,73 +1,59 @@
-@extends('layouts.app')
+@extends('layouts.public')
+
+@section('title', 'Accedi')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+<br>
+<div class="margin-t-x-large margin-b-40 text-center ">
+    <div class="container-small auto-margin-lr pad-lr-large">
+        <h2 class="text-center margin-b-40 margin-t-small text-gold text-large">Area di accesso</h2>
+        <form name="accedi" method="get" class="">
+            <!-- inizio selezione chi sei-->
+            <div>
+                <div class="text-left">
+                    <label for="selettore" style="font-size: x-large;">
+                        Chi sei?
+                    </label>
+                </div>
+                <div class="margin-b-40">
+                    <select id="selettore" name="selettore" class="form-element">
+                        <option value="none" disabled selected>Seleziona un'opzione</option>
+                        <option value="studente">Studente</option>
+                        <option value="locatore">Locatore</option>
+                        <option value="amministratore">Amministratore</option>
+                    </select>
                 </div>
             </div>
-        </div>
+            <!-- fine selezione chi sei -->
+            <!-- inizio mail-->
+            <div>
+                <div class="text-left">
+                    <label for="username" style="font-size: x-large;">
+                        Username
+                    </label>
+                </div>
+                <div class="margin-b-40">
+                    <input class="form-element" id="username" type="text" name="username" placeholder="Inserisci username">
+                </div>
+            </div>
+            <!-- fine mail-->
+            <!-- inizio pass-->
+            <div>
+                <div class="text-left">
+                    <label for="pass" style="font-size: x-large;">
+                        Password
+                    </label>
+                </div>
+                <div class="margin-b-40">
+                    <input class="form-element" id="pass" type="password" name="pass" placeholder="Inserisci password">
+                </div>
+            </div>
+            <!-- fine pass-->
+            <!-- invia dati -->
+            <div class="margin-t-small text-center">
+                <input class="tm-btn" type="submit" value="ENTRA">
+            </div>
+        </form>
     </div>
 </div>
 @endsection

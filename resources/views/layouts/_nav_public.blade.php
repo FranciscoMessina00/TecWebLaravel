@@ -29,9 +29,9 @@
                             <div class="tm-btn tm-btn-gray text-white no-select nav-link">Non hai un account?</div>
                         </li>
                         <li class="nav-item active">
-                            <a href="{{ route('signup') }}" class="tm-btn nav-link">Registrati</a>
+                            <a href="{{ route('register') }}" class="tm-btn nav-link">Registrati</a>
                         </li>
-                        @elseif($route=='signup')
+                        @elseif($route=='register')
                         <li class="nav-item">
                             <div class="text-white tm-btn tm-btn-gray no-select nav-link">Hai già un account?</div>
                         </li>
@@ -42,8 +42,8 @@
                         <li class="nav-item {{ $route == 'login' ? 'active' : '' }}">
                             <a href="{{ route('login') }}" class="nav-link">Accedi</a>
                         </li>
-                        <li class="nav-item {{ $route == 'signup' ? 'active' : '' }}">
-                            <a href="{{ route('signup') }}" class="nav-link">Registrati</a>
+                        <li class="nav-item {{ $route == 'register' ? 'active' : '' }}">
+                            <a href="{{ route('register') }}" class="nav-link">Registrati</a>
                         </li>
                         @endif
                     </ul>                        

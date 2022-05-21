@@ -18,13 +18,13 @@ Route::get('/', 'PublicController@home')       /*Home livello 1*/
 Route::get('/3', 'PublicController@home3')       /*Home livello 3*/
         ->name('home3');
 
-Route::get('/signup', 'PublicController@signup')    /*Registrazione utente*/
-        ->name('signup');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')    /*Registrazione utente*/
+        ->name('register');
 
-Route::post('/signup', 'PublicController@addUser')    /*Inserimento nuovo utente*/
-        ->name('signup.add');
+Route::post('/register', 'Auth\RegisterController@register')    /*Inserimento nuovo utente*/
+        ->name('register.add');
 
-Route::get('/login', 'PublicController@login')  /*Login utente*/
+Route::get('/login', 'Auth\LoginController@showLoginForm')  /*Login utente*/
         ->name('login');
 
 Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
@@ -59,10 +59,10 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
+//
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
