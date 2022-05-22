@@ -9,7 +9,7 @@ body{
 }
 a,button,input,h2{
     transition: all 0.3s ease;
-    text-decoration: none!important;
+    text-decoration: none;
 }
 ul{
     list-style: none;
@@ -108,13 +108,13 @@ th{
     margin-right: 5px;
 }
 .bord-rad-xs{
-    border-radius: 5px;
+    border-radius: 5px!important;
 }
 .bord-rad-mid{
-    border-radius: 10px;
+    border-radius: 10px!important;
 }
 .bord-rad-lg{
-    border-radius: 20px;
+    border-radius: 20px!important;
 }
 .border-b{
     border-bottom: 1px solid;
@@ -215,6 +215,7 @@ th{
     border-radius: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+    min-height: 400px;
 }
 .container-small{
     width: 500px;
@@ -344,6 +345,9 @@ th{
 }
 .justify-center{
     justify-content: center!important
+}
+.flex{
+    display: flex;
 }
 
 .tm-header-inner {
@@ -595,4 +599,41 @@ th{
         -webkit-columns: 1;
         -moz-columns: 1;
     }
+}
+
+.messaggio{
+    width:80%
+}
+.overflow{
+    overflow-y: scroll;
+}
+.box{
+    height: 400px;
+}
+.in_fondo{
+    position: absolute;
+    bottom: 20px;
+}
+
+/* Barra scorrevole */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(109, 109, 109, 0.7); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(196, 196, 196, 1); 
 }
