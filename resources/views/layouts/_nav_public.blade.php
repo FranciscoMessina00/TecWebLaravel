@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="tm-header-inner">                    
             <div class="tm-logo-img-container">
-                <img src="../files/FLAK_logo.png" alt="logo" style="display: none"/>
+                <img src="{{asset('/files/FLAK_logo.png')}}" alt="logo" style="display: none"/>
             </div>
             
             <!<!-- Messaggio di benvenuto di prova. -->
@@ -63,8 +63,8 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item {{ $route == $role.'.account' ? 'active' : '' }}">
-                                <a href="{{ route($role.'.account') }}" class="nav-link">Account</a>
+                            <li class="nav-item {{ $route == 'account' ? 'active' : '' }}">
+                                <a href="{{ route('account') }}" class="nav-link">Account</a>
                             </li>
                         
                             @switch($role)
@@ -82,6 +82,9 @@
                                     </li>
                                     @break
                                 @case('admin')
+                                    <li class="nav-item {{ $route == 'admin.stats' ? 'active' : '' }}">
+                                        <a href="{{ route('admin.stats') }}" class="nav-link">Statistiche</a>
+                                    </li>
                                     @break
                             @endswitch
                             

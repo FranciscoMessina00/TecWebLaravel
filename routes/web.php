@@ -19,13 +19,7 @@ Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
         ->name('catalog');
 
 Route::get('/faq', 'PublicController@showFaq')      /*Attiva vista FAQ*/
-        ->name('faq');
-
-Route::get('/account', 'PublicController@account')
-        ->name('account');
-
-Route::get('/messaggi', 'PublicController@showmessaggi')
-        ->name('messaggi');    
+        ->name('faq');   
 
 
 /*Attivazione diretta viste*/
@@ -35,9 +29,6 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 
 
 /*Rotte specifiche livello 2: locatore*/
-Route::get('/locator/account', 'LocatorController@account')       /*Account*/
-        ->name('locator.account');
-
 Route::get('/locator/messaggi', 'LocatorController@messages')    
         ->name('locator.messages');  
 
@@ -46,17 +37,13 @@ Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I mi
 
 
 /*Rotte specifiche livello 3: studente*/
-Route::get('/student/account', 'StudentController@account')       /*Account*/
-        ->name('student.account');
-
 Route::get('/student/messaggi', 'StudentController@messages')  
         ->name('student.messages');
 
 
 /*Rotte specifiche livello 4: admin*/
-
-Route::get('/admin/account', 'AdminController@account')       /*Account*/
-        ->name('admin.account');
+Route::get('/admin/stats', 'AdminController@stats')       /*Statistiche amministratore*/
+        ->name('admin.stats');
 
 
 /*Rotte per il login e la registrzione*/
@@ -71,8 +58,13 @@ Route::get('/login', 'Auth\LoginController@showLoginForm')  /*Login utente*/
 
 Route::post('login', 'Auth\LoginController@login');         /*Autenticazione utente*/
 
-Route::get('/logout', 'Auth\LoginController@logout')        /*Lgout utente*/
+Route::get('/logout', 'Auth\LoginController@logout')        /*Logout utente*/
         ->name('logout');
+
+
+/*Rotte per tutti gli utenti loggati*/
+Route::get('/account', 'UserController@account')       /*Account*/
+        ->name('account')->middleware('auth');
 
 
 //Auth::routes();

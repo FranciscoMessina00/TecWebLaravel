@@ -16,7 +16,6 @@
     <body class="{{ $route == 'home' ? 'sfondo-1' : '' }}">
         <!-- Public Navbar -->
         @include('layouts._nav_public')
-        
       
         {!! $route == 'home' ? '' : '<br>' !!}
         <section>
