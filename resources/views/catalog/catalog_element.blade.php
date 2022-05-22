@@ -1,13 +1,14 @@
-<div class="contenitore-flex pad-tb-small pad-lr-small">
-    <div class="img-catalogo pad-r-large">
-        <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+@php
+$route=Route::currentRouteName();
+@endphp
+<div class="{{$route=='public'? '' : 'contenitore-flex'}} pad-tb-small pad-lr-small">
+    <div class="img-catalogo {{$route=='public'? '' : 'pad-r-large'}} ">
+        <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg auto-margin-lr" style="width:100%"/>
     </div>
     <div>
         <h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2>
-        @php
-            $route=Route::currentRouteName();
-        @endphp
-        
+
+
         @if($route=='my-accomodations')
         <div class="contenitore-flex ">
             <ul class="nav navbar-nav">
@@ -20,8 +21,11 @@
             </ul>
         </div>
         @endif
+        @if($route!='public')
+        <br>
+        @endif
         
-        <br><br>
+       
         <div>
             <h4>Dettagli:</h4>
             <br><br>

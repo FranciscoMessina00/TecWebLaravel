@@ -90,8 +90,8 @@ th{
     margin-top: -30px;
 }
 .auto-margin-lr{
-    margin-left:auto;
-    margin-right:auto;
+    margin-left:auto!important;
+    margin-right:auto!important;
 }
 .auto-margin-l{
     margin-left:auto;

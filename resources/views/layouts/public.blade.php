@@ -13,7 +13,7 @@
     @php
         $route=Route::currentRouteName();
     @endphp
-    <body class="{{ $route == 'home1' ? 'sfondo-1' : '' }}">
+    <body class="{{ $route == 'public' ? 'sfondo-1' : '' }}">
         <!-- Public Navbar -->
         @include('layouts._nav_public')
         
