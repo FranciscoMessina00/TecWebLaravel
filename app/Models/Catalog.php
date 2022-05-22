@@ -3,13 +3,20 @@
 namespace App\Models;
 
 use App\Models\Resources\Accomodation;
-use App\Models\Resources\User;
+use Illuminate\Support\Facades\Auth;
+
+use App\User;
 
 class Catalog {
 
     public function getAccomodations(int $paged = 1)
     {
         return Accomodation::paginate($paged);
+    }
+    
+    public function getAccomodationsById($id)
+    {
+        return User::find($id)->accomodations;
     }
     
     public function getSpotAccomodations(int $quantity=3)
@@ -19,11 +26,9 @@ class Catalog {
                 ->get();
     }
     
-    public function getMyAccomodations(int $locId)
+    public function getMyAccomodations()
     {
-        $locator = User::find($locId);
-        
-        $accomodations = $locator->accomodations;
+        $accomodations = Auth::user()->accomodations;
         
         return $accomodations;
     }

@@ -12,8 +12,8 @@
 */
 
 /*Rotte pubbliche*/
-Route::get('/', 'PublicController@home')       /*Home livello 1*/
-        ->name('public');
+Route::get('/', 'PublicController@home')       /*Homepage*/
+        ->name('home');
 
 Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
         ->name('catalog');
@@ -24,7 +24,7 @@ Route::get('/faq', 'PublicController@showFaq')      /*Attiva vista FAQ*/
 Route::get('/account', 'PublicController@account')
         ->name('account');
 
-Route::get('/messaggi', 'PublicController@showmessaggi')    /*La funzione dei messaggi è solo per utenti loggati, non va nel public controller*/
+Route::get('/messaggi', 'PublicController@showmessaggi')
         ->name('messaggi');    
 
 
@@ -35,13 +35,10 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 
 
 /*Rotte specifiche livello 2: locatore*/
-Route::get('/locator', 'LocatorController@home')
-        ->name('locator')->middleware('can:isLocator');
-
 Route::get('/locator/account', 'LocatorController@account')       /*Account*/
         ->name('locator.account');
 
-Route::get('/locator/messaggi', 'LocatorController@messages')    /*La funzione dei messaggi è solo per utenti loggati, non va nel public controller*/
+Route::get('/locator/messaggi', 'LocatorController@messages')    
         ->name('locator.messages');  
 
 Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I miei alloggi*/
@@ -49,19 +46,14 @@ Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I mi
 
 
 /*Rotte specifiche livello 3: studente*/
-Route::get('/student', 'StudentController@home')
-        ->name('student')->middleware('can:isStudent');
-
 Route::get('/student/account', 'StudentController@account')       /*Account*/
         ->name('student.account');
 
-Route::get('/student/messaggi', 'StudentController@messages')    /*La funzione dei messaggi è solo per utenti loggati, non va nel public controller*/
+Route::get('/student/messaggi', 'StudentController@messages')  
         ->name('student.messages');
 
 
 /*Rotte specifiche livello 4: admin*/
-Route::get('/admin', 'AdminController@home')
-        ->name('admin')->middleware('can:isAdmin');
 
 Route::get('/admin/account', 'AdminController@account')       /*Account*/
         ->name('admin.account');

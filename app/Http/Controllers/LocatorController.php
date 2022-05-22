@@ -12,6 +12,9 @@ use App\Models\Resources\Faq;
 /*Import Form Requests*/
 use App\Http\Requests\UserRequest;
 
+/*Facade Auth di laravel ui*/
+use Illuminate\Support\Facades\Auth;
+
 /*Tools*/
 use Illuminate\Support\Facades\Log;
 
@@ -29,9 +32,7 @@ class LocatorController extends Controller {
     
     public function my_accomodations()
     {
-        $locId = 2;
-        
-        $my_accomodations = $this->_catalogModel->getMyAccomodations($locId);
+        $my_accomodations = $this->_catalogModel->getMyAccomodations();
         
         return view('my-accomodations')
             ->with('accomodations', $my_accomodations);

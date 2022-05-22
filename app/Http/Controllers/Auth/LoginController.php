@@ -26,36 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    /*protected $redirectTo = RouteServiceProvider::HOME;*/
-    
-    /**
-     * Override:: Rotta da richiamare dopo il login.
-     *
-     * @return string
-     */
-    protected function redirectTo() 
-    {
-        $role = auth()->user()->role;
-        $route = '/';
-        
-        switch($role)
-        {
-            case 'locator': 
-                $route = '/locator';
-                break;
-            case 'user': 
-                $route = '/student';
-                break;
-            case 'admin': 
-                $route = '/admin';
-                break;
-            default:
-                $route = '/';
-                break;
-        }
-        
-        return $route;
-    }
+    protected $redirectTo = '/';
     
     /**
      * Override:: Login con 'username' al posto di email.
