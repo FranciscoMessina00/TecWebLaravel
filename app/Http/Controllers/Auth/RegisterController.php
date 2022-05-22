@@ -21,7 +21,8 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    
+    /*Include il trait RegisterUsers che mette a disposizione tutti i metodi per la registrazione*/
     use RegistersUsers;
 
     /**
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '\login';
 
     /**
      * Create a new controller instance.
@@ -38,6 +39,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        /*Middleware che controlla che gli utenti che accedono alle pagine di registrazioni siano utenti NON registrati.
+        Tutti gli utenti registrati NON possono accedere ai metodi di questo controller.*/
         $this->middleware('guest');
     }
 
@@ -49,9 +52,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        /*Le regole di validazione vengono solitamente inserite all'interno delle classi che estendono da RequestForm presenti nella cartella Requests.
+        In questo caso la validazione viene effettuata direttamente nel controller di registrazione.*/
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'min:8', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,8 +72,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'role' => $data['role'],
             'name' => $data['name'],
+            'surname' => $data['surname'],
             'email' => $data['email'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <title>FLAK</title>
+        <title>FLAK | @yield('title', 'Home')</title>
         <link rel="stylesheet" href="{{ asset('css/stylePersonale.css') }}"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
         @include('layouts._nav_public')
         
       
-        {{ $route == 'home1' ? '' : '<br>' }}
+        {{ $route == 'public' ? '' : '<br>' }}
         <section>
             @yield('content')
         </section>

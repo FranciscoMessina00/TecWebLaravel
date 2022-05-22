@@ -16,7 +16,7 @@
                 <!--                    <label for="tipology" style="font-size: x-large;">
                                         Chi sei?
                                     </label>-->
-                {{ Form::label('tipology', 'Chi sei?', ['class' => 'text-mid']) }}
+                {{ Form::label('role', 'Chi sei?', ['class' => 'text-mid']) }}
             </div>
             <div class="margin-b-40">
 <!--                <select id="selettore" name="tipology" class="form-element">
@@ -24,7 +24,7 @@
                     <option value="studente">Studente</option>
                     <option value="locatore">Locatore</option>
                 </select>-->
-                {{ Form::select('tipology', ['2' => 'Locatore', '3' => 'Studente'], 3, ['class' => 'form-element','id' => 'tipology']) }}
+                {{ Form::select('role', ['locator' => 'Locatore', 'student' => 'Studente'], 3, ['class' => 'form-element','id' => 'tipology']) }}
                 @if ($errors->first('tipology'))
                 <ul class="errors">
                     @foreach ($errors->get('tipology') as $message)

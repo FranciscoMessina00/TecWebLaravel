@@ -8,11 +8,11 @@
         <img src="../files/Salotto.png" alt="Immagine di un salotto" style="display: none">
     </div>
 
-    @if($level!=3)
-        @include('catalog.catalog_button')
-    @else
+    @can('show-search-bar')
         @include('student.search_bar')
-    @endif
+    @else
+        @include('catalog.catalog_button')
+    @endcan
     
     
 
