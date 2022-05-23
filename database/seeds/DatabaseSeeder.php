@@ -31,5 +31,9 @@ class DatabaseSeeder extends Seeder
             ['accId' => 5, 'userId' => 2, 'name' => "Appartamento Monte D'Ago", 'tipology' => 0, 'address'=>'via tizio, 16', 'requests' => 7,'description'=>'Scritta di prova','dimBedroom'=>null,'dimAppartment'=>220,'rooms'=>3,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>25,'ageMin'=>20,'price'=>200,'state'=>true,'dateOffer'=>'2000-01-01','dateBooking'=>'2000-01-01','dateStart'=>'2000-01-01','dateFinish'=>'2000-01-01','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
             ['accId' => 6, 'userId' => 2, 'name' => 'Posto letto Grazie', 'tipology' => 1, 'address'=>'via caio, 16', 'requests' => 1,'description'=>'Scritta di prova','dimBedroom'=>23,'dimAppartment'=>null,'rooms'=>null,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>25,'ageMin'=>20,'price'=>200,'state'=>true,'dateOffer'=>'2000-01-01','dateBooking'=>'2000-01-01','dateStart'=>'2000-01-01','dateFinish'=>'2000-01-01','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))]
         ]);
+        
+        DB::table('accomodation_student')->insert([
+            ['accStudId' => 1, 'userId' => 1, 'accId' => 1]
+        ]);
     }
 }

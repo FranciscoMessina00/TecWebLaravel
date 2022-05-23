@@ -30,16 +30,9 @@ $route=Route::currentRouteName();
             <h4>Dettagli:</h4>
             <br><br>
             <ul class="servizi">
-                <li>Servizio 1</li>
-                <li>Servizio 2</li>
-                <li>Servizio 3</li>
-                <li>Servizio 4</li>
-                <li>Servizio 5</li>
-                <li>Servizio 6</li>
-                <li>Servizio 7</li>
-                <li>Servizio 8</li>
-                <li>Servizio 9</li>
-                <li>Servizio 10</li>
+                @foreach($accomodation->students as $student)
+                    <li>{{$student->name}} ha opzionato</li>
+                @endforeach
             </ul>
         </div>
 
