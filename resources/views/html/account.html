@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Account</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylePersonale.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- inizio barra in alto -->
+        <div class="tm-header">
+            <div class="container-fluid">
+                <div class="tm-header-inner">                    
+                    <div class="tm-logo-img-container">
+                        <img src="../files/FLAK_logo.png" alt="logo" style="display: none"/>
+                    </div>
+                    <!-- navbar -->
+                    <nav class="navbar tm-main-nav">
+
+                        <button class="navbar-toggler hidden-md-up" type="button" data-toggle="colapse" data-target="#tmNavbar" onclick="toggleMenu('tmNavbar')">
+                            &#9776;
+                        </button>
+
+                        <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <a href="homepage.html" class="nav-link">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="catalogo.html" class="nav-link">Catalogo</a>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="text-white tm-btn tm-btn-gray no-select nav-link">Hai già un account?</div>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="login.html" class="tm-btn nav-link">Accedi</a>
+                                </li>
+                            </ul>                        
+                        </div>
+
+                    </nav>  
+
+                </div>                                  
+            </div>            
+        </div>
+        <br>
+        <!-- fine barra in alto -->
+
+        <div class="margin-t-x-large margin-b-40 text-center ">
+            <div class="container-mid auto-margin-lr pad-lr-large">
+                <h2 class="text-center margin-b-40 margin-t-small text-gold text-large">Informazioni personali</h2>
+                <div class="contenitore-flex">
+                    <form name="dati" method="get">
+                        <div class="">
+                            <!-- inizio selezione chi sei-->
+                            <div class="width-small margin-b-30">
+                                <div class="text-left">
+                                    <label for="chi" style="font-size: x-large;">
+                                        Chi sei?
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input type="text" id="chi" disabled value="Locatore" class="form-element">
+                                </div>
+                            </div>
+                            <!-- fine selezione chi sei -->
+                            <!-- inizio mail-->
+                            <div class="width-small margin-b-30">
+                                <div class="text-left">
+                                    <label for="nome" style="font-size: x-large;">
+                                        Nome
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="form-element" id="nome" type="text" name="nome" value="Francisco">
+                                </div>
+                            </div>
+                            <div class="width-small margin-b-30">
+                                <div class="text-left">
+                                    <label for="cognome" style="font-size: x-large;">
+                                        Cognome
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="form-element" id="cognome" type="text" name="cognome" value="Messina">
+                                </div>
+                            </div>
+                            <div class="width-small margin-b-30">
+                                <div class="text-left">
+                                    <label for="username" style="font-size: x-large;">
+                                        Username
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="form-element" id="username" type="text" name="username" value="IscoFrisco">
+                                </div>
+                            </div>
+                            <div class="width-small margin-b-30">
+                                <div class="text-left">
+                                    <label for="mail" style="font-size: x-large;">
+                                        E-mail
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="form-element" id="mail" type="text" name="mail" value="franc.mess@gmail.com">
+                                </div>
+                            </div>
+                            <div class="width-small">
+                                <div class="text-left">
+                                    <label for="gender" style="font-size: x-large;">
+                                        Gender
+                                    </label>
+                                </div>
+                                <div class="margin-b-30">
+                                    <select id="gender" name="gender" class="form-element">
+                                        <option value="donna">Donna</option>
+                                        <option value="uomo" selected>Uomo</option>
+                                        <option value="altro">Altro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="width-small margin-b-30">
+                                <div class="text-left">
+                                    <label for="data" style="font-size: x-large;">
+                                        Data di nascita
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="form-element" id="data" type="date" name="data" value="2000-04-24">
+                                </div>
+                            </div>
+                            <!-- fine mail-->
+                            <!-- inizio pass-->
+                            <div class="width-small margin-b-30">
+                                <div class="text-left">
+                                    <label for="pass" style="font-size: x-large;">
+                                        Password
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <input class="form-element" id="pass" type="password" name="pass" value="pass123">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fine pass-->
+                        <!-- invia dati -->
+                        <div class="margin-t-small text-center margin-b-15">
+                            <input class="tm-btn" type="submit" value="MODIFICA DATI">
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <img src="Immagine profilo.jpg" alt="immagine profilo" class="img-profilo bord-rad-mid"/>
+                        <form name="img-profilo" action="" enctype="multipart/form-data">
+                            <label for="immagine">Cambia immagine profilo</label>
+                            <input class="form-element" type="file" id="immagine" name="immagine"><br><br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- fine zona di accesso-->
+        <!-- inizio footer -->
+        <footer>
+            <div class="contenitore-flex text-white">
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Chi siamo</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Quick Links</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Customer Care</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+                <div class="margin-t-mid margin-b-15">
+                    <h4 class="margin-b-20">Contact Us</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <script src="funzioni.js"></script>
+    </body>
+</html>
