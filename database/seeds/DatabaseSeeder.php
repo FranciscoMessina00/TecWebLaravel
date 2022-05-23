@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('users')->insert([
-            ['userId' => 1, 'tipology' => 0, 'username' => "loc1", 'password' => "pass1"],
-            ['userId' => 2, 'tipology' => 0, 'username' => "loc2", 'password' => "pass2"],
-            ['userId' => 3, 'tipology' => 1, 'username' => "stud1", 'password' => "pass3" ]
+            ['userId' => 1, 'role' => 'student', 'username' => "stud1", 'password' => Hash::make('pass'), 'name' => 'Mario', 'surname' => 'Rossi', 'email' => 'mario.rossi@gmail.com', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
+            ['userId' => 2, 'role' => 'locator', 'username' => "loc1", 'password' => Hash::make('pass'), 'name' => 'Marco', 'surname' => 'Bianchi', 'email' => 'marco.bianchi@gmail.com', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
+            ['userId' => 3, 'role' => 'admin', 'username' => "admin1", 'password' => Hash::make('pass'), 'name' => 'Giovanni', 'surname' => 'Verdi', 'email' => 'giovanni.verdi@gmail.com', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))]
         ]);
         
         DB::table('accomodations')->insert([

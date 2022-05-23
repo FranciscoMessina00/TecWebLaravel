@@ -8,13 +8,13 @@
         <img src="../files/Salotto.png" alt="Immagine di un salotto" style="display: none">
     </div>
 
-    @if($level!=3)
-        @include('catalog.catalog_button')
+    @can('show-search-bar')
+    @include('student.search_bar')
     @else
-        @include('student.search_bar')
-    @endif
-    
-    
+    @include('catalog.catalog_button')
+    @endcan
+
+
 
     <div class="text-center text-white margin-t-mid">
         <h1 class="text-x-large">

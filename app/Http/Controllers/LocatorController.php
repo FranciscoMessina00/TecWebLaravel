@@ -21,6 +21,9 @@ class LocatorController extends Controller {
     protected $_catalogModel;
 
     public function __construct() {
+        /*Permette soltanto agli utenti di tipo locator di accedere ai metodi del controller*/
+        $this->middleware('can:isLocator');
+        
         $this->_catalogModel = new Catalog;
     }
     

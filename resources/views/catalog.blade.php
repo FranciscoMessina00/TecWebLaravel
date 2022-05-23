@@ -5,9 +5,9 @@
 @section('content')
 <div class="margin-t-x-large margin-b-40 contenitore-flex-2">
 
-    @if($level == 1)
+    @can('show-filter-bar')
         @include('catalog.filter_sidebar')
-    @endif
+    @endcan
 
     <div class="container-big margin-lr pad-lr-mid">
         <h1 class="text-center text-gold">Catalogo delle offerte</h1>

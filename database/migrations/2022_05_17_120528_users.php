@@ -16,9 +16,19 @@ class Users extends Migration
         Schema::create('users', function(Blueprint $table)
         {
             $table->bigIncrements('userId');
-            $table->integer('tipology');
-            $table->string('username');
+            $table->string('role', 10)-> default('student');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('username', 20);
             $table->string('password');
+            $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
+            
+            /*Genera la colonna remember token, che attiva il meccanismo di login persistente*/
+            $table->rememberToken();
+            
+            /*Il metodo timeatamps() genera le due colonne nella tabella created_at e update_at*/
+            $table->timestamps();
         });
     }
 

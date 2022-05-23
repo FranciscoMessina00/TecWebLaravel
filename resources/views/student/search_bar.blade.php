@@ -1,7 +1,7 @@
      
 <!--        Fine zona filtri-->
 <div class="text-center margin-t-small-neg container-mid auto-margin-lr">
-    <form class="contenitore-flex" action="{{ route('catalogstudent')}}">
+    <form class="contenitore-flex" action="{{ route('catalog')}}">
                 <div class="pad-lr-small border-r">
                     <h2>Dove</h2>
                     <input type="text" id="dove" class="form-element">

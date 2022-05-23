@@ -29,10 +29,9 @@ class PublicController extends Controller {
         $spotAccomdations = $this->_catalogModel->getSpotAccomodations();
         
         return view('home')
-            ->with('level', 1)
             ->with('accomodations', $spotAccomdations);
     }
-    
+
     public function home3()
     {
         return view('home3')
@@ -51,6 +50,7 @@ class PublicController extends Controller {
         ->with('level',4);
     }
     
+
     public function showCatalog()
     {
         $allloggiPerPagina = 3;
@@ -58,27 +58,9 @@ class PublicController extends Controller {
         /*Estraggo dal DB la lista di tutte gli alloggi*/
         $accomodations = $this->_catalogModel->getAccomodations($allloggiPerPagina);
         
-        /*In futuro da sostituire quando verrà implementata l'autenticazione*/
-        $level = 1;
-        
         /*Attivo la vista che mostra il catalogo con gli alloggi estratti*/
         return view('catalog')
-            ->with('accomodations', $accomodations)
-            ->with('level', $level);
-    }
-    
-    public function showCatalog3()
-    {
-        /*Estraggo dal DB la lista di tutte gli alloggi*/
-        $accomodations = $this->_catalogModel->getAccomodations(1);
-        
-        /*In futuro da sostituire quando verrà implementata l'autenticazione*/
-        $level = 3;
-        
-        /*Attivo la vista che mostra il catalogo con gli alloggi estratti*/
-        return view('catalogstudent')
-            ->with('accomodations', $accomodations)
-            ->with('level', $level);
+            ->with('accomodations', $accomodations);
     }
     
     public function showCatalog4()
@@ -100,11 +82,9 @@ class PublicController extends Controller {
         /*Estraggo dal DB la lista di tutte le faq*/
         $faqs = Faq::paginate(1);
         
-        /*In futuro da sostituire quando verrà implementata l'autenticazione*/
-        $level = 1;
-        
         /*Attivo la vista che mostra la pagina delle faq*/
         return view('faq')
+
             ->with('faqs', $faqs)
             ->with('level', $level);
     }
@@ -179,5 +159,8 @@ class PublicController extends Controller {
         $user->save();
         
         return redirect()->action('PublicController@login');
+
+ //           ->with('faqs', $faqs);
+
     }
 }

@@ -18,10 +18,12 @@
         </div>
         <!--                Fine zona aggiungi alloggio e visualizza opzionati-->
         
-        @foreach($accomodations as $accomodation)
-            @include('catalog.catalog_element')
-        @endforeach
-
+            @foreach($accomodations as $accomodation)
+            <div class="offerta">
+                @include('catalog.catalog_element')
+                </div>
+            @endforeach
+        
     </div>
 
 </div>
