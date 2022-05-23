@@ -13,27 +13,12 @@
 
 /*Rotte pubbliche*/
 
-Route::get('/', 'PublicController@home')       /*Home livello 1*/
+Route::get('/', 'PublicController@home')       /*Homepage*/
 
-        ->name('home1');
-
-Route::get('/signup', 'PublicController@signup')    /*Registrazione utente*/
-        ->name('signup');
-
-Route::post('/signup', 'PublicController@addUser')    /*Inserimento nuovo utente*/
-        ->name('signup.add');
-
-Route::get('/login', 'PublicController@login')  /*Login utente*/
-        ->name('login');
-
- //       ->name('public');
-
-
-
+        ->name('home');
 
 Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
         ->name('catalog');
-
 
 Route::get('/faq', 'PublicController@showFaq')
         ->name('faq');    /*Attiva vista FAQ*/
