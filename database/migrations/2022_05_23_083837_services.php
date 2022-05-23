@@ -20,6 +20,8 @@ class Services extends Migration {
             $table->boolean('cucina');
             $table->boolean('locRicr');
             $table->boolean('bagno');
+            
+            $table->timestamps();
         });
     }
 

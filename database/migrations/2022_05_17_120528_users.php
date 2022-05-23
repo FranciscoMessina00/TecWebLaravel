@@ -24,8 +24,7 @@ class Users extends Migration
             $table->string('email');
             $table->string('image');
             $table->string('gender')->default('altro');
-            $table->timestamp('bornDate');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->dateTime('bornDate');
             
             /*Genera la colonna remember token, che attiva il meccanismo di login persistente*/
             $table->rememberToken();

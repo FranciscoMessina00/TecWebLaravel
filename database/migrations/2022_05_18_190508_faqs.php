@@ -18,6 +18,8 @@ class Faqs extends Migration
             $table->bigIncrements('faqId');
             $table->string('question');
             $table->string('answer');
+            
+            $table->timestamps();
         });
     }
 

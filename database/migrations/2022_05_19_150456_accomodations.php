@@ -36,6 +36,8 @@ class Accomodations extends Migration
             $table->dateTime('dateBooking');
             $table->dateTime('dateStart');
             $table->dateTime('dateFinish');
+            
+            $table->timestamps();
         });
     }
 
