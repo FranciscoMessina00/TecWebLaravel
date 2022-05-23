@@ -19,9 +19,23 @@ class Accomodations extends Migration
             $table->bigInteger('userId')->unsigned();
             $table->foreign('userId')->references('userId')->on('users');
             $table->string('name');
-            $table->string('address');
+            $table->string('location');
+            $table->string('description');
             $table->integer('tipology');
+            $table->integer('dimBedroom');
+            $table->integer('dimAppartment');
+            $table->integer('rooms');
+            $table->integer('totBed');
+            $table->integer('totBedRoom');
+            $table->integer('ageMax');
+            $table->integer('ageMin');
+            $table->float('price');
             $table->integer('requests');
+            $table->boolean('state');
+            $table->timestamp('dateOffer');
+            $table->timestamp('dateBooking');
+            $table->timestamp('dateStart');
+            $table->timestamp('dateFinish');
         });
     }
 

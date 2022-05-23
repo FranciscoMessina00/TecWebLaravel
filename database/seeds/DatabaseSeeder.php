@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('accomodations')->insert([
-            ['accId' => 1, 'userId' => 1, 'name' => 'Appartamento Bella Vista', 'tipology' => 0, 'address'=>'via tizio caio, 16', 'requests' => 10],
-            ['accId' => 2, 'userId' => 1, 'name' => 'Appartamento Brutta Vista', 'tipology' => 0, 'address'=>'via tizio, 16', 'requests' => 2],
-            ['accId' => 3, 'userId' => 1, 'name' => 'Posto letto da Maria', 'tipology' => 1, 'address'=>'via caio, 16', 'requests' => 3],
+            ['accId' => 1, 'userId' => 2, 'name' => 'Appartamento Bella Vista', 'tipology' => 0, 'address'=>'via tizio caio, 16', 'requests' => 10],
+            ['accId' => 2, 'userId' => 2, 'name' => 'Appartamento Brutta Vista', 'tipology' => 0, 'address'=>'via tizio, 16', 'requests' => 2],
+            ['accId' => 3, 'userId' => 2, 'name' => 'Posto letto da Maria', 'tipology' => 1, 'address'=>'via caio, 16', 'requests' => 3],
             ['accId' => 4, 'userId' => 2, 'name' => 'Appartamento Tavernelle', 'tipology' => 0, 'address'=>'via tizio caio, 16', 'requests' => 5],
             ['accId' => 5, 'userId' => 2, 'name' => "Appartamento Monte D'Ago", 'tipology' => 0, 'address'=>'via tizio, 16', 'requests' => 7],
             ['accId' => 6, 'userId' => 2, 'name' => 'Posto letto Grazie', 'tipology' => 1, 'address'=>'via caio, 16', 'requests' => 1]

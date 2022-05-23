@@ -9,9 +9,9 @@
     </div>
 
     @can('show-search-bar')
-    @include('student.search_bar')
+        @include('student.search_bar')
     @else
-    @include('catalog.catalog_button')
+        @include('catalog.catalog_button')
     @endcan
 
 
