@@ -32,10 +32,10 @@ class Accomodations extends Migration
             $table->float('price');
             $table->integer('requests');
             $table->boolean('state');
-            $table->timestamp('dateOffer');
-            $table->timestamp('dateBooking');
-            $table->timestamp('dateStart');
-            $table->timestamp('dateFinish');
+            $table->dateTime('dateOffer');
+            $table->dateTime('dateBooking');
+            $table->dateTime('dateStart');
+            $table->dateTime('dateFinish');
         });
     }
 

@@ -12,13 +12,15 @@ class Services extends Migration {
      * @return void
      */
     public function up() {
-        $table->bigIncrements('servieId');
-        $table->bigIncrements('accId');
-        $table->foreign('accId')->references('accId')->on('accomodations');
-        $table->boolean('wifi');
-        $table->boolean('cucina');
-        $table->boolean('locRicr');
-        $table->boolean('bagno');
+        Schema::create('services', function (Blueprint $table) {
+            $table->bigIncrements('serviceId');
+            $table->bigInteger('accId')->unsigned();
+            $table->foreign('accId')->references('accId')->on('accomodations');
+            $table->boolean('wifi');
+            $table->boolean('cucina');
+            $table->boolean('locRicr');
+            $table->boolean('bagno');
+        });
     }
 
     /**
@@ -27,7 +29,7 @@ class Services extends Migration {
      * @return void
      */
     public function down() {
-        //
+        Schema::dropIfExists('services');
     }
 
 }
