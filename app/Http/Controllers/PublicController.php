@@ -85,8 +85,8 @@ class PublicController extends Controller {
         /*Attivo la vista che mostra la pagina delle faq*/
         return view('faq')
 
-            ->with('faqs', $faqs)
-            ->with('level', $level);
+            ->with('faqs', $faqs);
+            
     }
     
     public function showFaq3()
