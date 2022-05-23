@@ -22,7 +22,7 @@ class Users extends Migration
             $table->string('username', 20);
             $table->string('password');
             $table->string('email');
-            $table->string('image');
+            $table->string('image')->nullable()->default(null);
             $table->string('gender')->default('altro');
             $table->dateTime('bornDate');
             

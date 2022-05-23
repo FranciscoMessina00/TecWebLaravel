@@ -150,8 +150,16 @@
             </div>
             <div class="margin-b-40">
 <!--                <input class="form-element" id="data" type="date" name="data">-->
-                {{Form::date('date',null, ['class'=>'form-element'])}}
+                {{Form::date('bornDate',null, ['class'=>'form-element'])}}
+                @if ($errors->first('bornDate'))
+                <ul class="errors">
+                    @foreach ($errors->get('bornDate') as $message)
+                    <li>{{ $message }}</li>
+                    @endforeach
+                </ul>
+                @endif
             </div>
+            
         </div>
         <!-- fine mail-->
         <!-- inizio pass-->
