@@ -19,11 +19,16 @@ class Catalog {
         return User::find($id)->accomodations;
     }
     
-    public function getSpotAccomodations(int $quantity=3)
+    public function getSpotAccomodations(int $quantity = 3)
     {
-        return Accomodation::orderBy('requests', 'desc')
-                ->take($quantity)
-                ->get();
+        
+        $accomodations = Accomodation::all()
+                ->sortByDesc(function ($accomodation)
+                {
+                    return $accomodation->requests();
+                })->take($quantity);
+        
+        return $accomodations;
     }
     
     public function getMyAccomodations()

@@ -30,7 +30,6 @@ class Accomodations extends Migration
             $table->integer('ageMax');
             $table->integer('ageMin');
             $table->float('price');
-            $table->integer('requests')->default(0);
             $table->boolean('state');
             $table->dateTime('dateOffer');
             $table->dateTime('dateBooking');

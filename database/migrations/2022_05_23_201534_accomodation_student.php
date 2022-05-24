@@ -17,6 +17,7 @@ class AccomodationStudent extends Migration
             $table->bigIncrements('accStudId');
             $table->bigInteger('userId')->unsigned();
             $table->bigInteger('accId')->unsigned();
+            $table->string('relationship');
             $table->timestamps();
         });
     }
