@@ -13,14 +13,14 @@ class Messages extends Migration
      */
     public function up()
     {
-        Schema::create('message', function(Blueprint $table)
+        Schema::create('messages', function(Blueprint $table)
         {
-            $table->bigIncrements('id_message');
-            $table->bigInteger('idMittente')->unsigned();
-            $table->foreign('idMittente')->references('userId')->on('users');
-            $table->bigInteger('idDestinatario')->unsigned();
-            $table->foreign('idDestinatario')->references('userId')->on('users');
-            $table->string('testo');
+            $table->bigIncrements('messageId');
+            $table->bigInteger('senderId')->unsigned();
+            $table->foreign('senderId')->references('userId')->on('users');
+            $table->bigInteger('recipientId')->unsigned();
+            $table->foreign('recipientId')->references('userId')->on('users');
+            $table->string('text');
             
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class Messages extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('messages');
     }
 }

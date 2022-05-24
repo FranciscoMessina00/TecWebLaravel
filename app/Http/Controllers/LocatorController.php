@@ -10,6 +10,7 @@ use App\User;
 use App\Models\Resources\Faq;
 use App\Models\Resources\Accomodation;
 
+
 /*Import Form Requests*/
 use App\Http\Requests\UserRequest;
 
@@ -29,6 +30,7 @@ class LocatorController extends Controller {
         $this->middleware('can:isLocator');
         
         $this->_catalogModel = new Catalog;
+        
     }
     
     public function my_accomodations()
@@ -52,6 +54,7 @@ class LocatorController extends Controller {
         $accomodation = Accomodation::find($accId);
         
         $accomodation->students()->updateExistingPivot($userId, ['relationship' => 'assigned', 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()]);
+        
         
         return redirect()->route('my-accomodations');
     }

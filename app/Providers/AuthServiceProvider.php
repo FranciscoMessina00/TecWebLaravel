@@ -45,5 +45,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('show-filter-bar', function ($user) {
             return $user->hasRole(['student']);
         });
+        
+        Gate::define('use-chat', function ($user) {
+            return $user->hasRole(['student', 'locator']);
+        });
     }
 }

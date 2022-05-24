@@ -16,7 +16,9 @@ class AccomodationStudent extends Migration
         Schema::create('accomodation_student', function (Blueprint $table) {
             $table->bigIncrements('accStudId');
             $table->bigInteger('userId')->unsigned();
+            $table->foreign('userId')->references('userId')->on('users');
             $table->bigInteger('accId')->unsigned();
+            $table->foreign('accId')->references('accId')->on('accomodations');
             $table->string('relationship');
             $table->timestamps();
         });

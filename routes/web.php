@@ -31,9 +31,6 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 
 
 /*Rotte specifiche livello 2: locatore*/
-Route::get('/locator/messaggi', 'LocatorController@messages')    
-        ->name('locator.messages');  
-
 Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
 
@@ -81,11 +78,13 @@ Route::post('/account/update', 'UserController@update')
          ->name('account.update.store');
 
 
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
-//
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
+/*Rotte per i soli utenti che possono chattare*/
+Route::get('/messages', 'ChatController@showMessages')    
+        ->name('messages');
+
+Route::get('/messages/chat/{contactId}', 'ChatController@showChat')    
+        ->name('messages.chat'); 
+
+Route::post('/messages/chat/new', 'ChatController@sendMessage')    
+        ->name('messages.chat.new'); 
 

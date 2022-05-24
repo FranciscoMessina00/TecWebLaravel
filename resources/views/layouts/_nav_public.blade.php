@@ -68,21 +68,21 @@ $role = Auth::user()->role;
                         <li class="nav-item {{ $route == 'account' ? 'active' : '' }}">
                             <a href="{{ route('account') }}" class="nav-link">Account</a>
                         </li>
+                        
+                        @can('use-chat')
+                        <li class="nav-item {{ strtok($route, '.') == 'messages' ? 'active' : '' }}">
+                            <a href="{{ route('messages') }}" class="nav-link">Messaggi</a>
+                        </li>
+                        @endcan
 
                         @switch($role)
                         @case('locator')
-                        <li class="nav-item {{ $route == 'locator.messages' ? 'active' : '' }}">
-                            <a href="{{ route('locator.messages') }}" class="nav-link">Messaggi</a>
-                        </li>
                         <!<!-- Il metodo strok restituisce una sottostringa formata a partire dalla stringa passata come primo parametro, tagliata fino alla prima occorrenza del carattere passato come secondo parametro-->
                         <li class="nav-item {{ strtok($route, '.') == 'my-accomodations' ? 'active' : '' }}">
                             <a href="{{ route('my-accomodations') }}" class="nav-link">I miei alloggi</a>
                         </li>
                         @break
                         @case('student')
-                        <li class="nav-item {{ $route == 'student.messages' ? 'active' : '' }}">
-                            <a href="{{ route('student.messages') }}" class="nav-link">Messaggi</a>
-                        </li>
                         @break
                         @case('admin')
                         <li class="nav-item {{ $route == 'admin.stats' ? 'active' : '' }}">

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Resources\Accomodation;
+use App\Models\Resources\Message;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,14 @@ class User extends Authenticatable
     public function accomodations()
     {
         return $this->hasMany(Accomodation::class, 'userId', 'userId');
+    }
+    
+    public function getContacts()
+    {   
+        $userWroteToMe = $this->belongsToMany(User::class, 'messages', 'recipientId', 'senderId')->get();
+        $userIWroteTo = $this->belongsToMany(User::class, 'messages', 'senderId', 'recipientId')->get();
+        
+        return $userIWroteTo->merge($userWroteToMe);
     }
     
     public function hasRole($role)
