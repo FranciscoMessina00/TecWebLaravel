@@ -13,7 +13,7 @@ class Messages extends Migration
      */
     public function up()
     {
-        Schema::create('message', function(Blueprint $table)
+        Schema::create('messages', function(Blueprint $table)
         {
             $table->bigIncrements('id_message');
             $table->bigInteger('idMittente')->unsigned();
@@ -33,6 +33,6 @@ class Messages extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('messages');
     }
 }
