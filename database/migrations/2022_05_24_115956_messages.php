@@ -16,10 +16,10 @@ class Messages extends Migration
         Schema::create('message', function(Blueprint $table)
         {
             $table->bigIncrements('id_message');
-            $table->bigInteger('mittente')->unsigned();
-            $table->foreign('mittente')->references('userId')->on('users');
-            $table->bigInteger('destinatario')->unsigned();
-            $table->foreign('destinatario')->references('userId')->on('users');
+            $table->bigInteger('idMittente')->unsigned();
+            $table->foreign('idMittente')->references('userId')->on('users');
+            $table->bigInteger('idDestinatario')->unsigned();
+            $table->foreign('idDestinatario')->references('userId')->on('users');
             $table->string('testo');
             
             $table->timestamps();
