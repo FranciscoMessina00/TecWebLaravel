@@ -20,6 +20,7 @@ class Accomodations extends Migration
             $table->foreign('userId')->references('userId')->on('users');
             $table->string('name');
             $table->integer('tipology');
+            $table->string('city');
             $table->string('address');
             $table->string('description');
             $table->integer('dimBedroom')->nullable();

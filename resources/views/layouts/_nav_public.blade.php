@@ -12,7 +12,7 @@ $role = Auth::user()->role;
 <div class="tm-header">
     <div class="container-fluid">
         <div class="tm-header-inner">                    
-            <div class="contenitore-flex">
+            <div class="contenitore-flex-3">
                 <div class="tm-logo-img-container">
                     <img src="{{asset('/files/FLAK_logo.png')}}" alt="logo" style="display: none"/>
                 </div>
