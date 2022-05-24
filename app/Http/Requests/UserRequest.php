@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Rule;
+
 
 class UserRequest extends FormRequest
 {
@@ -24,8 +27,13 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|max:25',
-            'password' => 'required'
+            'username' => 'max:10',
+            'password' => 'required',
+            'name' => 'required|min:3|max:25',
+            'surname' => 'required|min:3|max:25',
+            'email' => 'required|email|max:255|unique:users,email',
+            
+            
         ];
     }
 }

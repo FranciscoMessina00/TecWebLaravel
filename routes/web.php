@@ -74,6 +74,12 @@ Route::get('/logout', 'Auth\LoginController@logout')        /*Logout utente*/
 Route::get('/account', 'UserController@account')       /*Account*/
         ->name('account')->middleware('auth');
 
+Route::get('/account/update', 'UserController@showupdate')
+        ->name('account.update');
+
+Route::post('/account/update', 'UserController@update')
+         ->name('account.update.store');
+
 
 //Auth::routes();
 //
@@ -82,3 +88,4 @@ Route::get('/account', 'UserController@account')       /*Account*/
 //Auth::routes();
 //
 //Route::get('/home', 'HomeController@index')->name('home');
+
