@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 use App\Models\Catalog;
 
 /*Import Resource Models*/
-use App\Models\Resources\User;
+use App\User;
 use App\Models\Resources\Faq;
+use App\Models\Resources\Accomodation;
 
 /*Import Form Requests*/
 use App\Http\Requests\UserRequest;
@@ -36,5 +37,22 @@ class LocatorController extends Controller {
         
         return view('my-accomodations')
             ->with('accomodations', $my_accomodations);
+    }
+    
+    public function showAccomodation($accId)
+    {
+        $accomodation = Accomodation::find($accId);
+        
+        return view('accomodation')
+            ->with('accomodation', $accomodation);
+    }
+    
+    public function assignAccomodation($accId, $userId)
+    {
+        $accomodation = Accomodation::find($accId);
+        
+        $accomodation->students()->updateExistingPivot($userId, ['relationship' => 'assigned', 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()]);
+        
+        return redirect()->route('my-accomodations');
     }
 }

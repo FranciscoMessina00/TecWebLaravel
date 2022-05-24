@@ -14,7 +14,11 @@
         <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg auto-margin-lr" style="width:100%"/>
     </div>
     <div>
+        @if($route=='my-accomodations')
+        <a href="{{route('my-accomodations.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
+        @else
         <h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2>
+        @endif
 
         @if($route=='my-accomodations')
         <div class="contenitore-flex ">
@@ -27,9 +31,6 @@
                 @else
                 <li class="nav-item">
                     <div class="tm-btn tm-btn-gray text-white no-select nav-link margin-b-15">{{$accomodation->requests()}} richiest{{$accomodation->requests()==1 ? 'a' : 'e'}}</div>
-                </li>
-                <li class="nav-item active">
-                    <a href="catalogo.html" class="tm-btn nav-link margin-b-15">Assegna</a>
                 </li>
                 @endif
                 
@@ -48,21 +49,6 @@
             <ul class="servizi">
                 <li>Locatore: {{$accomodation->locator->name}} {{$accomodation->locator->surname}}</li>
                 <li>Indirizzo: {{$accomodation->address}}</li>
-            </ul>
-        </div>
-        
-        <br>
-        <div>
-            <h4>Stato alloggio:</h4>
-            <br><br>
-            <ul class="servizi">
-                @if($accomodation->hasBeenAssigned())
-                    <li>Assegnato</li>
-                @else
-                @foreach($accomodation->students as $student)
-                    <li>Opzionato da {{$accomodation->requests()}} person{{$accomodation->requests() == 1 ? 'a' : 'e'}}</li>
-                @endforeach
-                @endif
             </ul>
         </div>
 

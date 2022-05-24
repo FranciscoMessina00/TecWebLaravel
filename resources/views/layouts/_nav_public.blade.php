@@ -74,7 +74,8 @@ $role = Auth::user()->role;
                         <li class="nav-item {{ $route == 'locator.messages' ? 'active' : '' }}">
                             <a href="{{ route('locator.messages') }}" class="nav-link">Messaggi</a>
                         </li>
-                        <li class="nav-item {{ $route == 'my-accomodations' ? 'active' : '' }}">
+                        <!<!-- Il metodo strok restituisce una sottostringa formata a partire dalla stringa passata come primo parametro, tagliata fino alla prima occorrenza del carattere passato come secondo parametro-->
+                        <li class="nav-item {{ strtok($route, '.') == 'my-accomodations' ? 'active' : '' }}">
                             <a href="{{ route('my-accomodations') }}" class="nav-link">I miei alloggi</a>
                         </li>
                         @break

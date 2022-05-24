@@ -27,6 +27,11 @@ class Accomodation extends Model {
     public function hasBeenAssigned() {
         return count($this->assignedStudents) > 0;
     }
+    
+    public function hasRequests()
+    {
+        return $this->requests() > 0;
+    }
 
     public function requests() {
         $optioningStudents = $this->students;
@@ -37,5 +42,7 @@ class Accomodation extends Model {
             return 0;
         }
     }
+    
+    
 
 }

@@ -37,6 +37,12 @@ Route::get('/locator/messaggi', 'LocatorController@messages')
 Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
 
+Route::get('/locator/my-acc/accomodation/{accId}', 'LocatorController@showAccomodation')  /*Apertura pagina alloggio locatore*/
+        ->name('my-accomodations.accomodation');
+
+Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorController@assignAccomodation')  /*Apertura pagina alloggio locatore*/
+        ->name('my-accomodations.accomodation.assign');
+
 
 /*Rotte specifiche livello 3: studente*/
 Route::get('/student/messaggi', 'StudentController@messages')  
