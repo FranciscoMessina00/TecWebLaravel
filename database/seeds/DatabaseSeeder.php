@@ -38,8 +38,8 @@ class DatabaseSeeder extends Seeder
             ['accStudId' => 2, 'userId' => 1, 'accId' => 2, 'relationship' => 'assigned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
         DB::table('message')->insert([
-            ['id_message' => 1, 'mittente' => 1, 'destinatario' => 3, 'testo' => 'Messaggio di prova 1','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['id_message' => 2, 'mittente' => 3, 'destinatario' => 1, 'testo' => 'Messaggio di prova 2','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['id_message' => 1, 'idMittente' => 1, 'idDestinatario' => 3, 'testo' => 'Messaggio di prova 1','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['id_message' => 2, 'idMittente' => 3, 'idDestinatario' => 1, 'testo' => 'Messaggio di prova 2','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
     }
 }
