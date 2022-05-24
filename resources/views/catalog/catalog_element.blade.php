@@ -15,9 +15,9 @@
     </div>
     <div>
         @if($route=='my-accomodations')
-        <a href="{{route('my-accomodations.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
+        <a class="text-gold" href="{{route('my-accomodations.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
         @else
-        <h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2>
+        <h2 class='margin-b-15 text-center text-black'>{{$accomodation->name}}</h2>
         @endif
 
         @if($route=='my-accomodations')

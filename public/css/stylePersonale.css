@@ -302,6 +302,10 @@ th{
     display:flex;
     justify-content: center;
 }
+.contenitore-flex-3{
+    display:flex;
+    justify-content: center;
+}
 
 .contenitore-flex div{
     -webkit-flex:1;
