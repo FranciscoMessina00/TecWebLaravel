@@ -10,14 +10,14 @@
 @endphp
 
 <div class="{{$route=='home'? '' : 'contenitore-flex'}} pad-tb-small pad-lr-small">
-    <div class="img-catalogo {{$route=='public'? '' : 'pad-r-large'}} ">
+    <div class="img-catalogo {{$route=='home'? 'margin-b-15' : 'pad-r-large'}} ">
         <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg auto-margin-lr" style="width:100%"/>
     </div>
     <div>
         @if($route=='my-accomodations')
         <a class="text-gold" href="{{route('my-accomodations.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
         @else
-        <h2 class='margin-b-15 text-center text-black'>{{$accomodation->name}}</h2>
+        <h2 class='margin-b-15 text-center {{$route=='home'? 'text-white' : 'text-black'}}'>{{$accomodation->name}}</h2>
         @endif
 
         @if($route=='my-accomodations')
