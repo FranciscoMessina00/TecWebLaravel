@@ -45,5 +45,9 @@ class DatabaseSeeder extends Seeder
             ['messageId' => 5, 'senderId' => 2, 'recipientId' => 3, 'text' => 'Messaggio da Marco a Luigi','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['messageId' => 6, 'senderId' => 1, 'recipientId' => 2, 'text' => 'Messaggio da Mario a Marco','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
+        DB::table('images')->insert([
+            ['imageId' => 1, 'accId' => 1, 'imageName'=>'foto1.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['imageId' => 2, 'accId' => 3, 'imageName'=>'foto2.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+        ]);
     }
 }
