@@ -49,5 +49,9 @@ class DatabaseSeeder extends Seeder
             ['imageId' => 1, 'accId' => 1, 'imageName'=>'foto1.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['imageId' => 2, 'accId' => 3, 'imageName'=>'foto2.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
+        DB::table('services')->insert([
+            ['serviceId' => 1, 'accId' => 1, 'wifi'=>true, 'cucina'=>false, 'locRicr'=>true, 'bagno'=>true,'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['serviceId' => 2, 'accId' => 3, 'wifi'=>false, 'cucina'=>true, 'locRicr'=>false, 'bagno'=>true,'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+        ]);
     }
 }

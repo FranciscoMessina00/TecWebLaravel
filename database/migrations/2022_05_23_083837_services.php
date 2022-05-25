@@ -16,10 +16,10 @@ class Services extends Migration {
             $table->bigIncrements('serviceId');
             $table->bigInteger('accId')->unsigned();
             $table->foreign('accId')->references('accId')->on('accomodations');
-            $table->boolean('wifi');
-            $table->boolean('cucina');
-            $table->boolean('locRicr');
-            $table->boolean('bagno');
+            $table->boolean('wifi')->default(false);
+            $table->boolean('cucina')->default(false);
+            $table->boolean('locRicr')->default(false);
+            $table->boolean('bagno')->default(false);
             
             $table->timestamps();
         });
