@@ -1,12 +1,12 @@
 @php
-    $route=Route::currentRouteName();
-    
-    $isAccomodationAssigned = $accomodation->hasBeenAssigned();
-    
-    if($isAccomodationAssigned)
-    {
-        $assignedStudents = $accomodation->assignedStudents;
-    }
+$route=Route::currentRouteName();
+
+$isAccomodationAssigned = $accomodation->hasBeenAssigned();
+
+if($isAccomodationAssigned)
+{
+$assignedStudents = $accomodation->assignedStudents;
+}
 @endphp
 
 <div class="{{$route=='home'? '' : 'contenitore-flex'}} pad-tb-small pad-lr-small">
@@ -23,7 +23,7 @@
         @if($route=='my-accomodations')
         <div class="contenitore-flex ">
             <ul class="nav navbar-nav">
-                
+
                 @if($accomodation->hasBeenAssigned())
                 <li class="nav-item">
                     <div class="tm-btn tm-btn-gray text-white no-select nav-link margin-b-15">Assegnato a {{$assignedStudents->first()->name}}</div>
@@ -33,23 +33,46 @@
                     <div class="tm-btn tm-btn-gray text-white no-select nav-link margin-b-15">{{$accomodation->requests()}} richiest{{$accomodation->requests()==1 ? 'a' : 'e'}}</div>
                 </li>
                 @endif
-                
+
             </ul>
         </div>
         @endif
-        
+
         @if($route!='public')
         <br>
         @endif
-        
-       
+
+
         <div>
-            <h4>Dettagli:</h4>
-            <br><br>
+            <h4>Tipologia</h4>
+            <br>
             <ul class="servizi">
-                <li>Locatore: {{$accomodation->locator->name}} {{$accomodation->locator->surname}}</li>
-                <li>Indirizzo: {{$accomodation->address}}</li>
+                @switch($accomodation->tipology)
+                @case(0)
+                <li class="servizi">Appartamento</li>
+                @break
+                @case(1)
+                <li class="servizi">Posto letto</li>
+                @break
+
+                @endswitch
             </ul>
+            <br><br>
+
+            <h4>Posizione</h4>
+            <br>
+            <ul class="servizi">
+                <li>Indirizzo: {{$accomodation->address}}</li>
+                <li>Città: {{$accomodation->city}}</li>
+            </ul>
+            <br><br>
+
+            <h4>Prezzi</h4>
+            <br>
+            <ul class="servizi">
+                <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
+            </ul>
+            <br><br>
         </div>
 
     </div>

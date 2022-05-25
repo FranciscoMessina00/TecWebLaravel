@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Rule;
-
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserRequest extends FormRequest
 {
@@ -26,14 +26,17 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $user = Auth::user();
+        
         return [
-            'username' => 'max:10',
-            'password' => 'required',
-            'name' => 'required|min:3|max:25',
-            'surname' => 'required|min:3|max:25',
-            'email' => 'required|email|max:255|unique:users,email',
-            
-            
+            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'email' => ['required','email', Rule::unique('users', 'email')->ignore($user->userId, 'userId')],
+            'username' => ['required', 'string', 'min:4', Rule::unique('users', 'username')->ignore($user->userId, 'userId')],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
+            'gender' => ['string'],
+            'bornDate' => ['required', 'date', 'before:-18 years']
         ];
     }
 }
+

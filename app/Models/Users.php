@@ -12,10 +12,10 @@ class Users {
     public function getUserNamesByRole($role)
     {
         $users = User::where('role', '=', $role)
-                ->orderBy('name')
+                ->orderBy('username')
                 ->get();
         
-        return $users->pluck('name', 'userId');
+        return $users->pluck('username', 'userId');
     }
 
 }

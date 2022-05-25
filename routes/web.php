@@ -71,11 +71,8 @@ Route::get('/logout', 'Auth\LoginController@logout')        /*Logout utente*/
 Route::get('/account', 'UserController@account')       /*Account*/
         ->name('account')->middleware('auth');
 
-Route::get('/account/update', 'UserController@showupdate')
-        ->name('account.update');
-
 Route::post('/account/update', 'UserController@update')
-         ->name('account.update.store');
+         ->name('account.update');
 
 
 /*Rotte per i soli utenti che possono chattare*/

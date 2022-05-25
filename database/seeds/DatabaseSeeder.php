@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             ['userId' => 1, 'role' => 'student', 'name' => 'Mario', 'surname' => 'Rossi', 'username' => "stud1", 'password' => Hash::make('pass'), 'email' => 'mario.rossi@gmail.com', 'image'=>'img1.png', 'gender'=>'uomo', 'bornDate'=>'2000-01-01', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
             ['userId' => 2, 'role' => 'locator', 'name' => 'Marco', 'surname' => 'Bianchi', 'username' => "loc1", 'password' => Hash::make('pass'), 'email' => 'marco.bianchi@gmail.com', 'image'=>'img2.png', 'gender'=>'donna', 'bornDate'=>'2001-02-02', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
-            ['userId' => 3, 'role' => 'locator', 'name' => 'Luigi', 'surname' => 'Bianchi', 'username' => "loc2", 'password' => Hash::make('pass'), 'email' => 'marco.bianchi@gmail.com', 'image'=>'img2.png', 'gender'=>'donna', 'bornDate'=>'2001-02-02', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
+            ['userId' => 3, 'role' => 'locator', 'name' => 'Luigi', 'surname' => 'Bianchi', 'username' => "loc2", 'password' => Hash::make('pass'), 'email' => 'luigi.bianchi@gmail.com', 'image'=>'img2.png', 'gender'=>'donna', 'bornDate'=>'2001-02-02', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
             ['userId' => 4, 'role' => 'admin', 'name' => 'Giovanni', 'surname' => 'Verdi', 'username' => "admin1", 'password' => Hash::make('pass'), 'email' => 'giovanni.verdi@gmail.com', 'image'=>'img3.png', 'gender'=>'altro', 'bornDate'=>'2002-03-03', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))]
         ]);
         

@@ -24,11 +24,58 @@
                 </div>
                 
                 <div>
-                    <h4>Dettagli:</h4>
-                    <br><br>
+                    <h4>Tipologia</h4>
+                    <br>
                     <ul class="servizi">
-                        <li>Locatore: {{$accomodation->locator->name}} {{$accomodation->locator->surname}}</li>
+                        @switch($accomodation->tipology)
+                        @case(0)
+                        <li class="servizi">Appartamento</li>
+                        @break
+                        @case(1)
+                        <li class="servizi">Posto letto</li>
+                        @break
+
+                        @endswitch
+                    </ul>
+                    <br><br>
+
+                    <h4>Informazioni</h4>
+                    <br>
+                    <ul class="servizi">
+                        @switch($accomodation->tipology)
+                        @case(0)
+                        <li class="servizi">Numero camere: {{$accomodation->rooms}}</li>
+                        <li class="servizi">Numero letti nell'alloggio: {{$accomodation->totBeds}}</li>
+                        @break
+                        @case(1)
+                        <li class="servizi">Numero letti nella camera: {{$accomodation->totBedRoom}}</li>
+                        @break
+
+                        @endswitch
+                    </ul>
+                    <br><br>
+
+                    <h4>Posizione</h4>
+                    <br>
+                    <ul class="servizi">
                         <li>Indirizzo: {{$accomodation->address}}</li>
+                        <li>Città: {{$accomodation->city}}</li>
+                    </ul>
+                    <br><br>
+
+                    <h4>Prezzi</h4>
+                    <br>
+                    <ul class="servizi">
+                        <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
+                    </ul>
+                    <br><br>
+
+                    <h4>Informazioni locatore</h4>
+                    <br>
+                    <ul class="servizi">
+                        <li>Nome: {{$accomodation->locator->name}}</li>
+                        <li>Cognome: {{$accomodation->locator->surname}}</li>
+                        <li>Username: {{$accomodation->locator->username}}</li>
                     </ul>
                 </div>
             </div>
