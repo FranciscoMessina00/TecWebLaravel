@@ -19,8 +19,9 @@
         </div>
     </div>
     
-    @isset($currentContact)
+    
     <div class="container-big margin-lr pad-lr-mid">
+        @isset($currentContact)
         <div>
             <div id="chat">
                 <h1 class="text-left text-gold">{{$currentContact->name}}</h1>
@@ -40,7 +41,8 @@
                 </form>
             </div>
         </div>
+        @endisset
     </div>
-    @endisset
+    
 </div>
 @endsection
