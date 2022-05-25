@@ -96,7 +96,6 @@
                 </div>
             </form>
             <div class="text-center">
-                <img src="Immagine profilo.jpg" alt="immagine profilo" class="img-profilo bord-rad-mid"/>
                 <form name="img-profilo" action="" enctype="multipart/form-data">
                     <label for="immagine">Cambia immagine profilo</label>
                     <input class="form-element" type="file" id="immagine" name="immagine"><br><br>

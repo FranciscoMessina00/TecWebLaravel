@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Models\Resources\Faq;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Requests;
+use Illuminate\Http\Request;
 use Illuminate\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -33,51 +33,32 @@ class UserController extends Controller {
     }
 
     public function showupdate() {
-        return view('account');
+        $user = Auth::user();
+        return view('account')->with(['user' => $user]);
     }
 
-    public function update(UserRequest $request) {
+    public function update(Request $request) {
         $user = Auth::user();
-        $user->update($request->validated());
-        if ($request->hasFile('image')) {
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->password) 
+        {
+            $user->password = bcrypt($request->password);
+        }
+         if($request->hasFile('image')){
             $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
         } else {
             $imageName = NULL;
         }
-        $user = new User;
-        $user->image = $imageName;
+        
+        if (!is_null($imageName)) {
+            $destinationPath = public_path() . '/images';
+            $image->move($destinationPath, $imageName);
+        };
         $user->save();
-        return redirect()->route('home');
+        return redirect()->route('home', array('user' => Auth::user()));
     }
 
-    /*
-      public function updateaccount(Request $request)
-      {
-      $user = User::find(Auth::user()->id);
-      $rules = [
-      'nome' => 'required|min:3|max:25',
-      'cognome' => 'required|min:3|max:25',
-      'ruolo' => 'required|in:locatori,studente',
-      'email' => 'required|email|max:255|unique:users,email',
-      'username' => 'max:10',
-      ];
-      $validator = Validator::make($request->all(), $rules);
-      if ($validator->fails()) {
-      return redirect()->back()
-      ->withInput($request->all)
-      ->withErrors($validator)
-      ->with('user', $user);
-      } else {
-      $user->nome = $request->input('nome');
-      $user->cognome = $request->input('cognome');
-      $user->ruolo = $request->input('ruolo');
-      $user->email = $request->input('email');
-      $user->username = $request->input('username');
-      }
-      $user->save();
-      Session::flash('flash_title', "Success");
-      Session::flash('flash_message', "User profile has been updated.");
-      return redirect()->back();
-      }
-     * */
 }
