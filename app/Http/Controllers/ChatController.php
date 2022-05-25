@@ -10,6 +10,7 @@ use App\User;
 use App\Models\Resources\Message;
 use App\Models\Resources\Accomodation;
 use App\Models\Chat;
+use App\Models\Users;
 
 
 /*Import Form Requests*/
@@ -25,12 +26,14 @@ use Illuminate\Support\Facades\Log;
 class ChatController extends Controller {
 
     protected $_chatModel;
+    protected $_usersModel;
 
     public function __construct() {
         /*Permette soltanto agli utenti che possono chattare di accedere ai messaggi*/
         $this->middleware('can:use-chat');
         
         $this->_chatModel = new Chat;
+        $this->_usersModel = new Users;
         
     }
     
@@ -65,6 +68,15 @@ class ChatController extends Controller {
         $newMessage->save();
         
         return redirect()->route('messages.chat', $contactId);
+    }
+    
+    public function showNewMessageForm()
+    {
+        $contacts = Auth::user()->getContacts();
+        $recipientList = $this->_usersModel->getUserNamesByRole('locator');
         
+        return view('chat')
+                ->with('contacts', $contacts)
+                ->with('recipientList', $recipientList);
     }
 }

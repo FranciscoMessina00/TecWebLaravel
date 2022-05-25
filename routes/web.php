@@ -85,6 +85,9 @@ Route::get('/messages', 'ChatController@showMessages')
 Route::get('/messages/chat/{contactId}', 'ChatController@showChat')    
         ->name('messages.chat'); 
 
-Route::post('/messages/chat/new', 'ChatController@sendMessage')    
-        ->name('messages.chat.new'); 
+Route::get('/messages/new', 'ChatController@showNewMessageForm')    
+        ->name('messages.new'); 
+
+Route::post('/messages/send', 'ChatController@sendMessage')    
+        ->name('messages.send'); 
 
