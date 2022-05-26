@@ -36,9 +36,6 @@
     <div class="margin-t-small text-center auto-margin-tb">
         {{ Form::submit('CERCA', ['class' => 'tm-btn']) }}
 
-
-
-
     </div>
-</form>
+    {{Form::close()}}
 </div>

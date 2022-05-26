@@ -1,44 +1,62 @@
-<form id="form2" class="text-center" method="get">
+<!--<form id="form2" class="text-center" method="get"> -->
+    {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'contenitore-flex')) }}
+    @csrf
     <div class="nascondi">
         <input class="form-element" type="text" name="tipo" value="2">
     </div>
+    
     <div class="pad-lr-small margin-t-x-small">
-        <label for="dove2">Dove</label>
-        <input class="form-element" type="text" id="dove2" name="dove" placeholder="Dove">
+        {{ Form::label('where', 'Dove') }}
+        {{ Form::text('city', '' , ['class' => 'form-element','id' => 'where','placeholder' => 'Inserisci città']) }}
+
     </div>
     <div class="pad-lr-small margin-t-x-small">
-        <label for="dove2">Prezzo</label>
+       
+         {{ Form::label('price', 'Prezzo') }}
         <div class="contenitore-flex">
-            <input class="form-element" type="number" id="prezzo-min2" name="prezzoMin" placeholder="Min">
+            {{Form::number('price', '' , ['class' => 'form-element','placeholder' => 'Min','id' => 'price'])}}
+   
             <h3 class="auto-margin-tb">€</h3>
             <h3 class="auto-margin-tb">-</h3>
-            <input class="form-element" type="number" id="prezzo-max2" name="prezzoMax" placeholder="Max"><h3 class="auto-margin-tb">€</h3>
+            {{Form::number('price', '' , ['class' => 'form-element'.'placeholder' => 'Max','id' => 'price'])}}
+           
+            <h3 class="auto-margin-tb">€</h3>
         </div>
     </div>
     <div class="pad-lr-small margin-t-x-small">
-        <label>Periodo di locazione</label>
+       
+        {{ Form::label('periodo', 'Periodo di locazione') }}
         <div class="contenitore-flex">
-            <input class="form-element" type="date" name="dataMin" id="data-min2">
+             {{ Form::date('dateStart','',['class' => 'form-element'],'id'=>'periodo')}}
+          
             <h3 class="auto-margin-tb">-</h3>
-            <input class="form-element" type="date" name="dataMax" id="data-max2">
+             {{ Form::date('dateStart','',['class' => 'form-element','id'=>'periodo'])}}
+         
         </div>
     </div>
     <div class="pad-lr-small margin-t-x-small">
-        <label for="dimPl">Dimensione posto letto</label>
-        <input class="form-element" type="number" id="dimPl" name="dimPl" placeholder="Dimensione posto letto">
+       
+        {{ Form::label('dimensione', 'Dimensione posto letto') }}
+        {{Form::number('dimBedroom', '' , ['class' => 'form-element','placeholder' => 'Dimensione posto letto'],'id'=> 'dimensione')}}
+       
     </div>
     <div class="pad-lr-small margin-t-x-small">
-        <label for="numCamere">Numero di letti nella camera</label>
-        <input class="form-element" type="number" id="numLettiCam" name="numLettiCam" placeholder="Numero letti nella camera">
+ 
+        {{ Form::label('numero', 'Numero di camere') }}
+        {{Form::number('rooms', '' , ['class' => 'form-element','placeholder' => 'Numero letti nella camera'],'id'=> 'numero')}}
+        
     </div>
     <div class="pad-lr-small margin-t-x-small">
-        <label for="numLetti">Numero di posti letto nell'alloggio</label>
-        <input class="form-element" type="number" id="numLettiAll" name="numLettiAll" placeholder="Numero posti letto alloggio">
+        
+        {{ Form::label('numeroL', 'Numero di posti letto') }}
+        {{Form::number('totBedRoom', '' , ['class' => 'form-element','placeholder' => 'Numero posti letto alloggio'],'id'=> 'numeroL')}}
+       
     </div>
     <div class="pad-lr-small margin-t-x-small">
         <label>
             Servizi posto letto
         </label>
+        
         <ul class="text-left servizi">
             <li><input type="checkbox" id="servizio8" name="servizio1" value="servizio1"><label for="servizio8"> Pl1</label></li>
             <li><input type="checkbox" id="servizio9" name="servizio2" value="servizio2"><label for="servizio9"> Pl2</label></li>
@@ -50,6 +68,6 @@
         </ul>
     </div>
     <div id='filtra2' class="margin-t-small text-center">
-        <input class="tm-btn" type="submit" value="Filtra">
+        {{ Form::submit('CERCA', ['class' => 'tm-btn']) }}
     </div>
-</form>
+{{Form::close()}}
