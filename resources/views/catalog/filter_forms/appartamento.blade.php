@@ -17,11 +17,11 @@
         
         {{ Form::label('price', 'Prezzo') }}
         <div class="contenitore-flex">
-            {{Form::number('price', '' , ['class' => 'form-element','placeholder' => 'Min','id' => 'price'])}}
+            {{Form::number('priceMin', '' , ['class' => 'form-element','placeholder' => 'Min','id' => 'price'])}}
            
             <h3 class="auto-margin-tb">€</h3>
             <h3 class="auto-margin-tb">-</h3>
-            {{Form::number('price', '' , ['class' => 'form-element','placeholder' => 'Max','id' => 'price'])}}
+            {{Form::number('priceMax', '' , ['class' => 'form-element','placeholder' => 'Max','id' => 'price'])}}
             
             <h3 class="auto-margin-tb">€</h3>
         </div>
