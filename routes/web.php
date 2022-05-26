@@ -45,6 +45,9 @@ Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorContr
 Route::get('/student/messaggi', 'StudentController@messages')  
         ->name('student.messages');
 
+Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertura catalogo*/
+        ->name('catalog.filter');
+
 
 /*Rotte specifiche livello 4: admin*/
 Route::get('/admin/stats', 'AdminController@stats')       /*Statistiche amministratore*/

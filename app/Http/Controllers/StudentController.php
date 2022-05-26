@@ -21,11 +21,28 @@ use Illuminate\Support\Facades\Log;
 
 
 class StudentController extends Controller {
-    public function messages() {
-        return view('chat');
+    protected $_catalogModel;
+
+    public function __construct() 
+    {
+        /*Permette soltanto agli utenti di tipo student di accedere ai metodi del controller*/
+        $this->middleware('can:isStudent');
+        
+        $this->_catalogModel = new Catalog;
     }
-    public function account() {
-        return view('account');
+    
+    public function showFilterdCatalog(Request $request)
+    {
+        $accomodations = $this->_catalogModel->getAccomodations();
+        
+        $request->whenHas('where', function ($input)
+        {
+            $accomodations = $this->_catalogModel->getAccomodationsFilteredBy('city', $input);
+        });
+        
+        
+        return view('catalog')
+            ->with('accomodations', $accomodations);
     }
     
     
