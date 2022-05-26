@@ -13,6 +13,8 @@
 
 /*Rotte pubbliche*/
 
+use Illuminate\Http\Request;
+
 Route::get('/', 'PublicController@home')       /*Homepage*/
 
         ->name('home');

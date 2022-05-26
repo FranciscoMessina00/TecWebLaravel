@@ -9,18 +9,6 @@ use App\User;
 
 class Chat {
     
-    public function messagesFrom($senderId)
-    {
-        return Message::where('senderId', '=', $senderId)
-                ->get();
-    }
-    
-    public function messagesTo($recipientId)
-    {
-        return Message::where('senderId', '=', $recipientId)
-                ->get();
-    }
-    
     public function getMessagesFrom($contactId)
     {
         $userId = Auth::id();

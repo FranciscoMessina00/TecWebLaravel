@@ -2,7 +2,7 @@
 <!--        Fine zona filtri-->
 <div class="text-center margin-t-small-neg container-mid auto-margin-lr">
 
-    {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'contenitore-flex')) }}
+    {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'contenitore-flex', 'method' => 'get')) }}
     @csrf
     <div class="pad-lr-small border-r">
         <h2>Dove</h2>

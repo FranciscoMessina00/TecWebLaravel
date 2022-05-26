@@ -21,6 +21,7 @@
 </div>
 <!--Paginazione-->
 <div>
+    
     @include('pagination.paginator', ['paginator' => $accomodations])
 </div>
 @endsection

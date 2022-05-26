@@ -1,9 +1,7 @@
 <!--<form id="form2" class="text-center" method="get"> -->
-    {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'contenitore-flex')) }}
+    {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'text-center', 'method' => 'get')) }}
     @csrf
-    <div class="nascondi">
-        <input class="form-element" type="text" name="tipo" value="2">
-    </div>
+    {{ Form::hidden('tipology', '1') }}
     
     <div class="pad-lr-small margin-t-x-small">
         {{ Form::label('where', 'Dove') }}
@@ -14,11 +12,11 @@
        
          {{ Form::label('price', 'Prezzo') }}
         <div class="contenitore-flex">
-            {{Form::number('price', '' , ['class' => 'form-element','placeholder' => 'Min','id' => 'price'])}}
+            {{Form::number('priceMin', '' , ['class' => 'form-element','placeholder' => 'Min','id' => 'price'])}}
    
             <h3 class="auto-margin-tb">€</h3>
             <h3 class="auto-margin-tb">-</h3>
-            {{Form::number('price', '' , ['class' => 'form-element'.'placeholder' => 'Max','id' => 'price'])}}
+            {{Form::number('priceMax', '' , ['class' => 'form-element','placeholder' => 'Max','id' => 'price'])}}
            
             <h3 class="auto-margin-tb">€</h3>
         </div>
@@ -27,7 +25,7 @@
        
         {{ Form::label('periodo', 'Periodo di locazione') }}
         <div class="contenitore-flex">
-             {{ Form::date('dateStart','',['class' => 'form-element'],'id'=>'periodo')}}
+             {{ Form::date('dateStart','',['class' => 'form-element','id'=>'periodo'])}}
           
             <h3 class="auto-margin-tb">-</h3>
              {{ Form::date('dateStart','',['class' => 'form-element','id'=>'periodo'])}}
@@ -36,20 +34,20 @@
     </div>
     <div class="pad-lr-small margin-t-x-small">
        
-        {{ Form::label('dimensione', 'Dimensione posto letto') }}
-        {{Form::number('dimBedroom', '' , ['class' => 'form-element','placeholder' => 'Dimensione posto letto'],'id'=> 'dimensione')}}
+        {{ Form::label('dimensione', 'Dimensione camera') }}
+        {{Form::number('dimBedroom', '' , ['class' => 'form-element','placeholder' => 'Dimensione camera','id'=> 'dimensione'])}}
        
     </div>
     <div class="pad-lr-small margin-t-x-small">
  
-        {{ Form::label('numero', 'Numero di camere') }}
-        {{Form::number('rooms', '' , ['class' => 'form-element','placeholder' => 'Numero letti nella camera'],'id'=> 'numero')}}
+        {{ Form::label('numero', "Numero di posti letto totali nell'alloggio") }}
+        {{Form::number('totBeds', '' , ['class' => 'form-element','placeholder' => 'Numero posti letto','id'=> 'numero'])}}
         
     </div>
     <div class="pad-lr-small margin-t-x-small">
         
-        {{ Form::label('numeroL', 'Numero di posti letto') }}
-        {{Form::number('totBedRoom', '' , ['class' => 'form-element','placeholder' => 'Numero posti letto alloggio'],'id'=> 'numeroL')}}
+        {{ Form::label('numeroL', 'Numero di letti nella camera') }}
+        {{Form::number('totBedRoom', '' , ['class' => 'form-element','placeholder' => 'Numero letti','id'=> 'numeroL'])}}
        
     </div>
     <div class="pad-lr-small margin-t-x-small">

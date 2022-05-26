@@ -42,7 +42,5 @@ class Accomodation extends Model {
             return 0;
         }
     }
-    
-    
 
 }

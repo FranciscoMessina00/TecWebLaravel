@@ -1,10 +1,7 @@
 <!-- <form id="form1" class="text-center" method="get"> -->
-{{ Form::open(array('route' => 'catalog.filter' , 'class' => 'contenitore-flex')) }}
+{{ Form::open(array('route' => 'catalog.filter' , 'class' => 'text-center', 'method' => 'get')) }}
     @csrf
-    
-    <div class="nascondi">
-        <input class="form-element" type="text" name="tipo" value="1">
-    </div>
+    {{ Form::hidden('tipology', '0') }}
     
     <div class="pad-lr-small margin-t-x-small">
         
@@ -29,27 +26,27 @@
     <div class="pad-lr-small margin-t-x-small">
         {{ Form::label('periodo', 'Periodo di locazione') }}
         <div class="contenitore-flex">
-            {{ Form::date('dateStart','',['class' => 'form-element'],'id'=>'periodo')}}
+            {{ Form::date('dateStart','',['class' => 'form-element','id'=>'periodo'])}}
             
             <h3 class="auto-margin-tb">-</h3>
-            {{ Form::date('dateFinish','',['class' => 'form-element'],'id'=>'periodo')}}
+            {{ Form::date('dateFinish','',['class' => 'form-element','id'=>'periodo'])}}
             
         </div>
     </div>
     
     <div class="pad-lr-small margin-t-x-small">
-       {{ Form::label('dimensioneA', 'Dimensione posto letto') }}
+       {{ Form::label('dimensioneA', 'Dimensione appartamento') }}
         {{Form::number('dimAppartment', '' , ['class' => 'form-element','placeholder' => 'Dimensione appartamento','id'=> 'dimensioneA'])}}
         
     </div>
     
     <div class="pad-lr-small margin-t-x-small">
-        {{ Form::label('numeroA', 'Numero di camere') }}
+        {{ Form::label('numeroA', "Numero totale camere nell'appartamento") }}
         {{Form::number('rooms', '' , ['class' => 'form-element','placeholder' => 'Numero camere','id'=> 'numeroA'])}}
       
     </div>
     <div class="pad-lr-small margin-t-x-small">
-        {{ Form::label('numeroLApp', 'Numero di posti letto') }}
+        {{ Form::label('numeroLApp', "Numero totale posti letto nell'appartamento") }}
         {{Form::number('totBeds', '' , ['class' => 'form-element','placeholder' => 'Numero posti letto','id'=>'numeroLApp'])}}
         
     </div>
@@ -74,4 +71,4 @@
     <div id='filtra1' class="margin-t-small text-center">
         {{ Form::submit('CERCA', ['class' => 'tm-btn']) }}
     </div>
-    {{Form::close()}}
+{{Form::close()}}

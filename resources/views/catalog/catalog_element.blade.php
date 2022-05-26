@@ -73,6 +73,14 @@ $assignedStudents = $accomodation->assignedStudents;
                 <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
             </ul>
             <br><br>
+            
+            <h4>Disponibilità</h4>
+            <br>
+            <ul class="servizi">
+                <li>Da: {{date('d-m-Y', strtotime($accomodation->dateStart))}}</li>
+                <li>A: {{date('d-m-Y', strtotime($accomodation->dateFinish))}}</li>
+            </ul>
+            <br><br>
         </div>
 
     </div>
