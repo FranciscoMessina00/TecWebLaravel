@@ -49,5 +49,22 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('use-chat', function ($user) {
             return $user->hasRole(['student', 'locator']);
         });
+        
+        Gate::define('see-accomodation-details', function ($user, $accomodation) {
+            
+            $isStudent = $user->hasRole('student');
+            $isLocator = $user->hasRole('locator');
+            $belongsToLocator = $user->userId === $accomodation->locator->userId;
+            
+            return $isStudent || ($isLocator and $belongsToLocator);
+        });
+        
+        Gate::define('edit-accomodation', function ($user, $accomodation) {
+            
+            $isLocator = $user->hasRole('locator');
+            $belongsToLocator = $user->userId === $accomodation->locator->userId;
+            
+            return $isLocator and $belongsToLocator;
+        });
     }
 }

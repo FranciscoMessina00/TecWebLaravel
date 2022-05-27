@@ -14,6 +14,7 @@
 /*Rotte pubbliche*/
 
 use Illuminate\Http\Request;
+use \App\Models\Resources\Accomodation;
 
 Route::get('/', 'PublicController@home')       /*Homepage*/
 
@@ -36,9 +37,6 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
 
-Route::get('/locator/my-acc/accomodation/{accId}', 'LocatorController@showAccomodation')  /*Apertura pagina alloggio locatore*/
-        ->name('my-accomodations.accomodation');
-
 Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorController@assignAccomodation')  /*Apertura pagina alloggio locatore*/
         ->name('my-accomodations.accomodation.assign');
 
@@ -46,9 +44,6 @@ Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorContr
 /*Rotte specifiche livello 3: studente*/
 Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertura catalogo*/
         ->name('catalog.filter');
-
-Route::get('/catalog/accomodation/{accId}', 'StudentController@showAccomodation')  /*Apertura pagina alloggio lato studente*/
-        ->name('catalog.accomodation');
 
 
 /*Rotte specifiche livello 4: admin*/
@@ -92,4 +87,8 @@ Route::get('/messages/new', 'ChatController@showNewMessageForm')
 
 Route::post('/messages/send', 'ChatController@sendMessage')    
         ->name('messages.send'); 
+
+/*Rotte per i soli utenti che possono visionare nel dettaglio le informazioni di un alloggio*/
+Route::get('/catalog/accomodation/{accId}', 'AccomodationController@showAccomodation')       /*Apertura pagina alloggio*/
+        ->name('catalog.accomodation');
 

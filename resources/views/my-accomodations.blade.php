@@ -20,7 +20,7 @@
         
             @foreach($accomodations as $accomodation)
             <div class="offerta">
-                @include('catalog.catalog_element')
+                @include('catalog.catalog_element', ['showSimplified' => false])
                 </div>
             @endforeach
         

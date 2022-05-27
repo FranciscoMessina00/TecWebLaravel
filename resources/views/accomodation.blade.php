@@ -12,6 +12,8 @@
                 <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
             <div>
+                
+                @can('edit-accomodation', $accomodation)
                 <div class="contenitore-flex">
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
@@ -22,6 +24,7 @@
                         </li>
                     </ul>
                 </div>
+                @endcan
                 
                 <div>
                     <h4>Tipologia</h4>
@@ -86,7 +89,8 @@
             <p>{{$accomodation->description}}</p>
         </div>
         <br>
-
+        
+        @can('edit-accomodation', $accomodation)
         @if($accomodation->hasRequests())
         <div>
             <h2 class='pad-tb-small'>Richieste</h2>
@@ -102,6 +106,7 @@
         <h2 class='pad-tb-small'>Richieste</h2>
         <p>Assegnato il {{$accomodation->updated_at}} a {{$accomodation->assignedStudents->first()->name}}</p>
         @endif
+        @endcan
 
         @include('layouts.back_button')
     </div>

@@ -40,6 +40,11 @@ class StudentController extends Controller {
             ->with('accomodations', $accomodations);
     }
     
+    public function showAccomodation($accId)
+    {
+        $accomodation = Accomod
+    }
+    
     
 
 }
