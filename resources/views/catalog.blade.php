@@ -21,7 +21,6 @@
 </div>
 <!--Paginazione-->
 <div>
-    
-    @include('pagination.paginator', ['paginator' => $accomodations])
+    @include('pagination.paginator', ['paginator' => $accomodations->appends(\Request::except('page'))])
 </div>
 @endsection
