@@ -44,11 +44,11 @@ Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorContr
 
 
 /*Rotte specifiche livello 3: studente*/
-Route::get('/student/messaggi', 'StudentController@messages')  
-        ->name('student.messages');
-
 Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertura catalogo*/
         ->name('catalog.filter');
+
+Route::get('/catalog/accomodation/{accId}', 'StudentController@showAccomodation')  /*Apertura pagina alloggio lato studente*/
+        ->name('catalog.accomodation');
 
 
 /*Rotte specifiche livello 4: admin*/

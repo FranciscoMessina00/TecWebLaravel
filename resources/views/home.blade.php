@@ -27,7 +27,7 @@
             @foreach($accomodations as $accomodation)
             <div class="colonna text-center sfondo-marrone text-white">
                 <!-- Rappresentazione offerta in homepage-->
-                @include('catalog.catalog_element')
+                @include('catalog.catalog_element', ['showSimplified' => true])
             </div>
             @endforeach
         </div>

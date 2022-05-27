@@ -13,7 +13,7 @@
         <h1 class="text-center text-gold">Catalogo delle offerte</h1>
             @foreach($accomodations as $accomodation)
                 <div class="offerta">
-                    @include('catalog.catalog_element')
+                    @include('catalog.catalog_element', ['showSimplified' => false])
                 </div>
             @endforeach
 

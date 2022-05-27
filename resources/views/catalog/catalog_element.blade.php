@@ -17,7 +17,12 @@ $assignedStudents = $accomodation->assignedStudents;
         @if($route=='my-accomodations')
         <a class="text-gold" href="{{route('my-accomodations.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
         @else
+        @can('isStudent')
+        <a class="text-gold" href="{{route('catalog.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
+        @endcan
+        @cannot('isStudent')
         <h2 class='margin-b-15 text-center {{$route=='home'? 'text-white' : 'text-black'}}'>{{$accomodation->name}}</h2>
+        @endcan
         @endif
 
         @if($route=='my-accomodations')
@@ -42,46 +47,11 @@ $assignedStudents = $accomodation->assignedStudents;
         <br>
         @endif
 
-
-        <div>
-            <h4>Tipologia</h4>
-            <br>
-            <ul class="servizi">
-                @switch($accomodation->tipology)
-                @case(0)
-                <li class="servizi">Appartamento</li>
-                @break
-                @case(1)
-                <li class="servizi">Posto letto</li>
-                @break
-
-                @endswitch
-            </ul>
-            <br><br>
-
-            <h4>Posizione</h4>
-            <br>
-            <ul class="servizi">
-                <li>Indirizzo: {{$accomodation->address}}</li>
-                <li>Città: {{$accomodation->city}}</li>
-            </ul>
-            <br><br>
-
-            <h4>Prezzi</h4>
-            <br>
-            <ul class="servizi">
-                <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
-            </ul>
-            <br><br>
-            
-            <h4>Disponibilità</h4>
-            <br>
-            <ul class="servizi">
-                <li>Da: {{date('d-m-Y', strtotime($accomodation->dateStart))}}</li>
-                <li>A: {{date('d-m-Y', strtotime($accomodation->dateFinish))}}</li>
-            </ul>
-            <br><br>
-        </div>
+        @if($showSimplified)
+            @include('catalog.informations_simplified')
+        @else
+            @include('catalog.informations')
+        @endif
 
     </div>
 </div>
