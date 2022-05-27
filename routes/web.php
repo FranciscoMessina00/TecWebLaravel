@@ -49,7 +49,14 @@ Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertu
 /*Rotte specifiche livello 4: admin*/
 Route::get('/admin/stats', 'AdminController@stats')       /*Statistiche amministratore*/
         ->name('admin.stats');
-
+Route::get('/faq/edit/{faqId}', 'AdminController@editFaq')
+        ->name('faq.edit');
+Route::post('/faq/edit/{faqId}', 'AdminController@updateFaq')
+        ->name('faq.update');
+Route::get('/faq/new', 'AdminController@newFaq')
+        ->name('faq.new');
+Route::post('/faq/new', 'AdminController@addFaq')
+        ->name('faq.add');
 
 /*Rotte per il login e la registrzione*/
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')    /*Registrazione utente*/

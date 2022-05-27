@@ -66,5 +66,9 @@ class AuthServiceProvider extends ServiceProvider
             
             return $isLocator and $belongsToLocator;
         });
+        
+        Gate::define('see-edit-faq',function($user){
+            return $user->hasRole(['admin']);
+        });
     }
 }

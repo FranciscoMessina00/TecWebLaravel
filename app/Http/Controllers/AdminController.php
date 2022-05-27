@@ -21,4 +21,8 @@ class AdminController extends Controller {
     {
         return view('stats');
     }
+    public function editFaq()
+    {
+        return view('faqs/faq_edit');
+    }
 }

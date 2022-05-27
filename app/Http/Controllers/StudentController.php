@@ -42,7 +42,7 @@ class StudentController extends Controller {
     
     public function showAccomodation($accId)
     {
-        $accomodation = Accomod
+        $accomodation = Accomod;
     }
     
     
