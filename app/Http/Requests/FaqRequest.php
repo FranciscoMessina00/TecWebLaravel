@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
-
+use App\Models\Resources\Faq;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Validation\Rule;
 
 class FaqRequest extends FormRequest{
     /**
@@ -24,9 +24,11 @@ class FaqRequest extends FormRequest{
      */
     public function rules()
     {
+        
         return [
-            'question' => 'required|max:50',
-            'answer' => 'required'
+            'faqId'=>'nullable',
+            'question' => ['required','max:50'],
+            'answer' => 'required|max:400'
         ];
     }
 }

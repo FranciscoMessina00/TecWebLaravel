@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Resources\Faq;
 
+/*Import Form Requests*/
+use App\Http\Requests\FaqRequest;
 /* Import Resource Models */
 
 /* Tools */
@@ -26,9 +28,28 @@ class AdminController extends Controller {
         return view('faqs/faq_edit')
                 ->with('faq',$faq);
     }
+    public function newFaq() {
+        return view('faqs/faq_new');
+    }
     
     public function updateFaq(FaqRequest $request) {
-        return view('home');
+        $validated = $request->validated();
+        
+        $faq=Faq::find($request->faqId);
+        $faq->question=$request->question;
+        $faq->answer=$request->answer;
+        
+        $faq->save();
+        return redirect()->route('faq');
+    }
+    public function addFaq(FaqRequest $request) {
+        $validated = $request->validated();
+        
+        $newFaq=new Faq;
+        $newFaq->fill($request->validated());
+        
+        $newFaq->save();
+        return redirect()->route('faq');
     }
 
 }
