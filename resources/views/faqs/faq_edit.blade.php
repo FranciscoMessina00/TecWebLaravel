@@ -15,7 +15,7 @@
                     </label>
                 </div>
                 <div class="margin-b-40">
-                    <input class="form-element" id="question" type="text" name="quiestion" placeholder="Inserisci domanda">
+                    <input class="form-element" id="question" type="text" name="question" placeholder="Inserisci domanda" value="{{$faq->question}}">
                 </div>
             </div>
             <div>
@@ -25,13 +25,14 @@
                     </label>
                 </div>
                 <div class="margin-b-40">
-                    <textarea class="form-element" cols="90" rows="10" id="answer" name="answer" placeholder="Inserisci risposta"></textarea>
+                    <textarea class="form-element" cols="90" rows="10" id="answer" name="answer" placeholder="Inserisci risposta">{{$faq->answer}}</textarea>
                 </div>
             </div>
             <div class="margin-t-small text-center">
                 <input class="tm-btn" type="submit" value="Salva">
             </div>
         {{Form::close()}}
+        @include('layouts.back_button')
     </div>
 </div>
 

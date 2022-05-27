@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Resources\Faq;
 
+/* Import Resource Models */
 
-/*Import Resource Models*/
+/* Tools */
 
-/*Tools*/
 use Illuminate\Support\Facades\Log;
-
 
 class AdminController extends Controller {
 
@@ -16,13 +16,19 @@ class AdminController extends Controller {
     public function __construct() {
         $this->middleware('can:isAdmin');
     }
-    
-    public function stats()
-    {
+
+    public function stats() {
         return view('stats');
     }
-    public function editFaq()
-    {
-        return view('faqs/faq_edit');
+
+    public function editFaq($faqId) {
+        $faq = Faq::find($faqId);
+        return view('faqs/faq_edit')
+                ->with('faq',$faq);
     }
+    
+    public function updateFaq(FaqRequest $request) {
+        return view('home');
+    }
+
 }

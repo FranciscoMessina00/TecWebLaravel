@@ -51,7 +51,7 @@ Route::get('/admin/stats', 'AdminController@stats')       /*Statistiche amminist
         ->name('admin.stats');
 Route::get('/faq/edit/{faqId}', 'AdminController@editFaq')
         ->name('faq.edit');
-Route::post('/faq/edit/{faqId}', 'AdminController@updateFaq')
+Route::post('/faq/edit', 'AdminController@updateFaq')
         ->name('faq.update');
 Route::get('/faq/new', 'AdminController@newFaq')
         ->name('faq.new');
