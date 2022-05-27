@@ -14,12 +14,8 @@ class Services extends Migration {
     public function up() {
         Schema::create('services', function (Blueprint $table) {
             $table->bigIncrements('serviceId');
-            $table->bigInteger('accId')->unsigned();
-            $table->foreign('accId')->references('accId')->on('accomodations');
-            $table->boolean('wifi')->default(false);
-            $table->boolean('cucina')->default(false);
-            $table->boolean('locRicr')->default(false);
-            $table->boolean('bagno')->default(false);
+            $table->string('name');
+            $table->integer('tipology');
             
             $table->timestamps();
         });

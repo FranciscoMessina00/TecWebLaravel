@@ -49,9 +49,25 @@ class DatabaseSeeder extends Seeder
             ['imageId' => 1, 'accId' => 1, 'imageName'=>'foto1.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['imageId' => 2, 'accId' => 3, 'imageName'=>'foto2.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
+        
         DB::table('services')->insert([
-            ['serviceId' => 1, 'accId' => 1, 'wifi'=>true, 'cucina'=>false, 'locRicr'=>true, 'bagno'=>true,'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['serviceId' => 2, 'accId' => 3, 'wifi'=>false, 'cucina'=>true, 'locRicr'=>false, 'bagno'=>true,'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['serviceId' => 1, 'tipology' => 0, 'name' => 'Locale Ricreativo'],
+            ['serviceId' => 2, 'tipology' => 0, 'name' => 'Bagno'],
+            ['serviceId' => 3, 'tipology' => 0,  'name' => 'Cucina',],
+            ['serviceId' => 4, 'tipology' => 1, 'name' => 'Angolo Studio'],
+        ]);
+        
+        DB::table('accomodation_service')->insert([
+            ['accServId' => 1, 'accId' => 1, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 2, 'accId' => 1, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 3, 'accId' => 2, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 4, 'accId' => 2, 'serviceId' => 3, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 5, 'accId' => 3, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 6, 'accId' => 4, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 7, 'accId' => 4, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 8, 'accId' => 4, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 9, 'accId' => 5, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 10, 'accId' => 6, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
         ]);
     }
 }

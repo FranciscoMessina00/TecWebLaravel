@@ -72,7 +72,16 @@
                         <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
                     </ul>
                     <br><br>
-
+                    
+                    <h4>Servizi inclusi</h4>
+                    <br>
+                    <ul class="servizi">
+                        @foreach($accomodation->services as $service)
+                        <li>{{$service->name}}</li>
+                        @endforeach
+                    </ul>
+                    <br><br>
+                    
                     <h4>Informazioni locatore</h4>
                     <br>
                     <ul class="servizi">

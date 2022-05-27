@@ -37,7 +37,7 @@ $role = Auth::user()->role;
                         <li class="nav-item {{ $route == 'home' ? 'active' : '' }}">
                             <a href="{{ route('home') }}" class="nav-link">Home</a>
                         </li>
-                        <li class="nav-item {{ $route == 'catalog' ? 'active' : '' }}">
+                        <li class="nav-item {{ strtok($route, '.') == 'catalog' ? 'active' : '' }}">
                             <a href="{{ route('catalog') }}" class="nav-link">Catalogo</a>
                         </li>
 

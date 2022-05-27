@@ -4,6 +4,7 @@ namespace App\Models\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Models\Resources\Service;
 
 class Accomodation extends Model {
 
@@ -17,6 +18,10 @@ class Accomodation extends Model {
     public function students() {
         return $this->belongsToMany(User::class, 'accomodation_student', 'accId', 'userId')
                         ->wherePivot('relationship', 'optioned');
+    }
+    
+    public function services() {
+        return $this->belongsToMany(Service::class, 'accomodation_service', 'accId', 'serviceId');
     }
 
     public function assignedStudents() {
