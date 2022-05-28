@@ -342,6 +342,9 @@ th{
 .text-small{
     font-size: 10px;
 }
+.no-text{
+    text-decoration: none;
+}
 .justify-left{
     justify-content: left!important
 }

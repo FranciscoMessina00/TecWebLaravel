@@ -1,5 +1,5 @@
 @if ($currentPage != $pageIndex)
-    <a href="{{ $paginator->url($pageIndex) }}">{{$pageIndex}}</a>
+    <a class="text-gold" href="{{ $paginator->url($pageIndex) }}">{{$pageIndex}}</a>
 @else
     {{$pageIndex}}
 @endif
