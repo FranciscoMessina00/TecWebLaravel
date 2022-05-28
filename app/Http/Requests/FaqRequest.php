@@ -24,11 +24,19 @@ class FaqRequest extends FormRequest{
      */
     public function rules()
     {
-        
-        return [
-            'faqId'=>'nullable',
-            'question' => ['required','max:50'],
+        if ($this->request->get('faqId')){
+            $faqId=$this->request->get('faqId');
+            return [
+            'question' => ['required','max:50',Rule::unique('faqs')->ignore($faqId, 'faqId')],
             'answer' => 'required|max:400'
         ];
+        }else{
+            return [
+            'question' => ['required','max:50',Rule::unique('faqs')],
+            'answer' => 'required|max:400'
+        ];
+        }
+        
+        
     }
 }

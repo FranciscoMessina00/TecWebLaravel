@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="margin-t-small text-center">
-            {{ Form::submit('ENTRA', ['class' => 'tm-btn']) }}
+            {{ Form::submit('Salva', ['class' => 'tm-btn']) }}
         </div>
         {{Form::close()}}
         @include('layouts.back_button')
