@@ -15,7 +15,8 @@ ul{
     list-style: none;
 }
 ol{
-    list-style-position: inside;
+/*    list-style-position: inside;*/
+    list-style: none;
 }
 div{
     transition: all 0.3s ease;
@@ -433,6 +434,21 @@ th{
 .tm-btn-gray:focus {
     background-color: #515050!important;
 }
+.tm-btn-green {
+    background-color: #32a852;
+}
+.tm-btn-green:hover,
+.tm-btn-green:focus {
+    background-color: #298040!important;
+}
+.tm-btn-red {
+    background-color: #ba3f3f;
+}
+.tm-btn-red:hover,
+.tm-btn-red:focus {
+    background-color: #802929!important;
+}
+
 
 .nav{
     padding-left:0;
