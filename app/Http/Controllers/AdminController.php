@@ -51,5 +51,10 @@ class AdminController extends Controller {
         $newFaq->save();
         return redirect()->route('faq');
     }
+    public function deleteFaq($faqId) {
+        Faq::find($faqId)->delete();
+        
+        return redirect()->route('faq');
+    }
 
 }

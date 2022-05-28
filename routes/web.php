@@ -57,6 +57,8 @@ Route::get('/faq/new', 'AdminController@newFaq')
         ->name('faq.new');
 Route::post('/faq/new', 'AdminController@addFaq')
         ->name('faq.add');
+Route::get('/faq/delete/{faqId}', 'AdminController@deleteFaq')
+        ->name('faq.delete');
 
 /*Rotte per il login e la registrzione*/
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')    /*Registrazione utente*/

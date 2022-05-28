@@ -26,7 +26,7 @@
         <h2>
             Tipologia
         </h2>
-        {{ Form::select('tipology', ['0' => 'Appartamento', '1' => 'Posto letto'], ['class' => 'form-element'])}}
+        {{ Form::select('tipology', ['0' => 'Appartamento', '1' => 'Posto letto'], '',['class' => 'form-element'])}}
 
 
     </div>
