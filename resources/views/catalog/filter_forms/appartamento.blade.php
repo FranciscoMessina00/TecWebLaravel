@@ -1,4 +1,7 @@
-<!-- <form id="form1" class="text-center" method="get"> -->
+<?php
+    $services = App\Models\Resources\Service::where('tipology', 0)->get();
+?>
+
 {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'text-center', 'method' => 'get')) }}
     @csrf
     {{ Form::hidden('tipology', '0') }}
@@ -52,19 +55,13 @@
     </div>
 
     <div class="pad-lr-small margin-t-x-small">
-        <label>
-            Servizi appartamento
-        </label>
+        <h1>Servizi Disponibili</h1>
         
-        
-        <ul class="text-left servizi">
-            <li><input type="checkbox" id="servizio1" name="servizio1" value="servizio1"><label for="servizio1"> App1</label></li>
-            <li><input type="checkbox" id="servizio2" name="servizio2" value="servizio2"><label for="servizio2"> App2</label></li>
-            <li><input type="checkbox" id="servizio3" name="servizio3" value="servizio3"><label for="servizio3"> App3</label></li>
-            <li><input type="checkbox" id="servizio4" name="servizio4" value="servizio4"><label for="servizio4"> App4</label></li>
-            <li><input type="checkbox" id="servizio5" name="servizio5" value="servizio5"><label for="servizio5"> App5</label></li>
-            <li><input type="checkbox" id="servizio6" name="servizio6" value="servizio6"><label for="servizio6"> App6</label></li>
-            <li><input type="checkbox" id="servizio7" name="servizio7" value="servizio7"><label for="servizio7"> App7</label></li>
+        <ul>
+            @foreach($services as $service)
+                {{Form::checkbox('services[]', $service->serviceId, false, ['id' => $service->name])}}
+                {{ Form::label($service->name, $service->name) }}
+            @endforeach
         </ul>
         
     </div>

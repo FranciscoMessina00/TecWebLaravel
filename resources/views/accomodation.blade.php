@@ -29,7 +29,7 @@
                 <div>
                     <h4>Tipologia</h4>
                     <br>
-                    <ul class="servizi">
+                    <ul>
                         @switch($accomodation->tipology)
                         @case(0)
                         <li class="servizi">Appartamento</li>
@@ -44,7 +44,7 @@
 
                     <h4>Informazioni</h4>
                     <br>
-                    <ul class="servizi">
+                    <ul>
                         @switch($accomodation->tipology)
                         @case(0)
                         <li class="servizi">Numero camere: {{$accomodation->rooms}}</li>
@@ -60,7 +60,7 @@
 
                     <h4>Posizione</h4>
                     <br>
-                    <ul class="servizi">
+                    <ul>
                         <li>Indirizzo: {{$accomodation->address}}</li>
                         <li>Città: {{$accomodation->city}}</li>
                     </ul>
@@ -68,14 +68,14 @@
 
                     <h4>Prezzi</h4>
                     <br>
-                    <ul class="servizi">
+                    <ul>
                         <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
                     </ul>
                     <br><br>
                     
                     <h4>Servizi inclusi</h4>
                     <br>
-                    <ul class="servizi">
+                    <ul>
                         @foreach($accomodation->services as $service)
                         <li>{{$service->name}}</li>
                         @endforeach
@@ -84,7 +84,7 @@
                     
                     <h4>Informazioni locatore</h4>
                     <br>
-                    <ul class="servizi">
+                    <ul>
                         <li>Nome: {{$accomodation->locator->name}}</li>
                         <li>Cognome: {{$accomodation->locator->surname}}</li>
                         <li>Username: {{$accomodation->locator->username}}</li>

@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 /*Import Application Models*/
 use App\Models\Catalog;
 
-/*Import Resource Models*/
-use App\Models\Resources\User;
-use App\Models\Resources\Faq;
 
 /*Import Form Requests*/
 use Illuminate\Http\Request;
@@ -35,6 +32,8 @@ class StudentController extends Controller {
     {
         
         $accomodations = $this->_catalogModel->getAccomodationsFilteredBy($request);
+        
+        
         
         return view('catalog')
             ->with('accomodations', $accomodations);
