@@ -35,8 +35,12 @@ class UserRequest extends FormRequest
             'username' => ['required', 'string', 'min:4', Rule::unique('users', 'username')->ignore($user->userId, 'userId')],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
             'gender' => ['string'],
-            'bornDate' => ['required', 'date', 'before:-18 years']
+            'bornDate' => ['required', 'date', 'before:-18 years', 'date_format:Y-m-d']
         ];
+    }
+    
+    public function messages(): array {
+        return ['bornDate.date_format' => 'Insert a valid date'];
     }
 }
 

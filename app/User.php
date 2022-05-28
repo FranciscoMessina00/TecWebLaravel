@@ -43,6 +43,7 @@ class User extends Authenticatable
     
     protected $primaryKey = 'userId';
     protected $guarded = ['userId'];
+    protected $dates = ['datetime'];
     
     public function accomodations()
     {

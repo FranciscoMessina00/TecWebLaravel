@@ -10,6 +10,7 @@ class Accomodation extends Model {
 
     public $timestamps = true;
     protected $primaryKey = 'accId';
+    protected $dates = ['dateOffer', 'dateBooking', 'dateStart', 'dateFinish'];
 
     public function locator() {
         return $this->belongsTo(User::class, 'userId', 'userId');
