@@ -65,9 +65,12 @@ $role = Auth::user()->role;
                         </li>
                         @endif
                         @else
+                        
+                        @can('edit-credentials')
                         <li class="nav-item {{ $route == 'account' ? 'active' : '' }}">
                             <a href="{{ route('account') }}" class="nav-link">Account</a>
                         </li>
+                        @endcan
                         
                         @can('use-chat')
                         <li class="nav-item {{ strtok($route, '.') == 'messages' ? 'active' : '' }}">
@@ -87,6 +90,9 @@ $role = Auth::user()->role;
                         @case('admin')
                         <li class="nav-item {{ $route == 'admin.stats' ? 'active' : '' }}">
                             <a href="{{ route('admin.stats') }}" class="nav-link">Statistiche</a>
+                        </li>
+                        <li class="nav-item {{ strtok($route, '.') == 'faq' ? 'active' : '' }}">
+                            <a href="{{ route('faq') }}" class="nav-link">F.A.Q.</a>
                         </li>
                         @break
                         @endswitch
