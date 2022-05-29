@@ -48,8 +48,8 @@ Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertu
 
 /*Rotte specifiche livello 4: admin*/
 Route::get('/admin/stats', 'AdminController@stats')       /*Statistiche amministratore*/
-        ->name('admin.stats');
-Route::get('/admin/stats/filter', 'AdminController@showFilteredStats')  /*Filtro statistiche*/
+        ->name('stats');
+Route::post('/admin/stats/filter', 'AdminController@showFilteredStats')  /*Filtro statistiche*/
         ->name('stats.filter');
 Route::get('/faq/edit/{faqId}', 'AdminController@editFaq')
         ->name('faq.edit');

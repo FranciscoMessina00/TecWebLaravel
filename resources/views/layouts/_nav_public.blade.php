@@ -19,7 +19,7 @@ $role = Auth::user()->role;
 
                 <!<!-- Messaggio di benvenuto di prova. -->
                 @if(Auth::check())
-                    <p class="pad-tb-mid pad-lr-small">Benvenut* {{Auth::user()->name}}({{Auth::user()->role}})<p>
+                    <p class="pad-tb-mid pad-lr-small">Benvenut* {{Auth::user()->username}}({{Auth::user()->role}})<p>
                 @endif
             </div>
 
@@ -88,8 +88,8 @@ $role = Auth::user()->role;
                         @case('student')
                         @break
                         @case('admin')
-                        <li class="nav-item {{ $route == 'admin.stats' ? 'active' : '' }}">
-                            <a href="{{ route('admin.stats') }}" class="nav-link">Statistiche</a>
+                        <li class="nav-item {{ strtok($route, '.') == 'stats' ? 'active' : '' }}">
+                            <a href="{{ route('stats') }}" class="nav-link">Statistiche</a>
                         </li>
                         <li class="nav-item {{ strtok($route, '.') == 'faq' ? 'active' : '' }}">
                             <a href="{{ route('faq') }}" class="nav-link">F.A.Q.</a>
