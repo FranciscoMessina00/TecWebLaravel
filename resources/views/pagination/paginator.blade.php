@@ -10,17 +10,17 @@
 
 
 @if ($paginator->lastPage() != 1)
-<div>
+<div class="text-mid">
     <!-- Link alla pagina precedente -->
     @if ($paginator->currentPage() != 1)
-        <a href="{{ $paginator->previousPageUrl() }}">&lt;</a>
+        <a class="text-gold" href="{{ $paginator->previousPageUrl() }}">&lt;</a>
     @else
         &lt;
     @endif
     
     <!-- Link alla pagina successiva -->
     @if ($paginator->hasMorePages())
-        <a href="{{ $paginator->nextPageUrl() }}">&gt;</a>
+        <a class="text-gold" href="{{ $paginator->nextPageUrl() }}">&gt;</a>
     @else
         &gt;
     @endif

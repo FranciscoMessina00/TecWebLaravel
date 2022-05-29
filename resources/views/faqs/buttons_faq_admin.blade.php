@@ -1,9 +1,9 @@
-<div class="contenitore-flex-2 justify-right text-mid margin-t-small-neg">
+<div class="contenitore-flex-2 justify-right text-mid ">
     <ul class="nav navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item ">
             <a href="{{route('faq.edit',$faq->faqId)}}" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
             <a class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">Elimina</a>
         </li>
         <li class="nav-item nascondi">
