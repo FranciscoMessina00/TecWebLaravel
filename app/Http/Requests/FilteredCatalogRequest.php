@@ -27,7 +27,18 @@ class FilteredCatalogRequest extends FormRequest
     public function rules()
     {
         return [
-            'city' => 'max:20'
+            'tipology' => 'required|integer',
+            'city' => 'max:20|nullable',
+            'priceMin' => 'integer|numeric|gt:0|nullable',
+            'priceMax' => 'integer|numeric|gt:0|nullable',
+            'dateStart' => ['date', 'date_format:Y-m-d', 'nullable'],
+            'dateFinish' => ['date', 'date_format:Y-m-d', 'nullable']
         ];
+    }
+    
+    public function messages(): array {
+        return ['bornDate.date_format' => 'Insert a valid date',
+            'dateFinish.date_format' => 'Insert a valid date',
+            'tipology.required' => 'Select the accomodation tipology first'];
     }
 }

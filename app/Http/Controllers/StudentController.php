@@ -8,6 +8,7 @@ use App\Models\Catalog;
 
 /*Import Form Requests*/
 use Illuminate\Http\Request;
+use App\Http\Requests\FilteredCatalogRequest;
 
 /*Facade Auth di laravel ui*/
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,9 @@ class StudentController extends Controller {
         $this->_catalogModel = new Catalog;
     }
     
-    public function showFilteredCatalog(Request $request)
+    public function showFilteredCatalog(FilteredCatalogRequest $request)
     {
+        $request->validated();
         
         $accomodations = $this->_catalogModel->getAccomodationsFilteredBy($request);
         

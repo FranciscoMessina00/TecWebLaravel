@@ -59,16 +59,19 @@ class DatabaseSeeder extends Seeder
             ['serviceId' => 2, 'tipology' => 0, 'name' => 'Bagno'],
             ['serviceId' => 3, 'tipology' => 0,  'name' => 'Cucina',],
             ['serviceId' => 4, 'tipology' => 1, 'name' => 'Angolo Studio'],
+            ['serviceId' => 5, 'tipology' => 2, 'name' => 'Wi-fi']
         ]);
         
         DB::table('accomodation_service')->insert([
             ['accServId' => 1, 'accId' => 1, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accServId' => 2, 'accId' => 1, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accServId' => 3, 'accId' => 1, 'serviceId' => 3, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 4, 'accId' => 2, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 5, 'accId' => 2, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 6, 'accId' => 4, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 7, 'accId' => 3, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['accServId' => 4, 'accId' => 1, 'serviceId' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 5, 'accId' => 2, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 6, 'accId' => 2, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 7, 'accId' => 4, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 8, 'accId' => 3, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 9, 'accId' => 3, 'serviceId' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
     }
 }
