@@ -1,5 +1,7 @@
 <?php
-$services = App\Models\Resources\Service::all();
+$commonServices = App\Models\Resources\Service::where('tipology', 2)->get();
+$appServices = App\Models\Resources\Service::where('tipology', 0)->get();
+$bedServices = App\Models\Resources\Service::where('tipology', 1)->get();
 ?>
 
 {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'text-center', 'method' => 'get', 'id' => 'prova')) }}
@@ -8,14 +10,14 @@ $services = App\Models\Resources\Service::all();
 <div class="pad-lr-small margin-t-x-small">
 
     <label for="tipo">
-            Tipologia
-        </label>
-        <select id="tipo" name="tipology" class="form-element" onchange="cambioForm('tipo')">
-            <option value="none" disabled selected>Seleziona un'opzione</option>
-            <option value="0" id="appartment" {{$isAppartmentSelected ? 'selected' : ''}}>Appartamento</option>
-            <option value="1" id="bed_room" {{$isBedRoomSelected ? 'selected' : ''}}>Posto letto</option>
-            <option value="2" id="both" {{$isAppartmentSelected && $isBedRoomSelected ? 'selected' : ''}}>Entrambi</option>
-        </select>
+        Tipologia
+    </label>
+    <select id="tipo" name="tipology" class="form-element" onchange="cambioForm('tipo')">
+        <option value="none" disabled selected>Seleziona un'opzione</option>
+        <option value="0" id="appartment" {{$isAppartmentSelected ? 'selected' : ''}}>Appartamento</option>
+        <option value="1" id="bed_room" {{$isBedRoomSelected ? 'selected' : ''}}>Posto letto</option>
+        <option value="2" id="both" {{$isAppartmentSelected && $isBedRoomSelected ? 'selected' : ''}}>Entrambi</option>
+    </select>
 
 </div>
 
@@ -57,22 +59,22 @@ $services = App\Models\Resources\Service::all();
 
 <div id ="appartamento" class="{{$isAppartmentSelected ? '' : 'nascondi'}}">
     <fieldset name = "appartmento">
-    <div class="pad-lr-small margin-t-x-small">
-        {{ Form::label('dimensioneA', 'Dimensione appartamento') }}
-        {{Form::number('dimAppartment', $request ? $request->dimAppartment : '' , ['class' => 'form-element','placeholder' => 'Dimensione appartamento','id'=> 'dimensioneA'])}}
+        <div class="pad-lr-small margin-t-x-small">
+            {{ Form::label('dimensioneA', 'Dimensione appartamento') }}
+            {{Form::number('dimAppartment', $request ? $request->dimAppartment : '' , ['class' => 'form-element','placeholder' => 'Dimensione appartamento','id'=> 'dimensioneA'])}}
 
-    </div>
+        </div>
 
-    <div class="pad-lr-small margin-t-x-small">
-        {{ Form::label('numeroA', "Numero totale camere nell'appartamento") }}
-        {{Form::number('rooms', $request ? $request->rooms : '' , ['class' => 'form-element','placeholder' => 'Numero camere','id'=> 'numeroA'])}}
+        <div class="pad-lr-small margin-t-x-small">
+            {{ Form::label('numeroA', "Numero totale camere nell'appartamento") }}
+            {{Form::number('rooms', $request ? $request->rooms : '' , ['class' => 'form-element','placeholder' => 'Numero camere','id'=> 'numeroA'])}}
 
-    </div>
+        </div>
     </fieldset>
 </div>
 
 <div id="postoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
-    
+
     <fieldset name="postoLetto">
         <div class="pad-lr-small margin-t-x-small">
 
@@ -91,11 +93,10 @@ $services = App\Models\Resources\Service::all();
 
 <div class="pad-lr-small margin-t-x-small">
     <h1>Servizi Disponibili</h1>
-
-    <ul>
-
-        @foreach($services as $service)
-        <?php
+    <div id="generalServices">
+        <ul>
+            @foreach($commonServices as $service)
+            <?php
             $checked = false;
 
             if ($request) {
@@ -103,12 +104,46 @@ $services = App\Models\Resources\Service::all();
 
                 $checked = $serviceIds->contains($service->serviceId);
             }
-        ?>
+            ?>
+            {{Form::checkbox('services[]', $service->serviceId, $checked, ['id' => $service->name])}}
+            {{ Form::label($service->name, $service->name) }}
+            @endforeach
+        </ul>
+    </div>
+    <div id="servApp" class="{{$isAppartmentSelected ? '' : 'nascondi'}}">
+        <ul>
+            @foreach($appServices as $service)
+            <?php
+            $checked = false;
 
-        {{Form::checkbox('services[]', $service->serviceId, $checked, ['id' => $service->name])}}
-        {{ Form::label($service->name, $service->name) }}
-        @endforeach
-    </ul>
+            if ($request) {
+                $serviceIds = collect($request->input('services'));
+
+                $checked = $serviceIds->contains($service->serviceId);
+            }
+            ?>
+            {{Form::checkbox('services[]', $service->serviceId, $checked, ['id' => $service->name])}}
+            {{ Form::label($service->name, $service->name) }}
+            @endforeach
+        </ul>
+    </div>
+    <div id="servPostoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
+        <ul>
+            @foreach($bedServices as $service)
+            <?php
+            $checked = false;
+
+            if ($request) {
+                $serviceIds = collect($request->input('services'));
+
+                $checked = $serviceIds->contains($service->serviceId);
+            }
+            ?>
+            {{Form::checkbox('services[]', $service->serviceId, $checked, ['id' => $service->name])}}
+            {{ Form::label($service->name, $service->name) }}
+            @endforeach
+        </ul>
+    </div>
 
 </div>
 <div id='filtra1' class="margin-t-small text-center">
