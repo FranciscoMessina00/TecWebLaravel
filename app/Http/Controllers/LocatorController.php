@@ -55,6 +55,7 @@ class LocatorController extends Controller {
         
         $accomodation->students()->updateExistingPivot($userId, ['relationship' => 'assigned', 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()]);
         
+        $this->_catalogModel->deleteAllRequests($accId);
         
         return redirect()->route('my-accomodations');
     }

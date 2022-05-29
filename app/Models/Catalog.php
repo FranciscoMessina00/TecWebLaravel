@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Resources\Accomodation;
 use App\Models\Resources\Service;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\User;
 
@@ -33,6 +34,13 @@ class Catalog {
 
         return $accomodations;
     }
+    
+    public function deleteAllRequests($accId)
+    {
+        DB::table('accomodation_student')->where('accId', $accId)
+                ->where('relationship', 'optioned')
+                ->delete();
+    }
 
     public function getAccomodationsFilteredBy($request) {
 
@@ -52,7 +60,7 @@ class Catalog {
 
             $exclude = collect($filtersToExclude[$tipology]);
 
-            /*Applico i filtri, escludendo quelli specificati nell'array $excelude*/
+            /*Applico i filtri, escludendo quelli specificati nell'array $exclude*/
             foreach ($filterList as $field => $value) {
                 if ($value) {
                     if (!$exclude->contains($field)) {
@@ -63,7 +71,6 @@ class Catalog {
                         } elseif ($field == 'dateStart' || $field == 'dateFinish') {
                             $value = new \DateTime($value);
                         }
-                        
                         
                         $accomodationPartial = $accomodationPartial->where($field, $condition, $value);
                     }

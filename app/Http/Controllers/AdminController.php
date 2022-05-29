@@ -65,7 +65,7 @@ class AdminController extends Controller {
     }
 
     public function updateFaq(FaqRequest $request) {
-        $validated = $request->validated();
+        $request->validated();
 
         $faq = Faq::find($request->faqId);
         $faq->question = $request->question;
@@ -79,7 +79,7 @@ class AdminController extends Controller {
         $validated = $request->validated();
 
         $newFaq = new Faq;
-        $newFaq->fill($request->validated());
+        $newFaq->fill($validated);
 
         $newFaq->save();
         return redirect()->route('faq');
