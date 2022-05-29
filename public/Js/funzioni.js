@@ -3,14 +3,18 @@ function cambioForm(select) {
     var app = document.getElementById("appartamento").style;
     var pl = document.getElementById("postoLetto").style;
 
-    if (selettore.value === "appartamento") {
+    if (selettore.value === "0") {
         app.display = "block";
         pl.display = "none";
 
     }
-    if (selettore.value === "postoLetto") {
+    if (selettore.value === "1") {
         pl.display = "block";
         app.display = "none";
+    }
+    if (selettore.value === "2") {
+        pl.display = "block";
+        app.display = "block";
     }
 }
 ;
