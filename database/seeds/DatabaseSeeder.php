@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
             ['userId' => 1, 'role' => 'student', 'name' => 'Mario', 'surname' => 'Rossi', 'username' => "stud1", 'password' => Hash::make('pass'), 'email' => 'mario.rossi@gmail.com', 'image'=>'img1.png', 'gender'=>'uomo', 'bornDate'=>date('2000-05-04'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
             ['userId' => 2, 'role' => 'locator', 'name' => 'Marco', 'surname' => 'Bianchi', 'username' => "loc1", 'password' => Hash::make('pass'), 'email' => 'marco.bianchi@gmail.com', 'image'=>'img2.png', 'gender'=>'donna', 'bornDate'=>date('2001-05-01'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
             ['userId' => 3, 'role' => 'locator', 'name' => 'Luigi', 'surname' => 'Bianchi', 'username' => "loc2", 'password' => Hash::make('pass'), 'email' => 'luigi.bianchi@gmail.com', 'image'=>'img2.png', 'gender'=>'donna', 'bornDate'=>date('2002-07-01'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
-            ['userId' => 4, 'role' => 'admin', 'name' => 'Giovanni', 'surname' => 'Verdi', 'username' => "admin1", 'password' => Hash::make('pass'), 'email' => 'giovanni.verdi@gmail.com', 'image'=>'img3.png', 'gender'=>'altro', 'bornDate'=>date('2003-08-02'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))]
+            ['userId' => 4, 'role' => 'admin', 'name' => 'Giovanni', 'surname' => 'Verdi', 'username' => "admin1", 'password' => Hash::make('pass'), 'email' => 'giovanni.verdi@gmail.com', 'image'=>'img3.png', 'gender'=>'altro', 'bornDate'=>date('2003-08-02'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
+            ['userId' => 5, 'role' => 'student', 'name' => 'lario', 'surname' => 'lario', 'username' => "lariolario", 'password' => Hash::make('itrdhBob'), 'email' => 'lario.lario@gmail.com', 'image'=>'img3.png', 'gender'=>'uomo', 'bornDate'=>date('2001-08-12'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
+            ['userId' => 6, 'role' => 'locator', 'name' => 'lore', 'surname' => 'lore', 'username' => "lorelore", 'password' => Hash::make('itrdhBob'), 'email' => 'lore.lore@gmail.com', 'image'=>'img3.png', 'gender'=>'donna', 'bornDate'=>date('2000-07-02'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))],
+            ['userId' => 7, 'role' => 'admin', 'name' => 'admin', 'surname' => 'admin', 'username' => "adminadmin", 'password' => Hash::make('itrdhBob'), 'email' => 'admin.admin@gmail.com', 'image'=>'img3.png', 'gender'=>'altro', 'bornDate'=>date('1998-08-02'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date(date('Y-m-d H:i:s'))]
         ]);
         
         DB::table('accomodations')->insert([
@@ -35,7 +38,8 @@ class DatabaseSeeder extends Seeder
         
         DB::table('accomodation_student')->insert([
             ['accStudId' => 1, 'userId' => 1, 'accId' => 1, 'relationship' => 'optioned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accStudId' => 2, 'userId' => 1, 'accId' => 2, 'relationship' => 'assigned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['accStudId' => 2, 'userId' => 1, 'accId' => 2, 'relationship' => 'assigned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accStudId' => 3, 'userId' => 1, 'accId' => 3, 'relationship' => 'optioned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
         DB::table('messages')->insert([
             ['messageId' => 1, 'senderId' => 1, 'recipientId' => 2, 'text' => 'Messaggio da Mario a Marco','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],

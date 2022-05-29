@@ -48,5 +48,14 @@ class Accomodation extends Model {
             return 0;
         }
     }
+    public function assigned() {
+        $assignedStudents = $this->assignedStudents;
+
+        if ($assignedStudents) {
+            return count($this->assignedStudents);
+        } else {
+            return 0;
+        }
+    }
 
 }

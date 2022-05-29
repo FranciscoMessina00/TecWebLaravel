@@ -6,21 +6,22 @@
 <div class="margin-t-x-large margin-b-40 contenitore-flex-2">
 
     @can('show-filter-bar')
-        @include('catalog.filter_sidebar')
+    @include('catalog.filter_sidebar')
     @endcan
 
     <div class="container-big margin-lr pad-lr-mid">
         <h1 class="text-center text-gold">Catalogo delle offerte</h1>
-            @foreach($accomodations as $accomodation)
-                <div class="offerta">
-                    @include('catalog.catalog_element', ['showSimplified' => false])
-                </div>
-            @endforeach
-
+        @foreach($accomodations as $accomodation)
+        <div class="offerta">
+            @include('catalog.catalog_element', ['showSimplified' => false])
+        </div>
+        @endforeach
+        <!--Paginazione-->
+        <div class="text-center">
+            @include('pagination.paginator', ['paginator' => $accomodations->appends(\Request::except('page'))])
+        </div>
     </div>
-</div>
-<!--Paginazione-->
-<div>
-    @include('pagination.paginator', ['paginator' => $accomodations->appends(\Request::except('page'))])
+    
+    
 </div>
 @endsection
