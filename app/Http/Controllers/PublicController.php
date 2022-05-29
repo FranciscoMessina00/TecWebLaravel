@@ -41,6 +41,7 @@ class PublicController extends Controller {
         
         /*Attivo la vista che mostra il catalogo con gli alloggi estratti*/
         return view('catalog')
+            ->with('request', null)
             ->with('accomodations', $accomodations);
     }
     

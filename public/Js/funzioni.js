@@ -2,16 +2,15 @@ function cambioForm(select) {
     var selettore = document.getElementById(select);
     var app = document.getElementById("appartamento").style;
     var pl = document.getElementById("postoLetto").style;
-    
+
     if (selettore.value === "appartamento") {
         app.display = "block";
         pl.display = "none";
-        
+
     }
-    if (selettore.value ==="postoLetto"){
+    if (selettore.value === "postoLetto") {
         pl.display = "block";
         app.display = "none";
-        
     }
 }
 ;

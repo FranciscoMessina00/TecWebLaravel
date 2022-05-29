@@ -47,12 +47,6 @@ th, td{
 th{
     background-color: #C4C4C4;
 }
-#appartamento{
-    display: none;
-}
-#postoLetto{
-    display: none;
-}
 .sfondo-1{
     background: linear-gradient(183.89deg, #5C5A4B 18.56%, #D6B35D 82.28%);
 }

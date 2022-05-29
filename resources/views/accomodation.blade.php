@@ -26,6 +26,8 @@
                 </div>
                 @endcan
                 
+                
+                
                 <div>
                     <h4>Tipologia</h4>
                     <br>

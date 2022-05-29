@@ -33,10 +33,9 @@ class StudentController extends Controller {
         
         $accomodations = $this->_catalogModel->getAccomodationsFilteredBy($request);
         
-        
-        
         return view('catalog')
-            ->with('accomodations', $accomodations);
+            ->with('accomodations', $accomodations)
+                ->with('request', $request);
     }
     
     
