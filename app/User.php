@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 use App\Models\Resources\Accomodation;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use Notifiable;
 
     /**
@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'role', 'username', 'password','image','gender','bornDate'
+        'name', 'surname', 'email', 'role', 'username', 'password', 'image', 'gender', 'bornDate'
     ];
 
     /**
@@ -40,34 +40,46 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'bornDate' => 'datetime',
     ];
-    
     protected $primaryKey = 'userId';
     protected $guarded = ['userId'];
+
     protected $dates = ['datetime'];
     
-    public function accomodations()
-    {
+
+    public function accomodations() {
+
         return $this->hasMany(Accomodation::class, 'userId', 'userId');
     }
+
+    public function optionedAccomodations() {
+        return $this->belongsToMany(Accomodation::class, 'accomodation_student', 'userId', 'accId')
+        ->wherePivot('relationship', 'optioned');
+    }
     
-    public function getContacts()
-    {   
+    public function hasOptioned($accId) {
+        $optioningStudents = Accomodation::find($accId)->optioningStudents()->get();
+        $user = Auth::user();
+        return $optioningStudents->contains('userId',$user->userId);
+        
+    }
+
+    public function getContacts() {
         $userWroteToMe = $this->belongsToMany(User::class, 'messages', 'recipientId', 'senderId')->get();
         $userIWroteTo = $this->belongsToMany(User::class, 'messages', 'senderId', 'recipientId')->get();
-        
+
         return $userIWroteTo->merge($userWroteToMe);
     }
-    
-    public function hasRole($role)
-    {
-        $role =(array)$role;
-        
+
+    public function hasRole($role) {
+        $role = (array) $role;
+
         return in_array($this->role, $role);
     }
-    
-    public function getFormBornDate()
-    {
+
+    public function getFormBornDate() {
         return Carbon::parse($this->bornDate)->format('Y-m-d');
     }
-    
+
+   
+
 }
