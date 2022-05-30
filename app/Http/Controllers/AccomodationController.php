@@ -26,14 +26,15 @@ class AccomodationController extends Controller {
      * L'autorizzazione viene eseguita preventivamente alla chiamata della rotta
 
      *  */
-
     public function showAccomodation($accId) {
+       // $user = Auth::user();
         $accomodation = Accomodation::find($accId);
         
         if(Gate::allows('see-accomodation-details', $accomodation))
         {
             return view('accomodation')
                 ->with('accomodation', $accomodation);
+             //   ->with('user', $user);
         }
         else
         {

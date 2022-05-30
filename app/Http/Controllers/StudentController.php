@@ -2,32 +2,31 @@
 
 namespace App\Http\Controllers;
 
-/*Import Application Models*/
+/* Import Application Models */
+
 use App\Models\Catalog;
 
 
-/*Import Form Requests*/
+/* Import Form Requests */
 use Illuminate\Http\Request;
 use App\Http\Requests\FilteredCatalogRequest;
 
-/*Facade Auth di laravel ui*/
+/* Facade Auth di laravel ui */
 use Illuminate\Support\Facades\Auth;
 
-/*Tools*/
+/* Tools */
 use Illuminate\Support\Facades\Log;
 
-
-
 class StudentController extends Controller {
+
     protected $_catalogModel;
 
-    public function __construct() 
-    {
-        /*Permette soltanto agli utenti di tipo student di accedere ai metodi del controller*/
+    public function __construct() {
+   
         $this->middleware('can:isStudent');
-        
         $this->_catalogModel = new Catalog;
     }
+
     
     public function showFilteredCatalog(FilteredCatalogRequest $request)
     {
@@ -38,8 +37,14 @@ class StudentController extends Controller {
         return view('catalog')
             ->with('accomodations', $accomodations)
                 ->with('request', $request);
+
     }
-    
-    
+
+    public function accomodationOption($accId) {
+        $student = Auth::user();
+        $student->optionedAccomodations()->attach($accId, ['relationship' => 'optioned']);
+        return redirect()->route('catalog.accomodation',$accId);
+
+    }
 
 }

@@ -25,9 +25,20 @@ class Accomodation extends Model {
         return $this->belongsToMany(Service::class, 'accomodation_service', 'accId', 'serviceId');
     }
 
+    public function assignedDate() {
+        return AccomodationStudent::where('accId',$this->accId)
+                ->where('relationship','assigned')->get()->first()->updated_at;
+                
+    }
+    
     public function assignedStudents() {
         return $this->belongsToMany(User::class, 'accomodation_student', 'accId', 'userId')
                         ->wherePivot('relationship', 'assigned');
+    }
+    
+    public function optioningStudents() {
+        return $this->belongsToMany(User::class, 'accomodation_student', 'accId', 'userId')
+                        ->wherePivot('relationship', 'optioned');
     }
 
     public function hasBeenAssigned() {

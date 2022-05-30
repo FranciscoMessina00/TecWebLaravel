@@ -1,5 +1,13 @@
-@extends('layouts.public')
 
+@extends('layouts.public')
+<?php
+$user = Auth::user();
+if ($user->role == 'student') {
+    $canOption = !$user->hasOptioned($accomodation->accId) && !$accomodation->hasBeenAssigned();
+} else {
+    $canOption = false;
+}
+?>
 @section('title', 'Account')
 
 @section('content')
@@ -12,7 +20,7 @@
                 <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
             <div>
-                
+
                 @can('edit-accomodation', $accomodation)
                 <div class="contenitore-flex">
                     <ul class="nav navbar-nav">
@@ -25,9 +33,9 @@
                     </ul>
                 </div>
                 @endcan
-                
-                
-                
+
+
+
                 <div>
                     <h4>Tipologia</h4>
                     <br>
@@ -74,7 +82,7 @@
                         <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
                     </ul>
                     <br><br>
-                    
+
                     <h4>Servizi inclusi</h4>
                     <br>
                     <ul>
@@ -83,7 +91,7 @@
                         @endforeach
                     </ul>
                     <br><br>
-                    
+
                     <h4>Informazioni locatore</h4>
                     <br>
                     <ul>
@@ -93,14 +101,14 @@
                     </ul>
                 </div>
             </div>
-            
+
         </div>
         <div class="margin-t-small border-t">
             <h2 class='pad-tb-small'>Info sull'alloggio</h2>
             <p>{{$accomodation->description}}</p>
         </div>
         <br>
-        
+
         @can('edit-accomodation', $accomodation)
         @if($accomodation->hasRequests())
         <div>
@@ -112,14 +120,27 @@
             </ul>
         </div>
         @endif
-        
+
         @if($accomodation->hasBeenAssigned())
         <h2 class='pad-tb-small'>Richieste</h2>
-        <p>Assegnato il {{$accomodation->updated_at}} a {{$accomodation->assignedStudents->first()->name}}</p>
+        <p>Assegnato il {{$accomodation->assignedDate()}} a {{$accomodation->assignedStudents->first()->name}}</p>
         @endif
         @endcan
 
+        @can('isStudent')
+        @if($accomodation->hasBeenAssigned())
+        <h2 class='pad-tb-small'>Stato</h2>
+        <p>Assegnato il {{$accomodation->assignedDate()}}</p>
+        @elseif($user->hasOptioned($accomodation->accId))
+        <h2 class='pad-tb-small'>Stato</h2>
+        <p>Opzionato</p>
+        @endif
+        @endcan
+        
         @include('layouts.back_button')
+        @if ($canOption)
+        @include('layouts.assegna_button')
+        @endif
     </div>
 </div>
 @endsection

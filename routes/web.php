@@ -15,6 +15,7 @@
 
 use Illuminate\Http\Request;
 use \App\Models\Resources\Accomodation;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', 'PublicController@home')       /*Homepage*/
 
@@ -38,13 +39,16 @@ Route::get('/locator/my-acc', 'LocatorController@my_accomodations')       /*I mi
         ->name('my-accomodations');
 
 Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorController@assignAccomodation')  /*Apertura pagina alloggio locatore*/
-        ->name('my-accomodations.accomodation.assign');
+       ->name('my-accomodations.accomodation.assign'); 
 
 
 /*Rotte specifiche livello 3: studente*/
 Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertura catalogo*/
         ->name('catalog.filter');
 
+
+Route::get('/catalog/accomodation/option/{accId}' , 'StudentController@accomodationOption')
+       ->name('accomodation.option');
 
 /*Rotte specifiche livello 4: admin*/
 Route::get('/admin/stats', 'AdminController@stats')       /*Statistiche amministratore*/
@@ -102,4 +106,5 @@ Route::post('/messages/send', 'ChatController@sendMessage')
 /*Rotte per i soli utenti che possono visionare nel dettaglio le informazioni di un alloggio*/
 Route::get('/catalog/accomodation/{accId}', 'AccomodationController@showAccomodation')       /*Apertura pagina alloggio*/
         ->name('catalog.accomodation');
+
 
