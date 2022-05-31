@@ -15,7 +15,7 @@ $assignedStudents = $accomodation->assignedStudents;
     </div>
     <div>
         @can('see-accomodation-details', $accomodation)
-        <a class="text-gold" href="{{route('catalog.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
+        <a class="text-black" href="{{route('catalog.accomodation', $accomodation->accId)}}"><h2 class='margin-b-15 text-center'>{{$accomodation->name}}</h2></a>
         @endcan
         @cannot('see-accomodation-details', $accomodation)
         <h2 class='margin-b-15 text-center {{$route=='home'? 'text-white' : 'text-black'}}'>{{$accomodation->name}}</h2>

@@ -13,7 +13,8 @@ $services = App\Models\Resources\Service::all();
         <label for="tipo">
             Tipologia
         </label>
-        <select id="tipo" name="tipology" class="form-element" onchange="cambioForm('tipo')">
+        <!<!-- La select attiva una funzione JavaScript -->
+        <select id="tipo" name="tipology" class="form-element">
             <option value="none" disabled selected>Seleziona un'opzione</option>
             <option value="0" id="appartment" {{$isAppartmentSelected ? 'selected' : ''}}>Appartamento</option>
             <option value="1" id="bed_room" {{$isBedRoomSelected ? 'selected' : ''}}>Posto letto</option>
@@ -137,7 +138,7 @@ $services = App\Models\Resources\Service::all();
 
     <div id="postoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
         <div class="pad-lr-small margin-t-x-small">
-            {{ Form::label('dimensione', 'Dimensione camera') }}
+            {{ Form::label('dimensione', 'Dimensione posto letto') }}
             {{Form::number('dimBedroom', $request ? $request->dimBedroom : '' , ['class' => 'form-element','placeholder' => 'Dimensione camera','id'=> 'dimensione'])}}
             @if ($errors->first('dimBedroom'))
             <ul class="errors">
@@ -149,7 +150,7 @@ $services = App\Models\Resources\Service::all();
 
         </div>
         <div class="pad-lr-small margin-t-x-small">
-            {{ Form::label('numeroL', 'Numero di letti nella camera') }}
+            {{ Form::label('numeroL', 'Numero di letti nel posto letto') }}
             {{Form::number('totBedRoom', $request ? $request->totBedRoom : '' , ['class' => 'form-element','placeholder' => 'Numero letti','id'=> 'numeroL'])}}
             @if ($errors->first('totBedRoom'))
             <ul class="errors">

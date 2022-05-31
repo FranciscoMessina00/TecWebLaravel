@@ -4,14 +4,33 @@
 
 @section('content')
 <div id='content'>
-    <div class="tm-home-img-container">
-        <img src="../files/Salotto.png" alt="Immagine di un salotto" style="display: none">
+    <!--    <div class="tm-home-img-container">
+            <img src="{{asset('/images/Immagine appartamento.jpg')}}" alt="Immagine di un salotto" class="tm-home-img">
+        </div>-->
+
+    <div class="slideshow-container text-left">
+
+        <div class="nascondi fade tm-home-img-container" id="img1">
+            <img src="{{asset('/images/Salotto.png')}}" alt="Immagine di un salotto" class="tm-home-img">
+        </div>
+
+        <div class="nascondi fade tm-home-img-container" id="img2">
+            <img src="{{asset('/images/Salotto 2.jpg')}}" alt="Immagine di un salotto" class="tm-home-img">
+        </div>
+
+        <div class="nascondi fade tm-home-img-container" id="img3">
+            <img src="{{asset('/images/Immagine appartamento.jpg')}}" alt="Immagine di un salotto" class="tm-home-img">
+        </div>
+
+        <a class="prev " onclick="plusSlides(-1)">❮</a>
+        <a class="next " onclick="plusSlides(1)">❯</a>
+
     </div>
 
     @can('show-search-bar')
-        @include('student.search_bar')
+    @include('student.search_bar')
     @else
-        @include('catalog.catalog_button')
+    @include('catalog.catalog_button')
     @endcan
 
 
@@ -85,8 +104,8 @@
                 </p>
             </article>
         </div>
-        <div class="fill display-img" style="width:50%">
-            <img src="{{ asset('images/Lavoro di gruppo.png') }}" alt="Immagine" style="width:110%"/>
+        <div class="fill display-img sfondo-marrone-chiaro" style="width:50%">
+            <img src="{{ asset('images/Mani che si tengono.png') }}" alt="Immagine" style="width:110%"/>
         </div>
     </div>
 </div>

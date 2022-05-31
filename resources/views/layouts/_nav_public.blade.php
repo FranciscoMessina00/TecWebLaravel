@@ -27,7 +27,7 @@ $role = Auth::user()->role;
             <!-- navbar -->
             <nav class="navbar tm-main-nav">
 
-                <button class="navbar-toggler hidden-md-up" type="button" data-toggle="colapse" data-target="#tmNavbar" onclick="toggleMenu('tmNavbar')">
+                <button id="buttonMenu" class="navbar-toggler hidden-md-up" type="button" data-toggle="colapse" data-target="#tmNavbar">
                     &#9776;
                 </button>
 

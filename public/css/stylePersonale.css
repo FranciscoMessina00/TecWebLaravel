@@ -316,7 +316,7 @@ fieldset{
     text-align:right!important
 }
 .text-left{
-    text-align:left
+    text-align:left!important
 }
 .text-white{
     color: #F0F5E9!important
@@ -508,11 +508,24 @@ fieldset{
     background-color:transparent
 }
 .tm-home-img-container {
-    background-image: url('../images/Salotto.png');
-    background-size: 100%;
+/*    background-image: url('../images/Immagine appartamento.jpg');*/
+/*    background-size: 100%;*/
     background-position: center;
     background-repeat: no-repeat;
+    box-sizing: border-box;
     height: 500px;
+    overflow-y: hidden;
+}
+.tm-home-img {
+/*    background-image: url('../images/Immagine appartamento.jpg');*/
+/*    background-size: 100%;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    vertical-align: middle;
+/*    height: 550px;*/
+    width: 100%;
+    
 }
 .tm-rectangle1
 {
@@ -662,4 +675,57 @@ fieldset{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(196, 196, 196, 1);
+}
+
+
+
+
+
+/* Slideshow container */
+.slideshow-container {
+/*  max-width: 1000px;*/
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+/*  color: #D39934;*/
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  border-radius: 0 5px 5px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(211,153,52,0.9);
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+@media only screen and (max-width: 300px) {
+  .prev, .next {font-size: 15}
 }
