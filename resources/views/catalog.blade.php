@@ -9,7 +9,7 @@
     @include('catalog.filter_sidebar')
     @endcan
 
-    <div class="container-big margin-lr pad-lr-mid">
+    <div class="container-big margin-lr pad-lr-mid margin-b-15">
         <h1 class="text-center text-gold">Catalogo delle offerte</h1>
         @foreach($accomodations as $accomodation)
         <div class="offerta">

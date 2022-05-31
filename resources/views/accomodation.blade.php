@@ -16,84 +16,118 @@ if ($user->role == 'student') {
     <div class="container-big margin-lr pad-lr-mid">
         <h1 class="text-center text-gold">{{$accomodation->name}}</h1>
         <div class="offerta contenitore-flex">
-            <div class="img-catalogo pad-r-large">
+            <div class="img-catalogo pad-lr-large" >
                 <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
-            <div>
+            <div class="auto-margin-tb">
 
                 @can('edit-accomodation', $accomodation)
-                <div class="contenitore-flex">
+                @if($accomodation->hasBeenAssigned())
+                <div class=''>
+                    <a class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
+                </div>
+                @endif
+                <div class="contenitore-flex ">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item">
-                            <a href="catalogo.html" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
+
+                        <li class="nav-item justify-center">
+                            <a href="catalogo.html" class="tm-btn text-white nav-link margin-b-15"><h1>Modifica</h1></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="catalogo.html" class="tm-btn tm-btn-brown text-white nav-link margin-b-15">Elimina</a>
+                        <li class="nav-item ">
+                            <a href="catalogo.html" class="tm-btn tm-btn-brown text-white nav-link margin-b-15"><h1>Elimina</h1></a>
                         </li>
+
                     </ul>
                 </div>
                 @endcan
 
+                @can('isStudent')
+                <div class="contenitore-flex">
+                    <ul class="nav navbar-nav">
+                        @if ($canOption)
+                        <li class="nav-item">
+                            <a href="{{ route('accomodation.option',$accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15"><h1>Opziona alloggio</h1></a>
+                        </li>
+                        @endif
+                        @if($accomodation->hasBeenAssigned())
+                        <li class="nav-item">
+                            <a class="tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
+                        </li>
+                        @elseif($user->hasOptioned($accomodation->accId))
+                        <li class="nav-item">
+                            <div class="tm-btn-red text-white nav-link margin-b-15 no-select"><h1>Hai già opzionato</h1></div>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
 
+                @endcan
+            </div>
 
+        </div>
+
+        <div class="pad-lr-small margin-t-small pad-tb-small">
+            <div class="contenitore-flex">
                 <div>
                     <h4>Tipologia</h4>
-                    <br>
+
                     <ul>
                         @switch($accomodation->tipology)
                         @case(0)
-                        <li class="servizi">Appartamento</li>
+                        <li class="">Appartamento</li>
                         @break
                         @case(1)
-                        <li class="servizi">Posto letto</li>
+                        <li class="">Posto letto</li>
                         @break
 
                         @endswitch
                     </ul>
-                    <br><br>
+                    <br>
 
                     <h4>Informazioni</h4>
-                    <br>
+
                     <ul>
                         @switch($accomodation->tipology)
                         @case(0)
-                        <li class="servizi">Numero camere: {{$accomodation->rooms}}</li>
-                        <li class="servizi">Numero letti nell'alloggio: {{$accomodation->totBeds}}</li>
+                        <li class="">Numero camere: {{$accomodation->rooms}}</li>
+                        <li class="">Numero letti nell'alloggio: {{$accomodation->totBeds}}</li>
                         @break
                         @case(1)
-                        <li class="servizi">Numero letti nella camera: {{$accomodation->totBedRoom}}</li>
+                        <li class="">Numero letti nella camera: {{$accomodation->totBedRoom}}</li>
                         @break
 
                         @endswitch
                     </ul>
-                    <br><br>
+                    <br>
 
                     <h4>Posizione</h4>
-                    <br>
+
                     <ul>
                         <li>Indirizzo: {{$accomodation->address}}</li>
                         <li>Città: {{$accomodation->city}}</li>
                     </ul>
-                    <br><br>
-
-                    <h4>Prezzi</h4>
                     <br>
+                </div>
+
+                <div>
+                    <h4>Prezzi</h4>
+
                     <ul>
                         <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
                     </ul>
-                    <br><br>
+                    <br>
 
                     <h4>Servizi inclusi</h4>
-                    <br>
+
                     <ul>
                         @foreach($accomodation->services as $service)
                         <li>{{$service->name}}</li>
                         @endforeach
                     </ul>
-                    <br><br>
+                    <br>
 
                     <h4>Informazioni locatore</h4>
-                    <br>
+
                     <ul>
                         <li>Nome: {{$accomodation->locator->name}}</li>
                         <li>Cognome: {{$accomodation->locator->surname}}</li>
@@ -102,7 +136,9 @@ if ($user->role == 'student') {
                 </div>
             </div>
 
+
         </div>
+
         <div class="margin-t-small border-t">
             <h2 class='pad-tb-small'>Info sull'alloggio</h2>
             <p>{{$accomodation->description}}</p>
@@ -112,7 +148,7 @@ if ($user->role == 'student') {
         @can('edit-accomodation', $accomodation)
         @if($accomodation->hasRequests())
         <div>
-            <h2 class='pad-tb-small'>Richieste</h2>
+            <h2 class='pad-tb-small border-t'>Richieste</h2>
             <ul>
                 @foreach($accomodation->students as $student)
                 <li>{{$student->name}} ha fatto richiesta:   <a href="{{route('my-accomodations.accomodation.assign', [$accomodation->accId, $student->userId])}}" class="tm-btn text-white nav-link margin-b-15"> Assegna</a></li>
@@ -122,25 +158,15 @@ if ($user->role == 'student') {
         @endif
 
         @if($accomodation->hasBeenAssigned())
-        <h2 class='pad-tb-small'>Richieste</h2>
+        <h2 class='pad-tb-small border-t'>Richieste</h2>
         <p>Assegnato il {{$accomodation->assignedDate()}} a {{$accomodation->assignedStudents->first()->name}}</p>
         @endif
         @endcan
 
-        @can('isStudent')
-        @if($accomodation->hasBeenAssigned())
-        <h2 class='pad-tb-small'>Stato</h2>
-        <p>Assegnato il {{$accomodation->assignedDate()}}</p>
-        @elseif($user->hasOptioned($accomodation->accId))
-        <h2 class='pad-tb-small'>Stato</h2>
-        <p>Opzionato</p>
-        @endif
-        @endcan
-        
+
+
         @include('layouts.back_button')
-        @if ($canOption)
-        @include('layouts.assegna_button')
-        @endif
+
     </div>
 </div>
 @endsection

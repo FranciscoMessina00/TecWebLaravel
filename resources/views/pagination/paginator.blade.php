@@ -12,6 +12,12 @@
 @if ($paginator->lastPage() != 1)
 <div class="text-mid">
     <!-- Link alla pagina precedente -->
+    @if (!$paginator->onFirstPage())
+        <a class="text-gold" href="{{ $paginator->url(1) }}">Inizio</a>
+    @else
+        Inizio
+    @endif
+    
     @if ($paginator->currentPage() != 1)
         <a class="text-gold" href="{{ $paginator->previousPageUrl() }}">&lt;</a>
     @else
@@ -23,6 +29,12 @@
         <a class="text-gold" href="{{ $paginator->nextPageUrl() }}">&gt;</a>
     @else
         &gt;
+    @endif
+    
+    @if ($paginator->hasMorePages())
+        <a class="text-gold" href="{{ $paginator->url($paginator->lastPage()) }}">Fine</a>
+    @else
+        Fine
     @endif
     
     |

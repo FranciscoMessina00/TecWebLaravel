@@ -5,7 +5,7 @@ $services = App\Models\Resources\Service::all();
 {{ Form::open(array('route' => 'catalog.filter' , 'class' => 'text-center', 'method' => 'get', 'id' => 'prova')) }}
 @csrf
 
-<fieldset name="generic" class="margin-t-small border-bottom pad-lr-small pad-tb-small">
+<fieldset name="generic" class=" border-t pad-lr-small margin-b-30">
     <h1>Informazioni alloggio</h1>
     
     <div class="pad-lr-small margin-t-x-small">
@@ -162,7 +162,7 @@ $services = App\Models\Resources\Service::all();
     </div>
 </fieldset>
 
-<fieldset name="services" class="margin-t-small border-success pad-lr-small pad-tb-small">
+<fieldset name="services" class=" border-t pad-lr-small ">
     <div class="pad-lr-small margin-t-x-small">
         <h1>Servizi Disponibili</h1>
         <div id="generalServices">

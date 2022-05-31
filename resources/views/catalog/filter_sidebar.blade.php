@@ -14,7 +14,7 @@ if ($request) {
 
 
 <!--        Inizio zona filtri-->
-<div class="margin-lr barra-filtri pad-lr-small">
+<div class="margin-lr barra-filtri pad-lr-small margin-b-15">
     <h1 class="text-center text-gold ">Filtri</h1>
     @include('catalog.filter_forms.filter_form')
 </div>
