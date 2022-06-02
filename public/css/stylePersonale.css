@@ -33,6 +33,7 @@ footer{
     background: #4A473E;
     position: absolute;
     bottom: auto;
+    width:100%;
 }
 h1{
     font-weight: 700;
@@ -341,6 +342,9 @@ fieldset{
 }
 .no-text{
     text-decoration: none;
+}
+.text-underline{
+    text-decoration: underline;
 }
 .justify-left{
     justify-content: left!important
