@@ -12,7 +12,7 @@
         <!--
         <input class="form-element" id="destinatario" type="text" name="destinatario" placeholder="Inserisci destinatario">
         -->
-        {{ Form::select('recipientId', $recipientList, ['class' => 'form-element','id' => 'recipient']) }}
+        {{ Form::select('recipientId', $recipientList, null, ['class' => 'form-element','id' => 'recipient']) }}
     </div>
 </div>
 <div>
