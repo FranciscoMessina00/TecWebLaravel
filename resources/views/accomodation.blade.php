@@ -132,6 +132,9 @@ if ($user->role == 'student') {
                         <li>Nome: {{$accomodation->locator->name}}</li>
                         <li>Cognome: {{$accomodation->locator->surname}}</li>
                         <li>Username: {{$accomodation->locator->username}}</li>
+                        @can('isStudent')
+                        <li><a href="{{ route('messages.sendTo',[$accomodation->accId, 0]) }}" class="text-black">Contatta l'host</a></li>
+                        @endcan
                     </ul>
                 </div>
             </div>

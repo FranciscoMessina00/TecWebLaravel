@@ -101,7 +101,10 @@ Route::get('/messages/new', 'ChatController@showNewMessageForm')
         ->name('messages.new'); 
 
 Route::post('/messages/send', 'ChatController@sendMessage')    
-        ->name('messages.send'); 
+        ->name('messages.send');
+
+Route::get('/messages/new/{accId}/{optioned}', 'ChatController@sendTo')    
+        ->name('messages.sendTo'); 
 
 /*Rotte per i soli utenti che possono visionare nel dettaglio le informazioni di un alloggio*/
 Route::get('/catalog/accomodation/{accId}', 'AccomodationController@showAccomodation')       /*Apertura pagina alloggio*/
