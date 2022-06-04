@@ -31,7 +31,7 @@ $assignedStudents = $accomodation->assignedStudents;
                 </li>
                 @else
                 <li class="nav-item">
-                    <div class="tm-btn tm-btn-gray text-white no-select nav-link margin-b-15">{{$accomodation->requests()}} richiest{{$accomodation->requests()==1 ? 'a' : 'e'}}</div>
+                    <div class="tm-btn tm-btn-gray text-white no-select nav-link margin-b-15 ">{{$accomodation->requests()}} richiest{{$accomodation->requests()==1 ? 'a' : 'e'}}</div>
                 </li>
                 @endif
 

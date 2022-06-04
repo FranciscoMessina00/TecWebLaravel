@@ -33,11 +33,16 @@ class LocatorController extends Controller {
         
     }
     
-    public function my_accomodations()
+    public function my_accomodations($doFilter)
     {
         $my_accomodations = $this->_catalogModel->getMyAccomodations();
-        
+        if($doFilter){
+            $filter=true;
+        }else{
+            $filter=false;
+        }
         return view('my-accomodations')
+            ->with('filter', $filter)
             ->with('accomodations', $my_accomodations);
     }
     
