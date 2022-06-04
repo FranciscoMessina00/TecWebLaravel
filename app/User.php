@@ -9,6 +9,7 @@ use App\Models\Resources\Accomodation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+
 class User extends Authenticatable {
 
     use Notifiable;
@@ -42,9 +43,7 @@ class User extends Authenticatable {
     ];
     protected $primaryKey = 'userId';
     protected $guarded = ['userId'];
-
     protected $dates = ['datetime'];
-    
 
     public function accomodations() {
 
@@ -53,14 +52,13 @@ class User extends Authenticatable {
 
     public function optionedAccomodations() {
         return $this->belongsToMany(Accomodation::class, 'accomodation_student', 'userId', 'accId')
-        ->wherePivot('relationship', 'optioned');
+                        ->wherePivot('relationship', 'optioned');
     }
-    
+
     public function hasOptioned($accId) {
         $optioningStudents = Accomodation::find($accId)->optioningStudents()->get();
         $user = Auth::user();
-        return $optioningStudents->contains('userId',$user->userId);
-        
+        return $optioningStudents->contains('userId', $user->userId);
     }
 
     public function getContacts() {
@@ -79,7 +77,10 @@ class User extends Authenticatable {
     public function getFormBornDate() {
         return Carbon::parse($this->bornDate)->format('Y-m-d');
     }
-
-   
+    
+    public function age() 
+{
+    return $this->bornDate->diffInYears(Carbon::now());
+}
 
 }

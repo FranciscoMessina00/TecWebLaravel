@@ -1,5 +1,8 @@
 window.onload = function () {
-    showSlides(1);
+    
+    if(window.location.pathname === "/ProgettoLaravelGruppo/TecWebLaravel/public/" || window.location.pathname === "/ProgettoLaravelGruppo/TecWebLaravel/public/index.php"){
+        showSlides(1);
+    }
     /*Funzione responsabile della comparsa e scomparsa del menù a tendina quando la larghezza della pagina va sotto 800 pixel*/
     document.getElementById("buttonMenu").onclick = function () {
         var thisMenu = document.getElementById("tmNavbar").style;

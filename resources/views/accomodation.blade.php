@@ -132,6 +132,9 @@ if ($user->role == 'student') {
                         <li>Nome: {{$accomodation->locator->name}}</li>
                         <li>Cognome: {{$accomodation->locator->surname}}</li>
                         <li>Username: {{$accomodation->locator->username}}</li>
+                        @can('isStudent')
+                        <li><a href="{{ route('messages.sendTo',[$accomodation->accId, 0]) }}" class="text-black">Contatta l'host</a></li>
+                        @endcan
                     </ul>
                 </div>
             </div>
@@ -151,7 +154,7 @@ if ($user->role == 'student') {
             <h2 class='pad-tb-small border-t'>Richieste</h2>
             <ul>
                 @foreach($accomodation->students as $student)
-                <li>{{$student->name}} ha fatto richiesta:   <a href="{{route('my-accomodations.accomodation.assign', [$accomodation->accId, $student->userId])}}" class="tm-btn text-white nav-link margin-b-15"> Assegna</a></li>
+                <li>{{$student->name}} {{$student->surname}} di {{$student->age()}} anni ha fatto richiesta:   <a href="{{route('my-accomodations.accomodation.assign', [$accomodation->accId, $student->userId])}}" class="tm-btn text-white nav-link margin-b-15">Assegna</a></li>
                 @endforeach
             </ul>
         </div>

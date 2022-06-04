@@ -12,7 +12,7 @@
         <!--
         <input class="form-element" id="destinatario" type="text" name="destinatario" placeholder="Inserisci destinatario">
         -->
-        {{ Form::select('recipientId', $recipientList, ['class' => 'form-element','id' => 'recipient']) }}
+        {{ Form::select('recipientId', $recipientList, $recipient, ['class' => 'form-element','id' => 'recipient']) }}
     </div>
 </div>
 <div>
@@ -28,7 +28,14 @@
         <!--
         <textarea class="form-element" cols="90" rows="10" id="message" name="answer" placeholder="Scrivi messaggio..."></textarea>
         -->
-        {{ Form::textarea('text', '', ['class' => 'form-element','id' => 'text','placeholder'=>'Scrivi messaggio...', 'cols' => '90', 'rows' => '10']) }}
+        {{ Form::textarea('text', $message, ['class' => 'form-element','id' => 'text','placeholder'=>'Scrivi messaggio...', 'cols' => '90', 'rows' => '10','maxlength' => '2000']) }}
+        @if ($errors->first('text'))
+        <ul class="errors">
+            @foreach ($errors->get('text') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+        @endif
     </div>
 </div>
 <div class="margin-t-small text-center">

@@ -131,7 +131,7 @@
                     <option value="uomo">Uomo</option>
                     <option value="altro">Altro</option>
                 </select>-->
-                {{ Form::select('gender', ['X' => 'Altro', 'M' => 'Uomo', 'F' => 'Donna'], 'X', ['class' => 'form-element','id' => 'gender']) }}
+                {{ Form::select('gender', ['altro' => 'Altro', 'uomo' => 'Uomo', 'donna' => 'Donna'], 'X', ['class' => 'form-element','id' => 'gender']) }}
                 @if ($errors->first('gender'))
                 <ul class="errors">
                     @foreach ($errors->get('gender') as $message)

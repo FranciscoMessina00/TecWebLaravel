@@ -8,13 +8,13 @@ use App\User;
 
 
 class Users {
-    
+
     public function getUserNamesByRole($role)
     {
         $users = User::where('role', '=', $role)
                 ->orderBy('username')
                 ->get();
-        
+
         return $users->pluck('username', 'userId');
     }
 

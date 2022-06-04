@@ -79,4 +79,24 @@ class ChatController extends Controller {
                 ->with('contacts', $contacts)
                 ->with('recipientList', $recipientList);
     }
+    public function sendTo($accId,$optioned)
+    {
+        $contacts = Auth::user()->getContacts();
+        $accomodation=Accomodation::find($accId);
+        $locator=User::find($accomodation->userId);
+        $recipientList = $this->_usersModel->getUserNamesByRole('locator');
+        if($optioned!=0){
+            $message='Ciao '. $locator->name . ' vorrei opzionare la tua offerta ' . $accomodation->name;
+        }else{
+            $message='';
+        }
+        
+        
+        return view('chat')
+                ->with('contacts', $contacts)
+                ->with('message', $message)
+                ->with('recipient', $accomodation->userId)
+                ->with('recipientList', $recipientList);
+    }
+    
 }

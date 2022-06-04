@@ -37,7 +37,7 @@
                 @case('messages.chat')
                     @isset($currentContact)
                     <div id="chat">
-                        <h1 class="text-left text-gold">{{$currentContact->name}}</h1>
+                        <h1 class="text-left text-gold">{{$currentContact->name}} - {{$currentContact->age()}} anni - Genere: {{$currentContact->gender}}</h1>
                         <div class="overflow box bord-rad-lg">
                             <div>
                                 @foreach($messages as $message)
@@ -57,6 +57,13 @@
                 @break
 
                 @case('messages.new')
+                <!-- Sezione nuovo messaggio -->
+                <div id="new_messaggio">
+                    <h1 class="text-left text-gold">Nuovo messaggio</h1>
+                        @include('chat.new_message_form')
+                </div>
+                @break
+                @case('messages.sendTo')
                 <!-- Sezione nuovo messaggio -->
                 <div id="new_messaggio">
                     <h1 class="text-left text-gold">Nuovo messaggio</h1>
