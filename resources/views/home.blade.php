@@ -3,6 +3,8 @@
 @section('title', 'Homepage')
 
 @section('content')
+
+<!--
 <div id='content'>
     <!--    <div class="tm-home-img-container">
             <img src="{{asset('/images/Immagine appartamento.jpg')}}" alt="Immagine di un salotto" class="tm-home-img">
@@ -10,15 +12,15 @@
 
     <div class="slideshow-container text-left">
 
-        <div class="nascondi fade tm-home-img-container" id="img1">
+        <div class="nascondi fade tm-img1" id="img1">
             <img src="{{asset('/images/Salotto.png')}}" alt="Immagine di un salotto" class="tm-home-img">
         </div>
 
-        <div class="nascondi fade tm-home-img-container" id="img2">
+        <div class="nascondi fade tm-img1" id="img2">
             <img src="{{asset('/images/Salotto 2.jpg')}}" alt="Immagine di un salotto" class="tm-home-img">
         </div>
 
-        <div class="nascondi fade tm-home-img-container" id="img3">
+        <div class="nascondi fade tm-img1" id="img3">
             <img src="{{asset('/images/Immagine appartamento.jpg')}}" alt="Immagine di un salotto" class="tm-home-img">
         </div>
 
@@ -56,13 +58,41 @@
         <a href="{{route('catalog')}}" class="tm-btn text-black"><strong>SEE MORE</strong></a>
     </div>
 
-    <div class="text-center text-white margin-t-mid">
+   
+    
+
+   <!-- <center> -->
+         <div class="text-center text-white margin-t-mid">
         <h1 class="text-x-large">
             TOP LOCAZIONI
         </h1>
     </div>
+    
+        <div class="slide-container"> 
+              <div class="mySlides1 fade1 tm-img1" id="img2">
+            <img src="{{asset('/images/bologna.jpg')}}"  class="tm-home-img">
+        </div>
+            <div class="mySlides1 fade1 tm-img1" id="img3">
+            <img src="{{asset('/images/firenze.jpg')}}"  class="tm-home-img">
+        </div>
+            <div class="mySlides1 fade1 tm-img1" id="img4">
+            <img src="{{asset('/images/roma.jpg')}}"  class="tm-home-img">
+        </div>
+            <a class="prev1" onclick="plusSlides1(-1)">&#10094;</a>
+            <a class="next1" onclick="plusSlides1(1)">&#10095;</a>
+            </div>
+        <br>
 
-    <center>
+<!-- The dots/circles -->
+<div style="text-align: center;">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  
+ 
+</div>
+    
+        <!--
         <div class="contenitore-flex margin-b-40">
             <div class="colonna text-center sfondo-grigio text-white">
                 <h2 class="margin-t-x-small"><strong>Città 1</strong></h2>
@@ -73,10 +103,12 @@
             <div class="colonna text-center sfondo-grigio text-white">
                 <h2 class="margin-t-x-small"><strong>Città 3</strong></h2>
             </div>
-        </div>
-    </center>
+        </div> -->
+        
+   <!-- </center> -->
 
-    <div class="contenitore-flex">
+
+    <div class="contenitore-flex" >
         <div class="fill display-img" style="width:50%">
             <img src="{{ asset('images/Lavoro di gruppo.png') }}" alt="Immagine" style="width:100%"/>
         </div>

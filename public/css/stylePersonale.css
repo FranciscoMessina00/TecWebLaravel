@@ -1,4 +1,3 @@
-
 *{
     margin: 0;
     padding: 0;
@@ -33,6 +32,7 @@ footer{
     background: #4A473E;
     position: absolute;
     bottom: auto;
+    width:100%;
 }
 h1{
     font-weight: 700;
@@ -341,6 +341,9 @@ fieldset{
 }
 .no-text{
     text-decoration: none;
+}
+.text-underline{
+    text-decoration: underline;
 }
 .justify-left{
     justify-content: left!important
@@ -677,10 +680,6 @@ fieldset{
     background: rgba(196, 196, 196, 1);
 }
 
-
-
-
-
 /* Slideshow container */
 .slideshow-container {
 /*  max-width: 1000px;*/
@@ -720,6 +719,102 @@ fieldset{
 .fade {
   animation-name: fade;
   animation-duration: 1.5s;
+}
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slide-container {
+ /* max-width: 3200px; */
+   position: relative;
+   margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides1 {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev1, .next1 {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+/*  color: #D39934;*/
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  border-radius: 0 5px 5px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next1 {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev1:hover, .next1:hover {
+  background-color: rgba(211,153,52,0.9);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade1 {
+  animation-name: fade1;
+  animation-duration: 1.5s;
+}
+.tm-img1 {
+   background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    height: 690px;
+    overflow-y: hidden;
+    
+}
+@keyframes fade1 {
+  from {opacity: .4} 
+  to {opacity: 1}
 }
 
 @keyframes fade {
