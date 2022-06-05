@@ -22,6 +22,8 @@ if ($user->role == 'student') {
             <div class="auto-margin-tb">
 
                 @can('edit-accomodation', $accomodation)
+                <script type="text/javascript" src="{{ asset('Js/ConfermaElimina.js') }}"></script>
+
                 @if($accomodation->hasBeenAssigned())
                 <div class=''>
                     <a class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
@@ -30,13 +32,21 @@ if ($user->role == 'student') {
                 <div class="contenitore-flex ">
                     <ul class="nav navbar-nav">
 
-                        <li class="nav-item justify-center">
-                            <a href="catalogo.html" class="tm-btn text-white nav-link margin-b-15"><h1>Modifica</h1></a>
+                        <li class="nav-item justify-center" id="modifica">
+                            <a href="" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
                         </li>
-                        <li class="nav-item ">
-                            <a href="catalogo.html" class="tm-btn tm-btn-brown text-white nav-link margin-b-15"><h1>Elimina</h1></a>
+                        <li class="nav-item " id="elimina">
+                            <a class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">Elimina</a>
                         </li>
-
+                        <li class="nav-item nascondi" id="sicuro">
+                            <div class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">Sicuro?</div>
+                        </li>
+                        <li class="nav-item nascondi" id="si">
+                            <a href="" class="tm-btn tm-btn-green text-white nav-link margin-b-15">Si</a>
+                        </li>
+                        <li class="nav-item nascondi" id="no">
+                            <div class="tm-btn tm-btn-red text-white nav-link margin-b-15 no-select">No</div>
+                        </li>
                     </ul>
                 </div>
                 @endcan

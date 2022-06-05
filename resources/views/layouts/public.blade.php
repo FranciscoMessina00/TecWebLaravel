@@ -9,6 +9,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="{{ asset('Js/funzioni.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('Js/jquery.js') }}"></script>
+
     </head>
     @php
     $route=Route::currentRouteName();

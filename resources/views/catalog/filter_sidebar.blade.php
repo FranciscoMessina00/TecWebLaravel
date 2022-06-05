@@ -12,9 +12,10 @@ if ($request) {
 }
 ?>
 
+<script src="{{ asset('Js/FilterSideBar.js') }}"></script>        
 
 <!--        Inizio zona filtri-->
-<div class="margin-lr barra-filtri pad-lr-small margin-b-15">
+<div class="margin-lr barra-filtri pad-lr-small margin-b-15" id="filter">
     <h1 class="text-center text-gold ">Filtri</h1>
     @include('catalog.filter_forms.filter_form')
 </div>

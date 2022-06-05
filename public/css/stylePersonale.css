@@ -418,8 +418,11 @@ fieldset{
     border-radius: 5px;
     display: inline-block;
     padding: 10px 30px;
+    cursor: pointer;
 }
-
+.tm-btn-no-pointer{
+    cursor: auto
+}
 .tm-btn:hover,
 .tm-btn:focus {
     color: #D5D9CE!important;
@@ -516,7 +519,7 @@ fieldset{
     background-position: center;
     background-repeat: no-repeat;
     box-sizing: border-box;
-    height: 500px;
+    height: 580px;
     overflow-y: hidden;
 }
 .tm-home-img {
@@ -721,18 +724,13 @@ fieldset{
   animation-duration: 1.5s;
 }
 
-* {box-sizing:border-box}
+/** {box-sizing:border-box}*/
 
 /* Slideshow container */
 .slide-container {
  /* max-width: 3200px; */
    position: relative;
    margin: auto;
-}
-
-/* Hide the images by default */
-.mySlides1 {
-  display: none;
 }
 
 /* Next & previous buttons */
@@ -795,7 +793,7 @@ fieldset{
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.dot:hover {
   background-color: #717171;
 }
 
@@ -811,10 +809,6 @@ fieldset{
     height: 690px;
     overflow-y: hidden;
     
-}
-@keyframes fade1 {
-  from {opacity: .4} 
-  to {opacity: 1}
 }
 
 @keyframes fade {
