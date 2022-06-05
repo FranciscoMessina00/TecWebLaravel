@@ -35,7 +35,7 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 
 
 /*Rotte specifiche livello 2: locatore*/
-Route::get('/locator/my-acc/{filter}', 'LocatorController@my_accomodations')       /*I miei alloggi*/
+Route::get('/locator/my-acc/{filterMode?}', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
 
 Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorController@assignAccomodation')  /*Apertura pagina alloggio locatore*/
