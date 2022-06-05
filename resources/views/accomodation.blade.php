@@ -11,7 +11,7 @@ if ($user->role == 'student') {
 @section('title', 'Account')
 
 @section('content')
-<div class="margin-t-x-large margin-b-40 contenitore-flex-2">
+ <div class="margin-t-x-large margin-b-40 contenitore-flex-2">
 
     <div class="container-big margin-lr pad-lr-mid">
         <h1 class="text-center text-gold">{{$accomodation->name}}</h1>
@@ -62,12 +62,15 @@ if ($user->role == 'student') {
                         @if($accomodation->hasBeenAssigned())
                         <li class="nav-item">
                             <a class="tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
-                        </li>
+                        </li class="nav-item">
                         @elseif($user->hasOptioned($accomodation->accId))
                         <li class="nav-item">
                             <div class="tm-btn-red text-white nav-link margin-b-15 no-select"><h1>Hai già opzionato</h1></div>
                         </li>
                         @endif
+                        <li class="nav-item">
+                            <a href="{{ route('messages.new', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15"><h1>Contatta l'host</h1></a>
+                        </li>
                     </ul>
                 </div>
 
@@ -142,9 +145,6 @@ if ($user->role == 'student') {
                         <li>Nome: {{$accomodation->locator->name}}</li>
                         <li>Cognome: {{$accomodation->locator->surname}}</li>
                         <li>Username: {{$accomodation->locator->username}}</li>
-                        @can('isStudent')
-                        <li><a href="{{ route('messages.sendTo',[$accomodation->accId, 0]) }}" class="text-black">Contatta l'host</a></li>
-                        @endcan
                     </ul>
                 </div>
             </div>

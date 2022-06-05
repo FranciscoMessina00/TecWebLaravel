@@ -1,3 +1,16 @@
+<?php
+    if($recipient)
+    {
+        $newMessage = 'Ciao '. $recipient->name . ' sarei interessato alla tua offerta ' . $accomodation->name;
+    }
+    else
+    {
+        $newMessage = '';
+    }
+?>
+
+
+
 {{ Form::open(array('route' => 'messages.send')) }}
 <div>
     <div class="text-left">
@@ -12,7 +25,7 @@
         <!--
         <input class="form-element" id="destinatario" type="text" name="destinatario" placeholder="Inserisci destinatario">
         -->
-        {{ Form::select('recipientId', $recipientList, $recipient, ['class' => 'form-element','id' => 'recipient']) }}
+        {{ Form::select('recipientId', $recipientList, $recipient == null ? '' : $recipient->userId, ['class' => 'form-element','id' => 'recipient']) }}
     </div>
 </div>
 <div>
@@ -28,7 +41,7 @@
         <!--
         <textarea class="form-element" cols="90" rows="10" id="message" name="answer" placeholder="Scrivi messaggio..."></textarea>
         -->
-        {{ Form::textarea('text', $message, ['class' => 'form-element','id' => 'text','placeholder'=>'Scrivi messaggio...', 'cols' => '90', 'rows' => '10','maxlength' => '2000']) }}
+        {{ Form::textarea('text', $newMessage, ['class' => 'form-element','id' => 'text','placeholder'=>'Scrivi messaggio...', 'cols' => '90', 'rows' => '10','maxlength' => '2000']) }}
         @if ($errors->first('text'))
         <ul class="errors">
             @foreach ($errors->get('text') as $message)

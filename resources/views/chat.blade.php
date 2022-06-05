@@ -63,13 +63,6 @@
                         @include('chat.new_message_form')
                 </div>
                 @break
-                @case('messages.sendTo')
-                <!-- Sezione nuovo messaggio -->
-                <div id="new_messaggio">
-                    <h1 class="text-left text-gold">Nuovo messaggio</h1>
-                        @include('chat.new_message_form')
-                </div>
-                @break
             @endswitch
             
         </div>

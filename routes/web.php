@@ -97,14 +97,11 @@ Route::get('/messages', 'ChatController@showMessages')
 Route::get('/messages/chat/{contactId}', 'ChatController@showChat')    
         ->name('messages.chat'); 
 
-Route::get('/messages/new', 'ChatController@showNewMessageForm')    
+Route::get('/messages/new/{accId?}', 'ChatController@showNewMessageForm')    
         ->name('messages.new'); 
 
 Route::post('/messages/send', 'ChatController@sendMessage')    
         ->name('messages.send');
-
-Route::get('/messages/new/{accId}/{optioned}', 'ChatController@sendTo')    
-        ->name('messages.sendTo'); 
 
 /*Rotte per i soli utenti che possono visionare nel dettaglio le informazioni di un alloggio*/
 Route::get('/catalog/accomodation/{accId}', 'AccomodationController@showAccomodation')       /*Apertura pagina alloggio*/

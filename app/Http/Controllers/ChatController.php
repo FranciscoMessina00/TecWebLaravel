@@ -70,32 +70,48 @@ class ChatController extends Controller {
         return redirect()->route('messages.chat', $contactId);
     }
     
-    public function showNewMessageForm()
+    public function showNewMessageForm($accId = null)
     {
+        $user = Auth::user();
+        
+        /*Elenco di tutti i contatti, cioè tutti gli utenti che hanno scambiato un messaggio con l'utente loggato*/
         $contacts = Auth::user()->getContacts();
+        
+        /*Elenco di tutti i possibili destinatari*/
         $recipientList = $this->_usersModel->getUserNamesByRole('locator');
         
-        return view('chat')
-                ->with('contacts', $contacts)
-                ->with('recipientList', $recipientList);
-    }
-    public function sendTo($accId,$optioned)
-    {
-        $contacts = Auth::user()->getContacts();
-        $accomodation=Accomodation::find($accId);
-        $locator=User::find($accomodation->userId);
-        $recipientList = $this->_usersModel->getUserNamesByRole('locator');
-        if($optioned!=0){
-            $message='Ciao '. $locator->name . ' vorrei opzionare la tua offerta ' . $accomodation->name;
-        }else{
-            $message='';
+        
+        /*Estraggo il destinatario del messaggio, nel caso in cui l'utente abbia richiamato questa rotta
+        a partire dalla scheda dell'alloggio e non cliccando sul bottone Nuovo Messaggio della chat*/
+        if($accId)
+        {
+            $accomodation = Accomodation::find($accId);
+            
+            if($accomodation)
+            {
+                $recipient = $accomodation->locator;
+                
+                //$hasOptioned = $user->hasOptioned($accId);
+            }
+            else
+            {
+                $recipient = null;
+                $accomodation = null;
+            }
+        }
+        else
+        {
+            $recipient = null;
+            $accomodation = null;
+            
+            //$hasOptioned = false;
         }
         
-        
         return view('chat')
                 ->with('contacts', $contacts)
-                ->with('message', $message)
-                ->with('recipient', $accomodation->userId)
+                ->with('recipient', $recipient)
+                ->with('accomodation', $accomodation)
+                //->with('hasOptioned', $hasOptioned)
                 ->with('recipientList', $recipientList);
     }
     
