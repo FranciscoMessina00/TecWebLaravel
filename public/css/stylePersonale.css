@@ -161,6 +161,9 @@ fieldset{
     padding-top:5px;
     padding-bottom:5px;
 }
+.no-float{
+    float:none!important;
+}
 .width-small{
     width:350px;
 }

@@ -52,23 +52,24 @@ if ($user->role == 'student') {
                 @endcan
 
                 @can('isStudent')
-                <div class="contenitore-flex">
-                    <ul class="nav navbar-nav">
+                <div class="contenitore-flex ">
+                    <ul class="nav navbar-nav justify-center text-center">
                         @if ($canOption)
-                        <li class="nav-item">
+                        <li class="nav-item justify-center">
                             <a href="{{ route('accomodation.option',$accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15"><h1>Opziona alloggio</h1></a>
                         </li>
                         @endif
                         @if($accomodation->hasBeenAssigned())
-                        <li class="nav-item">
+                        <li class="nav-item justify-center">
                             <a class="tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
-                        </li class="nav-item">
+                        </li>
                         @elseif($user->hasOptioned($accomodation->accId))
-                        <li class="nav-item">
+                        <li class="nav-item justify-center">
                             <div class="tm-btn-red text-white nav-link margin-b-15 no-select"><h1>Hai già opzionato</h1></div>
                         </li>
                         @endif
-                        <li class="nav-item">
+                        <br>
+                        <li class="nav-item no-float">
                             <a href="{{ route('messages.new', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15"><h1>Contatta l'host</h1></a>
                         </li>
                     </ul>
