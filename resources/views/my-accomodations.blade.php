@@ -24,7 +24,7 @@
                 <a href="{{ route('my-accomodations', !$filter) }}" class="tm-btn text-white "><h4 class="pad-tb-x-small">{{$message}}</h4></a>
             </div>
             <div class="contenitore-flex-2 justify-right auto-margin-l pad-lr-mid margin-b-15">
-                <h2 class="justify-right"><a class="pad-lr-large tm-btn tm-btn-gray text-white" href="alloggio_locatore.html">+</a></h2>
+                <h2 class="justify-right"><a class="pad-lr-large tm-btn tm-btn-gray text-white" href="{{route('accomodation.new')}}">+</a></h2>
             </div>
         </div>
         <!--                Fine zona aggiungi alloggio e visualizza opzionati-->

@@ -12,7 +12,7 @@ use App\Models\Resources\Accomodation;
 
 
 /*Import Form Requests*/
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\NewAccomodationRequest;
 
 /*Facade Auth di laravel ui*/
 use Illuminate\Support\Facades\Auth;
@@ -59,5 +59,15 @@ class LocatorController extends Controller {
         $this->_catalogModel->deleteAllRequests($accId);
         
         return redirect()->route('my-accomodations');
+    }
+    
+    public function showNewAccomodationForm()
+    {
+        return view('new-accomodation');
+    }
+    
+    public function addAccomodation(NewAccomodationRequest $request)
+    {
+        return view('my-accomodations');
     }
 }

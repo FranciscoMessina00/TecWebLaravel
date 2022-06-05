@@ -10,7 +10,16 @@ class Accomodation extends Model {
 
     public $timestamps = true;
     protected $primaryKey = 'accId';
-    protected $dates = ['dateOffer', 'dateBooking', 'dateStart', 'dateFinish'];
+    protected $dates = ['dateOffer', 'dateStart', 'dateFinish'];
+    
+    protected $fillable = [
+        'name', 'tipology', 'city', 'address', 'description', 'dimBedroom', 'dimAppartment', 'rooms', 'totBeds'
+        , 'totBedRoom', 'ageMax', 'ageMin', 'price', 'dateStart', 'dateFinish'
+    ];
+    
+    protected $guarded = [
+        'accId', 'userId'
+    ];
 
     public function locator() {
         return $this->belongsTo(User::class, 'userId', 'userId');

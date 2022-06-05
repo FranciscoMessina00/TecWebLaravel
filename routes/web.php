@@ -35,11 +35,17 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 
 
 /*Rotte specifiche livello 2: locatore*/
-Route::get('/locator/my-acc/{filterMode?}', 'LocatorController@my_accomodations')       /*I miei alloggi*/
+Route::get('/locator/my-acc/{filter?}', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
 
 Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorController@assignAccomodation')  /*Apertura pagina alloggio locatore*/
        ->name('my-accomodations.accomodation.assign'); 
+
+Route::get('/locator/new-accomodation', 'LocatorController@showNewAccomodationForm')  /*Apertura form di inserimento nuovo alloggio*/
+       ->name('accomodation.new'); 
+
+Route::post('/locator/add-accomodation', 'LocatorController@addAccomodation')  /*Registrazione nuovo alloggio*/
+       ->name('accomodation.add');
 
 
 /*Rotte specifiche livello 3: studente*/
