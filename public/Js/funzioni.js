@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener('load', function () {
 
     /*Funzione responsabile della comparsa e scomparsa del menù a tendina quando la larghezza della pagina va sotto 800 pixel*/
     document.getElementById("buttonMenu").onclick = function () {
@@ -9,7 +9,7 @@ window.onload = function () {
             thisMenu.display = "block";
         }
     };
-};
+});
 // slideshow locazioni
 //let slideIndex1 = 1;
 //
