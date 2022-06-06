@@ -11,7 +11,7 @@ $assignedStudents = $accomodation->assignedStudents;
 
 <div class="{{$route=='home'? '' : 'contenitore-flex'}} pad-tb-small pad-lr-small">
     <div class="img-catalogo {{$route=='home'? 'margin-b-15' : 'pad-r-large'}} ">
-        <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg auto-margin-lr" style="width:100%"/>
+        <img src="{{ asset('images/accomodations/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg auto-margin-lr" style="width:100%"/>
     </div>
     <div>
         @can('see-accomodation-details', $accomodation)

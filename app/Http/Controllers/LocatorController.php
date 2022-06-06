@@ -12,6 +12,8 @@ use \App\Models\Resources\AccomodationStudent;
 use \App\Models\Resources\AccomodationService;
 use \App\Models\Resources\Image;
 
+use \Carbon\Carbon;
+
 
 /*Import Form Requests*/
 use App\Http\Requests\NewAccomodationRequest;
@@ -56,7 +58,7 @@ class LocatorController extends Controller {
     {
         $accomodation = Accomodation::find($accId);
         
-        $accomodation->students()->updateExistingPivot($userId, ['relationship' => 'assigned', 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()]);
+        $accomodation->students()->updateExistingPivot($userId, ['relationship' => 'assigned', 'updated_at' => Carbon::now()->toDateTimeString()]);
         
         $this->_catalogModel->deleteAllRequests($accId);
         
@@ -70,14 +72,48 @@ class LocatorController extends Controller {
     
     public function addAccomodation(NewAccomodationRequest $request)
     {
-        return view('my-accomodations');
+        if($request->hasFile('image'))
+        {
+            $file = $requets->file('image');
+            $imageName = $file->getClientOriginalName();
+        }
+        else
+        {
+            $imageName = null;
+        }
+        
+        $accomodation = new Accomodation;
+        $accomodation->fill($request->validated());
+        
+        $image = Image::find(1);
+        
+        if($imageName)
+        {
+            $image = new Image;
+            
+            $image->imageName = $imageName;
+        }
+        
+        $accomodation->image()->associate($image);
+        $accomodation->userId = Auth::id();
+        $accomodation->dateOffer = Carbon::now()->toDateTimeString();
+        
+        $accomodation->save();
+        $image->save();
+        
+        if (!is_null($imageName))
+        {
+            $destinationPath = public_path() . 'images/accomodations';
+            $file->move($destinationPath, $imageName);
+        }
+        
+        return response()->json(['redirect' => url('/locator/my-acc')]);
     }
     
     public function deleteAccomodation($accId)
     {
         AccomodationStudent::where('accId', $accId)->delete();
         AccomodationService::where('accId', $accId)->delete();
-        Image::where('accId', $accId)->delete();
         
         Accomodation::where('accId', $accId)->delete();
         

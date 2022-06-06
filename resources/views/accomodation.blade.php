@@ -25,7 +25,7 @@ if ($user->role == 'student') {
         <h1 class="text-center text-gold">{{$accomodation->name}}</h1>
         <div class="offerta contenitore-flex">
             <div class="img-catalogo pad-lr-large" >
-                <img src="{{ asset('images/Salotto catalogo.png') }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+                <img src="{{ asset('images/accomodations/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
             <div class="auto-margin-tb">
 

@@ -18,11 +18,13 @@ class Accomodations extends Migration
             $table->bigIncrements('accId');
             $table->bigInteger('userId')->unsigned();
             $table->foreign('userId')->references('userId')->on('users');
+            $table->bigInteger('imageId')->unsigned();
+            $table->foreign('imageId')->references('imageId')->on('images');
             $table->string('name');
             $table->integer('tipology');
             $table->string('city');
             $table->string('address');
-            $table->string('description');
+            $table->longText('description');
             $table->integer('dimBedroom')->nullable();
             $table->integer('dimAppartment')->nullable();
             $table->integer('rooms')->nullable();
@@ -33,10 +35,9 @@ class Accomodations extends Migration
             $table->float('price');
             $table->boolean('state')-> default(false);
             $table->dateTime('dateOffer');
-            $table->dateTime('dateBooking')-> default('2000-01-01');
+            $table->dateTime('dateBooking')-> default('2000-01-06');
             $table->dateTime('dateStart');
             $table->dateTime('dateFinish');
-            
             $table->timestamps();
         });
     }

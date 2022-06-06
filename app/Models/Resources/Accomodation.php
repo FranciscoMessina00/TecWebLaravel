@@ -5,6 +5,7 @@ namespace App\Models\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\Resources\Service;
+use App\Models\Resources\Image;
 
 class Accomodation extends Model {
 
@@ -76,6 +77,11 @@ class Accomodation extends Model {
         } else {
             return 0;
         }
+    }
+    
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'imageId', 'imageId');
     }
 
 }

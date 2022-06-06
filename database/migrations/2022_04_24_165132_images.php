@@ -16,9 +16,7 @@ class Images extends Migration
         Schema::create('images', function(Blueprint $table)
         {
             $table->bigIncrements('imageId');
-            $table->bigInteger('accId')->unsigned();
-            $table->foreign('accId')->references('accId')->on('accomodations');
-            $table->string('imageName')->nullable()->default('defaultFoto.jpg');
+            $table->string('imageName')->nullable()->default('foto1.jpg');
             $table->timestamps();
         });
     }
