@@ -17,12 +17,12 @@ function getErrorHtml(elemErrors)
 
 function validateElement(id, actionUrl, formId)
 {
-    var form;
+    var formData;
 
-    function addFormToken()
+    function addFormToken(formData)
     {
         var token = $("#" + formId + " input[name=_token]").val();
-        form.append('_token', token);
+        formData.append('_token', token);
     }
 
     function sendAjaxRequest()
@@ -30,7 +30,7 @@ function validateElement(id, actionUrl, formId)
         $.ajax({
             type: 'POST',
             url: actionUrl,
-            data: form,
+            data: formData,
             dataType: "json",
             error: function (data)
             {
@@ -63,7 +63,7 @@ function validateElement(id, actionUrl, formId)
 
     formData = new FormData();
     formData.append(id, inputVal);
-    addFormToken();
+    addFormToken(formData);
     sendAjaxRequest(formData);
 }
 

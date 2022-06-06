@@ -74,7 +74,7 @@ class LocatorController extends Controller {
     {
         if($request->hasFile('image'))
         {
-            $file = $requets->file('image');
+            $file = $request->file('image');
             $imageName = $file->getClientOriginalName();
         }
         else
@@ -92,6 +92,7 @@ class LocatorController extends Controller {
             $image = new Image;
             
             $image->imageName = $imageName;
+            $image->save();
         }
         
         $accomodation->image()->associate($image);
@@ -99,11 +100,11 @@ class LocatorController extends Controller {
         $accomodation->dateOffer = Carbon::now()->toDateTimeString();
         
         $accomodation->save();
-        $image->save();
+        
         
         if (!is_null($imageName))
         {
-            $destinationPath = public_path() . 'images/accomodations';
+            $destinationPath = public_path() . '/images/accomodations';
             $file->move($destinationPath, $imageName);
         }
         

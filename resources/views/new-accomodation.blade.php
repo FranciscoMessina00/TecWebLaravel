@@ -35,7 +35,7 @@ $(function () {
 <div class="margin-t-x-large margin-b-40 text-center ">
     <div class="container-small auto-margin-lr pad-lr-large">
         <h2 class="text-center margin-b-40 margin-t-small text-gold text-large">Aggiungi un alloggio</h2>
-        {{ Form::open(array('route' => 'accomodation.add', 'method' => 'post', 'id' => 'addAccomodation')) }}
+        {{ Form::open(array('route' => 'accomodation.add', 'method' => 'post', 'id' => 'addAccomodation', 'files' => true)) }}
 
         <!-- Sezione tipologia alloggio-->
         <div>
