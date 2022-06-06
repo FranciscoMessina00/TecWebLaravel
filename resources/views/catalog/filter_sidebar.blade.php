@@ -12,7 +12,13 @@ if ($request) {
 }
 ?>
 
+@section('scripts')
+
+@parent
 <script src="{{ asset('Js/FilterSideBar.js') }}"></script>        
+
+@endsection
+
 
 <!--        Inizio zona filtri-->
 <div class="margin-lr barra-filtri pad-lr-small margin-b-15" id="filter">

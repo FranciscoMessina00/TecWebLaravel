@@ -39,7 +39,7 @@ if ($user->role == 'student') {
                         <ul class="nav navbar-nav">
 
                             <li class="nav-item justify-center" id="modifica">
-                                <a href="" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
+                                <a href="{{route('accomodation.edit', $accomodation->accId)}}" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
                             </li>
                             @include('layouts.delete-confirm', ['confirm' => 'accomodation.delete', 'params' => $accomodation->accId])
                         </ul>

@@ -12,6 +12,8 @@ use \App\Models\Resources\AccomodationStudent;
 use \App\Models\Resources\AccomodationService;
 use \App\Models\Resources\Image;
 
+use \Illuminate\Support\Facades\File;
+
 use \Carbon\Carbon;
 
 
@@ -59,6 +61,7 @@ class LocatorController extends Controller {
         $accomodation = Accomodation::find($accId);
         
         $accomodation->students()->updateExistingPivot($userId, ['relationship' => 'assigned', 'updated_at' => Carbon::now()->toDateTimeString()]);
+        $accomodation->dateBooking = Carbon::now()->toDateTimeString();
         
         $this->_catalogModel->deleteAllRequests($accId);
         
@@ -67,7 +70,16 @@ class LocatorController extends Controller {
     
     public function showNewAccomodationForm()
     {
-        return view('new-accomodation');
+        return view('accomodation-add')
+        ->with('accomodation', null);
+    }
+    
+    public function showEditAccomodationForm($accId)
+    {
+        $accomodation = Accomodation::find($accId);
+        
+        return view('accomodation-edit')
+        ->with('accomodation', $accomodation);
     }
     
     public function addAccomodation(NewAccomodationRequest $request)
@@ -85,22 +97,105 @@ class LocatorController extends Controller {
         $accomodation = new Accomodation;
         $accomodation->fill($request->validated());
         
-        $image = Image::find(1);
-        
         if($imageName)
         {
+            /*Crea un nuovo record nella tabella*/
             $image = new Image;
             
             $image->imageName = $imageName;
             $image->save();
+            
+            $accomodation->image()->associate($image);
         }
         
-        $accomodation->image()->associate($image);
+        /*Associa l'alloggio al proprietario*/
         $accomodation->userId = Auth::id();
+        
+        /*Registra la data i cui è stata caricata l'offerta*/
         $accomodation->dateOffer = Carbon::now()->toDateTimeString();
         
         $accomodation->save();
         
+        /*Aggiunta servizi*/
+        if($request->filled('services'))
+        {
+            $serviceIds = $request->input('services');
+
+            foreach ($serviceIds as $serviceId) {
+                $accomodation->services()->attach($serviceId);
+            }
+        }
+        
+        if (!is_null($imageName))
+        {
+            $destinationPath = public_path() . '/images/accomodations';
+            $file->move($destinationPath, $imageName);
+        }
+        
+        return response()->json(['redirect' => url('/locator/my-acc')]);
+    }
+    
+    public function updateAccomodation(NewAccomodationRequest $request)
+    {
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $imageName = $file->getClientOriginalName();
+        }
+        else
+        {
+            $imageName = null;
+        }
+        $request->validated();
+        
+        $validated = $request->except(['image', 'services', '_token']);
+        
+        $accId = $request->input('accId');
+        $accomodation = Accomodation::find($accId);
+        
+        if($imageName)
+        {
+            /*Crea un nuovo record nella tabella e sovrascrive quello vecchio*/
+            $image = new Image;
+            
+            $image->imageName = $imageName;
+            $image->save();
+            
+            $accomodation->image()->dissociate();
+            $accomodation->image()->associate($image);
+        }
+        
+        /*Aggiorno le informazioni dell'alloggio*/
+        Accomodation::where('accId', $accId)
+                ->update($validated);
+        
+        $accomodation->updated_at = Carbon::now()->toDateTimeString();
+        $accomodation->save();
+        
+        /*Aggiungo servizi*/
+        if($request->filled('services'))
+        {
+            $serviceIds = $request->input('services');
+            $myServiceIds = $accomodation->serviceIds();
+
+            /*Se l'utente ha selezionato un nuovo servizio lo aggiungo*/
+            foreach ($serviceIds as $serviceId) {
+                if (!$myServiceIds->contains($serviceId))
+                {
+                    $accomodation->services()->attach($serviceId);
+                }
+            }
+            
+            $serviceIds = collect($request->input('services'));
+            /*Se l'utente ha deselezionato un servizio, allora lo cancello*/
+            foreach ($myServiceIds as $myService)
+            {
+                if(!$serviceIds->contains($myService))
+                {
+                    $accomodation->services()->detach($myService);
+                }
+            }
+        }
         
         if (!is_null($imageName))
         {

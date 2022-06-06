@@ -4,10 +4,8 @@
         <?php
         $checked = false;
 
-        if ($request) {
-            $serviceIds = collect($request->input('services'));
-
-            $checked = $serviceIds->contains($service->serviceId);
+        if ($checkedServices->isNotEmpty()) {
+            $checked = $checkedServices->contains($service->serviceId);
         }
         ?>
         <li class="text-left">

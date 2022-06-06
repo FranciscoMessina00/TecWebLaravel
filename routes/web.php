@@ -44,6 +44,12 @@ Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorContr
 Route::get('/locator/new-accomodation', 'LocatorController@showNewAccomodationForm')  /*Apertura form di inserimento nuovo alloggio*/
        ->name('accomodation.new'); 
 
+Route::get('/locator/edit-accomodation/{accId}', 'LocatorController@showEditAccomodationForm')  /*Apertura form di modifica alloggio*/
+       ->name('accomodation.edit'); 
+
+Route::post('/locator/update-accomodation', 'LocatorController@updateAccomodation')  /*Update alloggio*/
+       ->name('accomodation.update'); 
+
 Route::post('/locator/add-accomodation', 'LocatorController@addAccomodation')  /*Registrazione nuovo alloggio*/
        ->name('accomodation.add');
 

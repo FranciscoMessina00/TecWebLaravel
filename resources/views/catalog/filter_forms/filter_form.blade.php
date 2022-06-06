@@ -165,18 +165,27 @@ $services = App\Models\Resources\Service::all();
 
 <fieldset name="services" class=" border-t pad-lr-small ">
     <div class="pad-lr-small margin-t-x-small">
+        <?php
+            $checkedServices = collect();
+            
+            if($request)
+            {
+                $checkedServices = collect($request->input('services'));
+            }
+        ?>
+        
         <h1>Servizi Disponibili</h1>
         <div id="generalServices">
             <h4 class="text-left">Generici</h4>
-            @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 2)])
+            @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 2), 'checkedServices' => $checkedServices])
         </div>
         <div id="servApp" class="{{$isAppartmentSelected ? '' : 'nascondi'}}">
             <h4 class="text-left">Appartamento</h4>
-            @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 0)])
+            @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 0), 'checkedServices' => $checkedServices])
         </div>
         <div id="servPostoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
             <h4 class="text-left">PostoLetto</h4>
-            @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 1)])
+            @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 1), 'checkedServices' => $checkedServices])
         </div>
     </div>
 </fieldset>

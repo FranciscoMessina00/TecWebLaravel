@@ -18,7 +18,7 @@ class Accomodations extends Migration
             $table->bigIncrements('accId');
             $table->bigInteger('userId')->unsigned();
             $table->foreign('userId')->references('userId')->on('users');
-            $table->bigInteger('imageId')->unsigned();
+            $table->bigInteger('imageId')->unsigned()->default('1');
             $table->foreign('imageId')->references('imageId')->on('images');
             $table->string('name');
             $table->integer('tipology');

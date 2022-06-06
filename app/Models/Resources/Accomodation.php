@@ -34,6 +34,11 @@ class Accomodation extends Model {
     public function services() {
         return $this->belongsToMany(Service::class, 'accomodation_service', 'accId', 'serviceId');
     }
+    
+    public function serviceIds()
+    {
+        return $this->services->pluck('serviceId');
+    }
 
     public function assignedDate() {
         return AccomodationStudent::where('accId',$this->accId)

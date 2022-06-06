@@ -18,10 +18,11 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('images')->insert([
-            ['imageId' => 1, 'imageName'=>'foto1.png','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['imageId' => 2, 'imageName'=>'foto2.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['imageId' => 3, 'imageName'=>'foto3.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['imageId' => 4, 'imageName'=>'foto4.png','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['imageId' => 1, 'imageName'=>'default.png','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['imageId' => 2, 'imageName'=>'foto1.png','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['imageId' => 3, 'imageName'=>'foto2.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['imageId' => 4, 'imageName'=>'foto3.jpg','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['imageId' => 5, 'imageName'=>'foto4.png','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
         
         DB::table('users')->insert([
