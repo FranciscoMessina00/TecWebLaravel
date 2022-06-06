@@ -13,7 +13,7 @@ $services = App\Models\Resources\Service::all();
         <label for="tipo">
             Tipologia
         </label>
-        <!<!-- La select attiva una funzione JavaScript -->
+        <!-- La select attiva una funzione JavaScript -->
         <select id="tipo" name="tipology" class="form-element">
             <option value="none" disabled selected>Seleziona un'opzione</option>
             <option value="0" id="appartment" {{$isAppartmentSelected ? 'selected' : ''}}>Appartamento</option>

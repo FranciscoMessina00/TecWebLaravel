@@ -4,12 +4,13 @@
 
 @section('content')
 
-<!--
-<div id='content'>
-<!--    <div class="tm-home-img-container">
-        <img src="{{asset('/images/Immagine appartamento.jpg')}}" alt="Immagine di un salotto" class="tm-home-img">
-    </div>-->
-<script src="{{ asset('Js/SlideShow.js') }}"></script>        
+@section('scripts')
+
+@parent
+<script src="{{ asset('Js/SlideShow.js') }}"></script>  
+
+@endsection
+      
 <div class="slideshow-container text-left" id="slideShow">
 
     <div class="nascondi fade tm-home-img-container" id="img1">

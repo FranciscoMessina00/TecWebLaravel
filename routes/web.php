@@ -47,6 +47,9 @@ Route::get('/locator/new-accomodation', 'LocatorController@showNewAccomodationFo
 Route::post('/locator/add-accomodation', 'LocatorController@addAccomodation')  /*Registrazione nuovo alloggio*/
        ->name('accomodation.add');
 
+Route::get('/locator/delete-accomodation/{accId}', 'LocatorController@deleteAccomodation')  /*Eliminazione alloggio*/
+       ->name('accomodation.delete');
+
 
 /*Rotte specifiche livello 3: studente*/
 Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertura catalogo*/

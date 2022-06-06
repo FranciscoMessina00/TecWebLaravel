@@ -1,4 +1,3 @@
-
 @extends('layouts.public')
 <?php
 $user = Auth::user();
@@ -8,7 +7,16 @@ if ($user->role == 'student') {
     $canOption = false;
 }
 ?>
+
 @section('title', 'Account')
+
+@section('scripts')
+
+@parent
+<script type="text/javascript" src="{{ asset('Js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Js/ConfermaElimina.js') }}"></script>
+
+@endsection
 
 @section('content')
  <div class="margin-t-x-large margin-b-40 contenitore-flex-2">
@@ -22,33 +30,20 @@ if ($user->role == 'student') {
             <div class="auto-margin-tb">
 
                 @can('edit-accomodation', $accomodation)
-                <script type="text/javascript" src="{{ asset('Js/ConfermaElimina.js') }}"></script>
+                    @if($accomodation->hasBeenAssigned())
+                    <div class=''>
+                        <a class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
+                    </div>
+                    @endif
+                    <div class="contenitore-flex ">
+                        <ul class="nav navbar-nav">
 
-                @if($accomodation->hasBeenAssigned())
-                <div class=''>
-                    <a class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
-                </div>
-                @endif
-                <div class="contenitore-flex ">
-                    <ul class="nav navbar-nav">
-
-                        <li class="nav-item justify-center" id="modifica">
-                            <a href="" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
-                        </li>
-                        <li class="nav-item " id="elimina">
-                            <a class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">Elimina</a>
-                        </li>
-                        <li class="nav-item nascondi" id="sicuro">
-                            <div class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">Sicuro?</div>
-                        </li>
-                        <li class="nav-item nascondi" id="si">
-                            <a href="" class="tm-btn tm-btn-green text-white nav-link margin-b-15">Si</a>
-                        </li>
-                        <li class="nav-item nascondi" id="no">
-                            <div class="tm-btn tm-btn-red text-white nav-link margin-b-15 no-select">No</div>
-                        </li>
-                    </ul>
-                </div>
+                            <li class="nav-item justify-center" id="modifica">
+                                <a href="" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
+                            </li>
+                            @include('layouts.delete-confirm', ['confirm' => 'accomodation.delete', 'params' => $accomodation->accId])
+                        </ul>
+                    </div>
                 @endcan
 
                 @can('isStudent')

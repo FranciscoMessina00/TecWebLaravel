@@ -7,8 +7,10 @@ use App\Models\Catalog;
 
 /*Import Resource Models*/
 use App\User;
-use App\Models\Resources\Faq;
 use App\Models\Resources\Accomodation;
+use \App\Models\Resources\AccomodationStudent;
+use \App\Models\Resources\AccomodationService;
+use \App\Models\Resources\Image;
 
 
 /*Import Form Requests*/
@@ -70,4 +72,16 @@ class LocatorController extends Controller {
     {
         return view('my-accomodations');
     }
+    
+    public function deleteAccomodation($accId)
+    {
+        AccomodationStudent::where('accId', $accId)->delete();
+        AccomodationService::where('accId', $accId)->delete();
+        Image::where('accId', $accId)->delete();
+        
+        Accomodation::where('accId', $accId)->delete();
+        
+        return redirect()->route('my-accomodations');
+    }
+    
 }

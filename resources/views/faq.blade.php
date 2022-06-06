@@ -1,5 +1,13 @@
 @extends('layouts.public')
 
+@section('scripts')
+
+@parent
+<script type="text/javascript" src="{{ asset('Js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Js/ConfermaElimina.js') }}"></script>
+
+@endsection
+
 @section('title', 'FAQ')
 <?php
 $paginator=$faqs;
