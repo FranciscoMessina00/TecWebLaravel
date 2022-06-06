@@ -48,7 +48,7 @@
                         {{ Form::label('username', 'Username', ['style' => 'font-size: x-large;']) }}
                     </div>
                     <div class="">
-                        {{ Form::text('username', Auth::user()->username, ['class' => 'form-element', 'id' => 'name', 'placeholder'=>'Inserisci username']) }}
+                        {{ Form::text('username', Auth::user()->username, ['class' => 'form-element', 'id' => 'name', 'placeholder'=>'Inserisci username', 'disabled']) }}
 
                         @if ($errors->first('username'))
                         <ul class="errors">

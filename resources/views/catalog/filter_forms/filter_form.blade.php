@@ -138,7 +138,7 @@ $services = App\Models\Resources\Service::all();
 
     <div id="postoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
         <div class="pad-lr-small margin-t-x-small">
-            {{ Form::label('dimensione', 'Dimensione posto letto') }}
+            {{ Form::label('dimensione', 'Dimensione camera del posto letto') }}
             {{Form::number('dimBedroom', $request ? $request->dimBedroom : '' , ['class' => 'form-element','placeholder' => 'Dimensione camera','id'=> 'dimensione'])}}
             @if ($errors->first('dimBedroom'))
             <ul class="errors">
@@ -150,7 +150,7 @@ $services = App\Models\Resources\Service::all();
 
         </div>
         <div class="pad-lr-small margin-t-x-small">
-            {{ Form::label('numeroL', 'Numero di letti nel posto letto') }}
+            {{ Form::label('numeroL', 'Numero di letti nella camera') }}
             {{Form::number('totBedRoom', $request ? $request->totBedRoom : '' , ['class' => 'form-element','placeholder' => 'Numero letti','id'=> 'numeroL'])}}
             @if ($errors->first('totBedRoom'))
             <ul class="errors">

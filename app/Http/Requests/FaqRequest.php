@@ -27,13 +27,13 @@ class FaqRequest extends FormRequest{
         if ($this->request->get('faqId')){
             $faqId=$this->request->get('faqId');
             return [
-            'question' => ['required','max:50',Rule::unique('faqs')->ignore($faqId, 'faqId')],
-            'answer' => 'required|max:200'
+            'question' => ['required','max:100',Rule::unique('faqs')->ignore($faqId, 'faqId')],
+            'answer' => 'required|max:1000'
         ];
         }else{
             return [
-            'question' => ['required','max:50',Rule::unique('faqs')],
-            'answer' => 'required|max:200'
+            'question' => ['required','max:100',Rule::unique('faqs')],
+            'answer' => 'required|max:1000'
         ];
         }
         

@@ -160,7 +160,7 @@ if ($user->role == 'student') {
             <h2 class='pad-tb-small border-t'>Richieste</h2>
             <ul>
                 @foreach($accomodation->students as $student)
-                <li>{{$student->name}} {{$student->surname}} di {{$student->age()}} anni ha fatto richiesta:   <a href="{{route('my-accomodations.accomodation.assign', [$accomodation->accId, $student->userId])}}" class="tm-btn text-white nav-link margin-b-15">Assegna</a></li>
+                <li>{{$student->name}} {{$student->surname}} ({{$student->gender}}) di {{$student->age()}} anni ha fatto richiesta:   <a href="{{route('my-accomodations.accomodation.assign', [$accomodation->accId, $student->userId])}}" class="tm-btn text-white nav-link margin-b-15">Assegna</a></li>
                 @endforeach
             </ul>
         </div>
@@ -168,7 +168,7 @@ if ($user->role == 'student') {
 
         @if($accomodation->hasBeenAssigned())
         <h2 class='pad-tb-small border-t'>Richieste</h2>
-        <p>Assegnato il {{$accomodation->assignedDate()}} a {{$accomodation->assignedStudents->first()->name}}</p>
+        <p>Assegnato il {{$accomodation->assignedDate()}} a {{$accomodation->assignedStudents->first()->name}} {{$accomodation->assignedStudents->first()->surname}} ({{$accomodation->assignedStudents->first()->gender}}) di {{$accomodation->assignedStudents->first()->age()}} anni</p>
         @endif
         @endcan
 

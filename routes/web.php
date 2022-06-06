@@ -106,7 +106,7 @@ Route::get('/messages', 'ChatController@showMessages')
 Route::get('/messages/chat/{contactId}', 'ChatController@showChat')    
         ->name('messages.chat'); 
 
-Route::get('/messages/new/{accId?}', 'ChatController@showNewMessageForm')    
+Route::get('/messages/new/{accId?}/{hasOptioned?}', 'ChatController@showNewMessageForm')    
         ->name('messages.new'); 
 
 Route::post('/messages/send', 'ChatController@sendMessage')    

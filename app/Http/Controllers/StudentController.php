@@ -43,7 +43,7 @@ class StudentController extends Controller {
     public function accomodationOption($accId) {
         $student = Auth::user();
         $student->optionedAccomodations()->attach($accId, ['relationship' => 'optioned']);
-        return redirect()->route('messages.new',[$accId]);
+        return redirect()->route('messages.new',[$accId,true]);
 
     }
 

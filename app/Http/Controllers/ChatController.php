@@ -70,7 +70,7 @@ class ChatController extends Controller {
         return redirect()->route('messages.chat', $contactId);
     }
     
-    public function showNewMessageForm($accId = null)
+    public function showNewMessageForm($accId = null, $hasOptioned = null)
     {
         $user = Auth::user();
         
@@ -111,7 +111,7 @@ class ChatController extends Controller {
                 ->with('contacts', $contacts)
                 ->with('recipient', $recipient)
                 ->with('accomodation', $accomodation)
-                //->with('hasOptioned', $hasOptioned)
+                ->with('hasOptioned', $hasOptioned)
                 ->with('recipientList', $recipientList);
     }
     

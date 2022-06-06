@@ -1,7 +1,12 @@
 <?php
     if($recipient)
     {
-        $newMessage = 'Ciao '. $recipient->name . ' sarei interessato alla tua offerta ' . $accomodation->name;
+        if($hasOptioned){
+            $newMessage = 'Ciao '. $recipient->name . ' sarei interessato alla tua offerta ' . $accomodation->name;
+        }else{
+            $newMessage = 'Ciao '. $recipient->name ;
+        }
+        
     }
     else
     {
