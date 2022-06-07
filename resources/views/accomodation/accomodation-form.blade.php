@@ -31,7 +31,13 @@ if ($accomodation) {
         {{ Form::label('tipology', 'Quale tipo di alloggio vuoi inserire?', ['class' => 'text-mid']) }}
     </div>
     <div class="margin-b-40">
-        {{ Form::select('tipology', ['0' => 'Appartamento', '1' => 'Posto letto'], $accomodation ? $accomodation->tipology : null, ['class' => 'form-element','id' => 'tipology']) }}
+        {{ Form::select(
+                    'tipology',
+                    [null => "Seleziona un'opzione", '0' => 'Appartamento', '1' => 'Posto letto'], 
+                    $accomodation ? $accomodation->tipology : null, 
+                    ['class' => 'form-element','id' => 'tipology'],
+                    [null => ['disabled' => true]]
+                    )}}
     </div>
 </div>
 @endif
@@ -146,54 +152,57 @@ if ($accomodation) {
 </div>
 
 <!-- Specifico appartamento -->
-<div>
-    <div class="text-left">
-        {{ Form::label('dimAppartment', 'Dimensione appartamento', ['class' => 'text-mid']) }}
+<div id ="appartamento" class="{{$isAppartmentSelected ? '' : 'nascondi'}}">
+    <div>
+        <div class="text-left">
+            {{ Form::label('dimAppartment', 'Dimensione appartamento', ['class' => 'text-mid']) }}
+        </div>
+        <div class="margin-b-40">
+            {{ Form::text('dimAppartment', $accomodation ? $accomodation->dimAppartment : '', ['class' => 'form-element','id' => 'dimAppartment','placeholder'=>"Di quanti metri quadri?"]) }}
+        </div>
     </div>
-    <div class="margin-b-40">
-        {{ Form::text('dimAppartment', $accomodation ? $accomodation->dimAppartment : '', ['class' => 'form-element','id' => 'dimAppartment','placeholder'=>"Di quanti metri quadri?"]) }}
-    </div>
-</div>
 
-<div>
-    <div class="text-left">
-        {{ Form::label('rooms', "Numero di stanze nell'appartamento", ['class' => 'text-mid']) }}
-    </div>
-    <div class="margin-b-40">
-        {{ Form::text('rooms', $accomodation ? $accomodation->rooms : '', ['class' => 'form-element','id' => 'rooms','placeholder'=>"Quante stanze?"]) }}
+    <div>
+        <div class="text-left">
+            {{ Form::label('rooms', "Numero di stanze nell'appartamento", ['class' => 'text-mid']) }}
+        </div>
+        <div class="margin-b-40">
+            {{ Form::text('rooms', $accomodation ? $accomodation->rooms : '', ['class' => 'form-element','id' => 'rooms','placeholder'=>"Quante stanze?"]) }}
+        </div>
     </div>
 </div>
 
 <!-- Specifico posto letto -->
-<div>
-    <div class="text-left">
-        {{ Form::label('dimBedroom', 'Dimensione posto letto', ['class' => 'text-mid']) }}
+<div id="postoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
+    <div>
+        <div class="text-left">
+            {{ Form::label('dimBedroom', 'Dimensione posto letto', ['class' => 'text-mid']) }}
+        </div>
+        <div class="margin-b-40">
+            {{ Form::text('dimBedroom', $accomodation ? $accomodation->dimBedroom : '', ['class' => 'form-element','id' => 'dimBedroom','placeholder'=>"Di quanti metri quadri?"]) }}
+        </div>
     </div>
-    <div class="margin-b-40">
-        {{ Form::text('dimBedroom', $accomodation ? $accomodation->dimBedroom : '', ['class' => 'form-element','id' => 'dimBedroom','placeholder'=>"Di quanti metri quadri?"]) }}
-    </div>
-</div>
 
-<div>
-    <div class="text-left">
-        {{ Form::label('totBedRoom', "Numero di letti nel posto letto", ['class' => 'text-mid']) }}
-    </div>
-    <div class="margin-b-40">
-        {{ Form::text('totBedRoom', $accomodation ? $accomodation->totBedRoom : '', ['class' => 'form-element','id' => 'totBedRoom','placeholder'=>"Quanti letti?"]) }}
+    <div>
+        <div class="text-left">
+            {{ Form::label('totBedRoom', "Numero di letti nel posto letto", ['class' => 'text-mid']) }}
+        </div>
+        <div class="margin-b-40">
+            {{ Form::text('totBedRoom', $accomodation ? $accomodation->totBedRoom : '', ['class' => 'form-element','id' => 'totBedRoom','placeholder'=>"Quanti letti?"]) }}
+        </div>
     </div>
 </div>
 
 <fieldset name="services" class=" border-t pad-lr-small ">
     <div class="pad-lr-small margin-t-x-small">
         <?php
-            $checkedServices = collect();
-            
-            if($accomodation)
-            {
-                $checkedServices = $accomodation->serviceIds();
-            }
+        $checkedServices = collect();
+
+        if ($accomodation) {
+            $checkedServices = $accomodation->serviceIds();
+        }
         ?>
-        
+
         <h1>Servizi Disponibili</h1>
         <div id="generalServices">
             <h4 class="text-left">Generici</h4>

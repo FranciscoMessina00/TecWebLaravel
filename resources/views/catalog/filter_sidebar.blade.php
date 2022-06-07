@@ -15,7 +15,7 @@ if ($request) {
 @section('scripts')
 
 @parent
-<script src="{{ asset('Js/FilterSideBar.js') }}"></script>        
+<script src="{{ asset('Js/ToggleForm.js') }}"></script>        
 
 @endsection
 

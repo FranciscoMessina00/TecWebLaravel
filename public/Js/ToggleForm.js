@@ -1,7 +1,7 @@
 window.onload = function () {
     /*Funzione responsabile nel far comparire elementi della form nei filtri del catalogo lato studente*/
-    document.getElementById("tipo").onchange = function () {
-        var selettore = document.getElementById("tipo");
+    document.getElementById("tipology").onchange = function () {
+        var selettore = document.getElementById("tipology");
         var app = document.getElementById("appartamento").style;
         var pl = document.getElementById("postoLetto").style;
 

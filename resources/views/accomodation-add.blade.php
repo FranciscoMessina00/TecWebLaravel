@@ -8,6 +8,7 @@
 @parent
 <script type="text/javascript" src="{{ asset('Js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ asset('Js/FormValidation.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Js/ToggleForm.js') }}"></script>
 <script>
 $(function () {
     var actionUrl = "{{route('accomodation.add')}}";

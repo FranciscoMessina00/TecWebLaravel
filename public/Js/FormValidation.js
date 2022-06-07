@@ -15,14 +15,21 @@ function getErrorHtml(elemErrors)
     return out;
 }
 
-function validateElement(id, actionUrl, formId)
+function validateElement(id, actionUrl, formId, ids = ["tipology"])
 {
     var formData;
-
+    
     function addFormToken(formData)
     {
         var token = $("#" + formId + " input[name=_token]").val();
         formData.append('_token', token);
+    }
+    
+    function addElement(formData, id)
+    {
+        var element = $("#" + id);
+        var val = element.val();
+        formData.append(id, val);
     }
 
     function sendAjaxRequest()
@@ -64,6 +71,15 @@ function validateElement(id, actionUrl, formId)
     formData = new FormData();
     formData.append(id, inputVal);
     addFormToken(formData);
+    
+    for(var i=0; i<ids.length; i++)
+    {
+        if(id != ids[i])
+        {
+            addElement(formData, ids[i]);
+        }
+    }
+    
     sendAjaxRequest(formData);
 }
 

@@ -25,6 +25,11 @@ class Accomodation extends Model {
     public function locator() {
         return $this->belongsTo(User::class, 'userId', 'userId');
     }
+    
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'imageId', 'imageId');
+    }
 
     public function students() {
         return $this->belongsToMany(User::class, 'accomodation_student', 'accId', 'userId')
@@ -84,9 +89,6 @@ class Accomodation extends Model {
         }
     }
     
-    public function image()
-    {
-        return $this->belongsTo(Image::class, 'imageId', 'imageId');
-    }
+    
 
 }

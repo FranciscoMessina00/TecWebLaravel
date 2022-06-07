@@ -18,7 +18,6 @@ use \App\Models\Resources\Accomodation;
 use App\Http\Controllers\StudentController;
 
 Route::get('/', 'PublicController@home')       /*Homepage*/
-
         ->name('home');
 
 Route::get('/catalog', 'PublicController@showCatalog')  /*Apertura catalogo*/
@@ -61,9 +60,9 @@ Route::get('/locator/delete-accomodation/{accId}', 'LocatorController@deleteAcco
 Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertura catalogo*/
         ->name('catalog.filter');
 
-
 Route::get('/catalog/accomodation/option/{accId}' , 'StudentController@accomodationOption')
        ->name('accomodation.option');
+
 
 /*Rotte specifiche livello 4: admin*/
 Route::get('/admin/stats', 'AdminController@stats')       /*Statistiche amministratore*/
@@ -80,6 +79,7 @@ Route::post('/faq/new', 'AdminController@addFaq')
         ->name('faq.add');
 Route::get('/faq/delete/{faqId}', 'AdminController@deleteFaq')
         ->name('faq.delete');
+
 
 /*Rotte per il login e la registrzione*/
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')    /*Registrazione utente*/

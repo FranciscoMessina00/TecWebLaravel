@@ -12,13 +12,12 @@ use \App\Models\Resources\AccomodationStudent;
 use \App\Models\Resources\AccomodationService;
 use \App\Models\Resources\Image;
 
-use \Illuminate\Support\Facades\File;
 
 use \Carbon\Carbon;
 
 
 /*Import Form Requests*/
-use App\Http\Requests\NewAccomodationRequest;
+use App\Http\Requests\AccomodationRequest;
 
 /*Facade Auth di laravel ui*/
 use Illuminate\Support\Facades\Auth;
@@ -82,8 +81,10 @@ class LocatorController extends Controller {
         ->with('accomodation', $accomodation);
     }
     
-    public function addAccomodation(NewAccomodationRequest $request)
+    public function addAccomodation(AccomodationRequest $request)
     {
+        $user = Auth::user();
+        
         if($request->hasFile('image'))
         {
             $file = $request->file('image');
@@ -105,11 +106,12 @@ class LocatorController extends Controller {
             $image->imageName = $imageName;
             $image->save();
             
+            /*Associa l'alloggio all'immagine creata*/
             $accomodation->image()->associate($image);
         }
         
-        /*Associa l'alloggio al proprietario*/
-        $accomodation->userId = Auth::id();
+        /*Associa l'alloggio all'utente loggato*/
+        $accomodation->locator()->associate($user);
         
         /*Registra la data i cui è stata caricata l'offerta*/
         $accomodation->dateOffer = Carbon::now()->toDateTimeString();
@@ -135,7 +137,7 @@ class LocatorController extends Controller {
         return response()->json(['redirect' => url('/locator/my-acc')]);
     }
     
-    public function updateAccomodation(NewAccomodationRequest $request)
+    public function updateAccomodation(AccomodationRequest $request)
     {
         if($request->hasFile('image'))
         {
@@ -146,6 +148,7 @@ class LocatorController extends Controller {
         {
             $imageName = null;
         }
+        /*Chiamo il metodo validate per generare l'eccezione nel caso in cui i dati siano errati. Se il programma prosegue, i dati sono validi*/
         $request->validated();
         
         $validated = $request->except(['image', 'services', '_token']);
@@ -208,10 +211,15 @@ class LocatorController extends Controller {
     
     public function deleteAccomodation($accId)
     {
-        AccomodationStudent::where('accId', $accId)->delete();
-        AccomodationService::where('accId', $accId)->delete();
+        /*Elimino le richieste assoicate all'appartamento eliminato*/
+        AccomodationStudent::where('accId', $accId)
+                ->delete();
+        /*Elimino i servizi assoicati all'appartamento eliminato*/
+        AccomodationService::where('accId', $accId)
+                ->delete();
         
-        Accomodation::where('accId', $accId)->delete();
+        Accomodation::where('accId', $accId)
+                ->delete();
         
         return redirect()->route('my-accomodations');
     }
