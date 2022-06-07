@@ -6,10 +6,10 @@ $services = App\Models\Resources\Service::all();
 @csrf
 
 <fieldset name="generic" class=" border-t pad-lr-small margin-b-30">
-    <h1>I miei alloggi</h1>
+    <h2 class="margin-t-x-small">Quali alloggi vuoi visualizzare?</h2>
     
     <div class="pad-lr-small margin-t-x-small">
-        {{ Form::label('requests', 'Quali alloggi?') }}
+<!--        {{ Form::label('requests', 'Quali alloggi?') }}-->
         {{ Form::select(
                     'requests',
                     [null => "Seleziona un'opzione", '0' => 'Solo alloggi che hai opzionato', '1' => 'Solo alloggi a te assegnati', '2' => 'Tutti'], 
@@ -27,7 +27,7 @@ $services = App\Models\Resources\Service::all();
 
     </div>
     
-    <h1>Informazioni alloggio</h1>
+    <h2 class="margin-t-x-small">Informazioni alloggio</h2>
     
     <div class="pad-lr-small margin-t-x-small">
 
@@ -195,9 +195,9 @@ $services = App\Models\Resources\Service::all();
             }
         ?>
         
-        <h1>Servizi Disponibili</h1>
+        <h2 class="margin-t-x-small">Servizi Disponibili</h2>
         <div id="generalServices">
-            <h4 class="text-left">Generici</h4>
+            <h4 class="text-left margin-t-x-small">Generici</h4>
             @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 2), 'checkedServices' => $checkedServices])
         </div>
         <div id="servApp" class="{{$isAppartmentSelected ? '' : 'nascondi'}}">
