@@ -37,8 +37,8 @@ class FilteredCatalogRequest extends FormRequest
     }
     
     public function messages(): array {
-        return ['bornDate.date_format' => 'Insert a valid date',
-            'dateFinish.date_format' => 'Insert a valid date',
-            'tipology.required' => 'Select the accomodation tipology first'];
+        return ['bornDate.date_format' => 'Inserisci una data valida',
+            'dateFinish.date_format' => 'Inserisci una data valida',
+            'tipology.required' => 'Seleziona la tipologia di alloggio'];
     }
 }

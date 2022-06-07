@@ -16,12 +16,7 @@ $(function () {
         ];
         
         for (var button in buttons) {
-            //vedi se usare toggleClass()
-            if (buttons[button].hasClass('nascondi')) {
-                buttons[button].show('fast');
-            } else {
-                buttons[button].hide('fast');
-            }
+            buttons[button].toggle('fast');
         }
 
     });
@@ -41,11 +36,7 @@ $(function () {
             no
         ];
         for (var button in buttons) {
-            if (buttons[button].hasClass('nascondi')) {
-                buttons[button].hide('fast');
-            } else {
-                buttons[button].show('fast');
-            }
+            buttons[button].toggle('fast');
         }
 
     });

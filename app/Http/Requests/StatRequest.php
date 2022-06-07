@@ -33,6 +33,7 @@ class StatRequest extends FormRequest
     }
     
     public function messages(): array {
-        return ['dateStart.date_format' => 'Insert a valid date','dateFinish.date_format' => 'Insert a valid date'];
+        return ['dateStart.date_format' => 'Inserisci una data valida',
+                'dateFinish.date_format' => 'Inserisci una data valida'];
     }
 }

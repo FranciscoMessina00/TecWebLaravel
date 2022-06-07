@@ -40,7 +40,7 @@ class UserRequest extends FormRequest
     }
     
     public function messages(): array {
-        return ['bornDate.date_format' => 'Insert a valid date'];
+        return ['bornDate.date_format' => 'Inserisci una data valida'];
     }
 }
 
