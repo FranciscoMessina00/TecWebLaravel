@@ -153,7 +153,7 @@ if ($user->role == 'student') {
         <div>
             <h2 class='pad-tb-small border-t'>Richieste</h2>
             <ul>
-                @foreach($accomodation->students as $student)
+                @foreach($accomodation->optioningStudents as $student)
                 <li>{{$student->name}} {{$student->surname}} ({{$student->gender}}) di {{$student->age()}} anni ha fatto richiesta:   <a href="{{route('my-accomodations.accomodation.assign', [$accomodation->accId, $student->userId])}}" class="tm-btn text-white nav-link margin-b-15">Assegna</a></li>
                 @endforeach
             </ul>

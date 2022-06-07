@@ -33,10 +33,8 @@ class Accomodation extends Model {
         return $this->belongsTo(Image::class, 'imageId', 'imageId');
     }
 
-    /*Metodo doppio eliminare*/
     public function students() {
-        return $this->belongsToMany(User::class, 'accomodation_student', 'accId', 'userId')
-                        ->wherePivot('relationship', 'optioned');
+        return $this->belongsToMany(User::class, 'accomodation_student', 'accId', 'userId');
     }
     
     public function services() {
@@ -98,10 +96,10 @@ class Accomodation extends Model {
     }
 
     public function requests() {
-        $optioningStudents = $this->students;
+        $optioningStudents = $this->optioningStudents;
 
         if ($optioningStudents) {
-            return count($this->students);
+            return count($this->optioningStudents);
         } else {
             return 0;
         }

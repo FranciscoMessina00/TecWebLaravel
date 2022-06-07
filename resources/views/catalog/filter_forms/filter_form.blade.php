@@ -6,6 +6,27 @@ $services = App\Models\Resources\Service::all();
 @csrf
 
 <fieldset name="generic" class=" border-t pad-lr-small margin-b-30">
+    <h1>I miei alloggi</h1>
+    
+    <div class="pad-lr-small margin-t-x-small">
+        {{ Form::label('requests', 'Quali alloggi?') }}
+        {{ Form::select(
+                    'requests',
+                    [null => "Seleziona un'opzione", '0' => 'Solo alloggi che hai opzionato', '1' => 'Solo alloggi a te assegnati', '2' => 'Tutti'], 
+                    $request ? $request->requests : 2, 
+                    ['class' => 'form-element','id' => 'requests'],
+                    [null => ['disabled' => true]]
+                    )}}
+        @if ($errors->first('requests'))
+        <ul class="errors">
+            @foreach ($errors->get('tipology') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+        @endif
+
+    </div>
+    
     <h1>Informazioni alloggio</h1>
     
     <div class="pad-lr-small margin-t-x-small">

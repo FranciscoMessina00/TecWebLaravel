@@ -59,7 +59,7 @@ class LocatorController extends Controller {
     {
         $accomodation = Accomodation::find($accId);
         
-        $accomodation->students()->updateExistingPivot($userId, [
+        $accomodation->optioningStudents()->updateExistingPivot($userId, [
             'relationship' => 'assigned',
             'dateAssign' => Carbon::now()->toDateTimeString()
                 ]);
