@@ -4,7 +4,11 @@ $services = App\Models\Resources\Service::all();
 $isAppartmentSelected = false;
 $isBedRoomSelected = false;
 
+$tipologyAttributes = ['class' => 'form-element','id' => 'tipology'];
+
 if ($accomodation) {
+    $tipologyAttributes = ['class' => 'form-element','id' => 'tipology', 'disabled'];
+    
     switch ($accomodation->tipology) {
         case 0:
             $isAppartmentSelected = true;
@@ -23,9 +27,12 @@ if ($accomodation) {
 
 <!-- Sezione tipologia alloggio-->
 @if($accomodation)
+
 {{ Form::hidden('accId', $accomodation->accId)}}
-{{ Form::hidden('tipology', $accomodation->tipology)}}
-@else
+{{ Form::hidden('tipology', $accomodation->tipology, ['id' => 'hidden_tipology'])}}
+
+@endif
+
 <div>
     <div class="text-left">
         {{ Form::label('tipology', 'Quale tipo di alloggio vuoi inserire?', ['class' => 'text-mid']) }}
@@ -35,12 +42,12 @@ if ($accomodation) {
                     'tipology',
                     [null => "Seleziona un'opzione", '0' => 'Appartamento', '1' => 'Posto letto'], 
                     $accomodation ? $accomodation->tipology : null, 
-                    ['class' => 'form-element','id' => 'tipology'],
+                    $tipologyAttributes,
                     [null => ['disabled' => true]]
                     )}}
     </div>
 </div>
-@endif
+
 
 <!-- Generico -->
 
