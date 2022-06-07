@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 
 /* Tools */
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+
 
 class StudentController extends Controller {
 
@@ -42,7 +44,11 @@ class StudentController extends Controller {
 
     public function accomodationOption($accId) {
         $student = Auth::user();
-        $student->optionedAccomodations()->attach($accId, ['relationship' => 'optioned']);
+        $student->optionedAccomodations()->attach($accId, [
+            'relationship' => 'optioned', 
+            'dateOption' => Carbon::now()->toDateTimeString()
+            ]);
+        
         return redirect()->route('messages.new',[$accId,true]);
 
     }

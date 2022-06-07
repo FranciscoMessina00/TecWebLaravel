@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class AccomodationStudent extends Migration
 {
@@ -20,6 +21,8 @@ class AccomodationStudent extends Migration
             $table->bigInteger('accId')->unsigned();
             $table->foreign('accId')->references('accId')->on('accomodations');
             $table->string('relationship');
+            $table->dateTime('dateOption')->default(Carbon::now()->toDateTimeString());
+            $table->dateTime('dateAssign')->default(Carbon::now()->toDateTimeString());
             $table->timestamps();
         });
     }

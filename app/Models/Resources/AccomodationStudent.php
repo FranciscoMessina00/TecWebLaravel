@@ -11,5 +11,7 @@ class AccomodationStudent extends Model {
     public $timestamps = true;
     protected $primaryKey = 'accStudId';
     protected $table = 'accomodation_student';
+    
+    protected $dates = ['dateOption', 'dateAssign'];
 
 }

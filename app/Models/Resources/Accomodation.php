@@ -7,6 +7,8 @@ use App\User;
 use App\Models\Resources\Service;
 use App\Models\Resources\Image;
 
+use Carbon\Carbon;
+
 class Accomodation extends Model {
 
     public $timestamps = true;
@@ -45,10 +47,34 @@ class Accomodation extends Model {
         return $this->services->pluck('serviceId');
     }
 
-    public function assignedDate() {
-        return AccomodationStudent::where('accId',$this->accId)
-                ->where('relationship','assigned')->get()->first()->updated_at;
-                
+    public function dateAssign() {
+        $date = AccomodationStudent::where('accId',$this->accId)
+                ->where('relationship','assigned')->get()->first()->dateAssign;
+        
+        return Carbon::parse($date)->format('d/m/Y');
+    }
+    
+    public function timeAssign() {
+        $date = AccomodationStudent::where('accId',$this->accId)
+                ->where('relationship','assigned')->get()->first()->dateAssign;
+        
+        return Carbon::parse($date)->format('H:i');
+    }
+    
+    public function dateOption($userId) {
+        $date =  AccomodationStudent::where('accId',$this->accId)
+                ->where('userId', $userId)
+                ->where('relationship','optioned')->get()->first()->dateOption;
+        
+        return Carbon::parse($date)->format('d/m/Y');
+    }
+    
+    public function timeOption($userId) {
+        $date = AccomodationStudent::where('accId',$this->accId)
+                ->where('userId', $userId)
+                ->where('relationship','optioned')->get()->first()->dateOption;
+        
+        return Carbon::parse($date)->format('H:i');
     }
     
     public function assignedStudents() {

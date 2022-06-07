@@ -45,10 +45,10 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('accomodation_student')->insert([
-            ['accStudId' => 1, 'userId' => 1, 'accId' => 1, 'relationship' => 'optioned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accStudId' => 2, 'userId' => 1, 'accId' => 2, 'relationship' => 'assigned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accStudId' => 3, 'userId' => 1, 'accId' => 3, 'relationship' => 'optioned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accStudId' => 4, 'userId' => 5, 'accId' => 3, 'relationship' => 'optioned','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['accStudId' => 1, 'userId' => 1, 'accId' => 1, 'relationship' => 'optioned','dateOption' => date('Y-m-d H:i:s'), 'dateAssign' => date('Y-m-d H:i:s'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accStudId' => 2, 'userId' => 1, 'accId' => 2, 'relationship' => 'assigned','dateOption' => date('Y-m-d H:i:s'), 'dateAssign' => date('Y-m-d H:i:s'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accStudId' => 3, 'userId' => 1, 'accId' => 3, 'relationship' => 'optioned', 'dateOption' => date('Y-m-d H:i:s'), 'dateAssign' => date('Y-m-d H:i:s'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accStudId' => 4, 'userId' => 5, 'accId' => 3, 'relationship' => 'optioned', 'dateOption' => date('Y-m-d H:i:s'), 'dateAssign' => date('Y-m-d H:i:s'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
         DB::table('messages')->insert([
             ['messageId' => 1, 'senderId' => 1, 'recipientId' => 2, 'text' => 'Messaggio da Mario a Marco','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],

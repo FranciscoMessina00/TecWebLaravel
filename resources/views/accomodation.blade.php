@@ -19,7 +19,7 @@ if ($user->role == 'student') {
 @endsection
 
 @section('content')
- <div class="margin-t-x-large margin-b-40 contenitore-flex-2">
+<div class="margin-t-x-large margin-b-40 contenitore-flex-2">
 
     <div class="container-big margin-lr pad-lr-mid">
         <h1 class="text-center text-gold">{{$accomodation->name}}</h1>
@@ -28,22 +28,23 @@ if ($user->role == 'student') {
                 <img src="{{ asset('images/accomodations/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
             <div class="auto-margin-tb">
+                @if($accomodation->hasBeenAssigned())
+                <div class="contenitore-flex">
+                    <a class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}}</h1></a>
+                </div>
+                @endif
+
 
                 @can('edit-accomodation', $accomodation)
-                    @if($accomodation->hasBeenAssigned())
-                    <div class=''>
-                        <a class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
-                    </div>
-                    @endif
-                    <div class="contenitore-flex ">
-                        <ul class="nav navbar-nav">
+                <div class="contenitore-flex ">
+                    <ul class="nav navbar-nav">
 
-                            <li class="nav-item justify-center" id="modifica">
-                                <a href="{{route('accomodation.edit', $accomodation->accId)}}" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
-                            </li>
-                            @include('layouts.delete-confirm', ['confirm' => 'accomodation.delete', 'params' => $accomodation->accId])
-                        </ul>
-                    </div>
+                        <li class="nav-item justify-center" id="modifica">
+                            <a href="{{route('accomodation.edit', $accomodation->accId)}}" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
+                        </li>
+                        @include('layouts.delete-confirm', ['confirm' => 'accomodation.delete', 'params' => $accomodation->accId])
+                    </ul>
+                </div>
                 @endcan
 
                 @can('isStudent')
@@ -53,14 +54,9 @@ if ($user->role == 'student') {
                         <li class="nav-item justify-center">
                             <a href="{{ route('accomodation.option',$accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15"><h1>Opziona alloggio</h1></a>
                         </li>
-                        @endif
-                        @if($accomodation->hasBeenAssigned())
-                        <li class="nav-item justify-center">
-                            <a class="tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->assignedDate()}}</h1></a>
-                        </li>
                         @elseif($user->hasOptioned($accomodation->accId))
                         <li class="nav-item justify-center">
-                            <div class="tm-btn-red text-white nav-link margin-b-15 no-select"><h1>Hai già opzionato</h1></div>
+                            <div class="tm-btn-red text-white nav-link margin-b-15 no-select"><h1>Hai già opzionato il {{$accomodation->dateOption(Auth::id())}} alle {{$accomodation->timeOption(Auth::id())}}</h1></div>
                         </li>
                         @endif
                         <br>
@@ -168,7 +164,7 @@ if ($user->role == 'student') {
 
         @if($accomodation->hasBeenAssigned())
         <h2 class='pad-tb-small border-t'>Richieste</h2>
-        <p>Assegnato il {{$accomodation->assignedDate()}} a {{$accomodation->assignedStudents->first()->name}} {{$accomodation->assignedStudents->first()->surname}} ({{$accomodation->assignedStudents->first()->gender}}) di {{$accomodation->assignedStudents->first()->age()}} anni</p>
+        <p>Assegnato il {{$accomodation->dateAssign()}} a {{$accomodation->assignedStudents->first()->name}} {{$accomodation->assignedStudents->first()->surname}} ({{$accomodation->assignedStudents->first()->gender}}) di {{$accomodation->assignedStudents->first()->age()}} anni</p>
         @endif
         @endcan
 

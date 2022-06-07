@@ -59,8 +59,10 @@ class LocatorController extends Controller {
     {
         $accomodation = Accomodation::find($accId);
         
-        $accomodation->students()->updateExistingPivot($userId, ['relationship' => 'assigned', 'updated_at' => Carbon::now()->toDateTimeString()]);
-        $accomodation->dateBooking = Carbon::now()->toDateTimeString();
+        $accomodation->students()->updateExistingPivot($userId, [
+            'relationship' => 'assigned',
+            'dateAssign' => Carbon::now()->toDateTimeString()
+                ]);
         
         $this->_catalogModel->deleteAllRequests($accId);
         

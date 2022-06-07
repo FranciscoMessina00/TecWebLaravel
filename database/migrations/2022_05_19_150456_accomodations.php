@@ -35,7 +35,6 @@ class Accomodations extends Migration
             $table->float('price');
             $table->boolean('state')-> default(false);
             $table->dateTime('dateOffer');
-            $table->dateTime('dateBooking')-> default('2000-01-06');
             $table->dateTime('dateStart');
             $table->dateTime('dateFinish');
             $table->timestamps();
