@@ -33,6 +33,7 @@ class Accomodation extends Model {
         return $this->belongsTo(Image::class, 'imageId', 'imageId');
     }
 
+    /*Metodo doppio eliminare*/
     public function students() {
         return $this->belongsToMany(User::class, 'accomodation_student', 'accId', 'userId')
                         ->wherePivot('relationship', 'optioned');

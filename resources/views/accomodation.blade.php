@@ -140,8 +140,6 @@ if ($user->role == 'student') {
                     </ul>
                 </div>
             </div>
-
-
         </div>
 
         <div class="margin-t-small border-t">
@@ -164,11 +162,20 @@ if ($user->role == 'student') {
 
         @if($accomodation->hasBeenAssigned())
         <h2 class='pad-tb-small border-t'>Richieste</h2>
-        <p>Assegnato il {{$accomodation->dateAssign()}} a {{$accomodation->assignedStudents->first()->name}} {{$accomodation->assignedStudents->first()->surname}} ({{$accomodation->assignedStudents->first()->gender}}) di {{$accomodation->assignedStudents->first()->age()}} anni</p>
+        <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a {{$accomodation->assignedStudents->first()->name}} {{$accomodation->assignedStudents->first()->surname}} ({{$accomodation->assignedStudents->first()->gender}}) di {{$accomodation->assignedStudents->first()->age()}} anni</p>
         @endif
         @endcan
-
-
+        
+        @can('is-assigned-student', $accomodation)
+        @if($accomodation->hasBeenAssigned())
+        <h2 class='pad-tb-small border-t'>Contratto</h2>
+        <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a te</p>
+        @endif
+        @endcan
+        
+        @can('see-contract')
+        <p>Contratto</p>
+        @endcan
 
         @include('layouts.back_button')
 

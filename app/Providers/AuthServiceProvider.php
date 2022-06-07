@@ -74,5 +74,20 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('edit-credentials',function($user){
             return $user->hasRole(['locator', 'student']);
         });
+        
+        Gate::define('is-assigned-student',function($user, $accomodation){
+            $assignedStudent = $accomodation->assignedStudents->first();
+            
+            if($assignedStudent)
+            {
+                return $assignedStudent->userId === $user->userId;
+            }
+            else
+            {
+                return false;
+            }
+            
+            
+        });
     }
 }
