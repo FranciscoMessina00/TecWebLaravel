@@ -8,7 +8,7 @@ if ($user->role == 'student') {
 }
 ?>
 
-@section('title', 'Account')
+@section('title', 'Scheda alloggio')
 
 @section('scripts')
 
@@ -162,22 +162,33 @@ if ($user->role == 'student') {
 
         @if($accomodation->hasBeenAssigned())
         <h2 class='pad-tb-small border-t'>Richieste</h2>
-        <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a {{$accomodation->assignedStudents->first()->name}} {{$accomodation->assignedStudents->first()->surname}} ({{$accomodation->assignedStudents->first()->gender}}) di {{$accomodation->assignedStudents->first()->age()}} anni</p>
+        <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a 
+            {{$accomodation->assignedStudents->first()->name}}
+            {{$accomodation->assignedStudents->first()->surname}} 
+            ({{$accomodation->assignedStudents->first()->gender}}) di 
+            {{$accomodation->assignedStudents->first()->age()}} anni</p>
         @endif
         @endcan
-        
+
         @can('is-assigned-student', $accomodation)
         @if($accomodation->hasBeenAssigned())
         <h2 class='pad-tb-small border-t'>Contratto</h2>
         <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a te</p>
         @endif
         @endcan
-        
-        @can('see-contract')
-        <p>Contratto</p>
+
+        @can('see-contract', $accomodation)
+        <br>
+        <div class="float-left">
+            <ul class="nav navbar-nav">
+                <li class="nav-item justify-center" id="modifica">
+                    <a href="{{ route('contract', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15">Visualizza contratto</a>
+                </li>
+            </ul>
+        </div>
         @endcan
 
-        @include('layouts.back_button')
+        @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
 
     </div>
 </div>

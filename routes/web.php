@@ -122,4 +122,6 @@ Route::post('/messages/send', 'ChatController@sendMessage')
 Route::get('/catalog/accomodation/{accId}', 'AccomodationController@showAccomodation')       /*Apertura pagina alloggio*/
         ->name('catalog.accomodation');
 
-
+/*Funzionalità opzionali*/
+Route::get('/catalog/accomodation/contract/{accId}', 'AccomodationController@showContract')
+        ->name('contract');

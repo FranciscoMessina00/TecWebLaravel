@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class Accomodations extends Migration
 {
@@ -34,7 +35,7 @@ class Accomodations extends Migration
             $table->integer('ageMin');
             $table->float('price');
             $table->boolean('state')-> default(false);
-            $table->dateTime('dateOffer');
+            $table->dateTime('dateOffer')->default(Carbon::now()->toDateTimeString());;
             $table->dateTime('dateStart');
             $table->dateTime('dateFinish');
             $table->timestamps();

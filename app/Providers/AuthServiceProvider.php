@@ -5,15 +5,15 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
-class AuthServiceProvider extends ServiceProvider
-{
+class AuthServiceProvider extends ServiceProvider {
+
     /**
      * The policy mappings for the application.
      *
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+            // 'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -21,73 +21,89 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        /*Definisco i gate da richiamare per controllare quale utente ha effettuto l'accesso e che ruolo ha.*/
+    public function boot() {
+        /* Definisco i gate da richiamare per controllare quale utente ha effettuto l'accesso e che ruolo ha. */
         $this->registerPolicies();
-        
+
         Gate::define('isAdmin', function ($user) {
             return $user->hasRole('admin');
         });
-        
+
         Gate::define('isStudent', function ($user) {
             return $user->hasRole('student');
         });
-        
+
         Gate::define('isLocator', function ($user) {
             return $user->hasRole('locator');
         });
-        
+
         Gate::define('show-search-bar', function ($user) {
             return $user->hasRole(['student']);
         });
-        
+
         Gate::define('show-filter-bar', function ($user) {
             return $user->hasRole(['student']);
         });
-        
+
         Gate::define('use-chat', function ($user) {
             return $user->hasRole(['student', 'locator']);
         });
-        
+
         Gate::define('see-accomodation-details', function ($user, $accomodation) {
-            
+
             $isStudent = $user->hasRole('student');
             $isLocator = $user->hasRole('locator');
             $belongsToLocator = $user->userId === $accomodation->locator->userId;
-            
+
             return $isStudent || ($isLocator and $belongsToLocator);
         });
-        
+
         Gate::define('edit-accomodation', function ($user, $accomodation) {
-            
+
             $isLocator = $user->hasRole('locator');
             $belongsToLocator = $user->userId === $accomodation->locator->userId;
-            
+
             return $isLocator and $belongsToLocator;
         });
-        
-        Gate::define('edit-faq',function($user){
+
+        Gate::define('edit-faq', function ($user) {
             return $user->hasRole(['admin']);
         });
-        
-        Gate::define('edit-credentials',function($user){
+
+        Gate::define('edit-credentials', function ($user) {
             return $user->hasRole(['locator', 'student']);
         });
-        
-        Gate::define('is-assigned-student',function($user, $accomodation){
+
+        Gate::define('is-assigned-student', function ($user, $accomodation) {
             $assignedStudent = $accomodation->assignedStudents->first();
-            
-            if($assignedStudent)
-            {
+
+            if ($assignedStudent) {
                 return $assignedStudent->userId === $user->userId;
-            }
-            else
-            {
+            } else {
                 return false;
             }
-            
-            
+        });
+
+        Gate::define('see-contract', function ($user, $accomodation) {
+            $assignedStudent = $accomodation->assignedStudents->first();
+
+            if ($assignedStudent) {
+                $isAssignedStudent = $assignedStudent->userId === $user->userId;
+                $isOwner = false;
+                
+                if (!$isAssignedStudent) {
+                    $isLocator = $user->hasRole('locator');
+                    
+                    if ($isLocator) {
+                        $isOwner = $user->userId === $accomodation->locator->userId;
+                    }
+                }
+
+                return $isAssignedStudent || $isOwner;
+            } else {
+                return false;
+            }
         });
     }
+
 }

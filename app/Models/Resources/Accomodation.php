@@ -114,6 +114,14 @@ class Accomodation extends Model {
         }
     }
     
+    public function dateStart() {
+        return Carbon::parse($this->dateStart)->format('d/m/Y');
+    }
+    
+    public function dateFinish() {
+        return Carbon::parse($this->dateFinish)->format('d/m/Y');
+    }
+    
     
 
 }

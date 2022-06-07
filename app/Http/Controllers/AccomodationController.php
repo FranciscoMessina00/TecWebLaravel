@@ -42,5 +42,17 @@ class AccomodationController extends Controller {
         }
         
     }
+    
+    public function showContract($accId)
+    {
+        $accomodation = Accomodation::find($accId);
+        $student = $accomodation->assignedStudents()->first();
+        $locator = $accomodation->locator;
+        
+        return view('contract')
+                ->with('accomodation', $accomodation)
+                ->with('student', $student)
+                ->with('locator', $locator);
+    }
 
 }

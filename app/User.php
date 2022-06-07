@@ -78,6 +78,10 @@ class User extends Authenticatable {
         return Carbon::parse($this->bornDate)->format('Y-m-d');
     }
     
+    public function bornDate() {
+        return Carbon::parse($this->bornDate)->format('d/m/Y');
+    }
+    
     public function age() 
 {
     return $this->bornDate->diffInYears(Carbon::now());
