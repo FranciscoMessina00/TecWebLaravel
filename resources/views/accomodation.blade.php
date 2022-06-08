@@ -88,17 +88,44 @@ if ($user->role == 'student') {
                         @endswitch
                     </ul>
                     <br>
-
-                    <h4>Informazioni</h4>
+                    
+                    <h4>Dimensioni</h4>
 
                     <ul>
                         @switch($accomodation->tipology)
                         @case(0)
-                        <li class="">Numero camere: {{$accomodation->rooms}}</li>
-                        <li class="">Numero letti nell'alloggio: {{$accomodation->totBeds}}</li>
+                        <li class="">Dimensione appartamento: {{$accomodation->dimAppartment}} metri quadri</li>
                         @break
                         @case(1)
-                        <li class="">Numero letti nella camera: {{$accomodation->totBedRoom}}</li>
+                        <li class="">Dimensione posto letto: {{$accomodation->dimBedroom}} metri quadri</li>
+                        @break
+
+                        @endswitch
+                    </ul>
+                    <br>
+
+                    <h4>Caratteristiche dell'alloggio</h4>
+
+                    <ul>
+                        <li class="">Numero totale di posti letto nell'alloggio: {{$accomodation->totBeds}}</li>
+                        @switch($accomodation->tipology)
+                        @case(0)
+                        <li class="">Numero totale di camere nell'appartamento: {{$accomodation->rooms}}</li>
+                        @break
+                        @case(1)
+                        @switch($accomodation->totBedRoom)
+                        @case(1)
+                        <li class="">Camera singola</li>
+                        @break
+                        @case(2)
+                        <li class="">Camera doppia</li>
+                        @break
+                        @case(3)
+                        <li class="">Camera tripla</li>
+                        @break
+                        @default
+                        <li class="">Camera multipla: {{$accomodation->totBedRoom}} letti</li>
+                        @endswitch
                         @break
 
                         @endswitch
@@ -111,26 +138,27 @@ if ($user->role == 'student') {
                         <li>Indirizzo: {{$accomodation->address}}</li>
                         <li>Città: {{$accomodation->city}}</li>
                     </ul>
-                    <br>
                 </div>
 
                 <div>
                     <h4>Prezzi</h4>
-
                     <ul>
-                        <li>Canone d'affito: {{$accomodation->price}}&#8364/mese</li>
+                        <li>Canone mensile: {{$accomodation->price}}&#8364</li>
                     </ul>
                     <br>
-
                     <h4>Servizi inclusi</h4>
-
                     <ul>
                         @foreach($accomodation->services as $service)
                         <li>{{$service->name}}</li>
                         @endforeach
                     </ul>
                     <br>
-
+                    <h4>Disponibilità</h4>
+                    <ul>
+                        <li>Dal: {{date('d-m-Y', strtotime($accomodation->dateStart()))}}</li>
+                        <li>Al: {{date('d-m-Y', strtotime($accomodation->dateFinish()))}}</li>
+                    </ul>
+                    <br>
                     <h4>Informazioni locatore</h4>
 
                     <ul>
@@ -138,6 +166,7 @@ if ($user->role == 'student') {
                         <li>Cognome: {{$accomodation->locator->surname}}</li>
                         <li>Username: {{$accomodation->locator->username}}</li>
                     </ul>
+                    
                 </div>
             </div>
         </div>
@@ -176,19 +205,19 @@ if ($user->role == 'student') {
         <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a te</p>
         @endif
         @endcan
-
-        @can('see-contract', $accomodation)
-        <br>
-        <div class="float-left">
-            <ul class="nav navbar-nav">
-                <li class="nav-item justify-center" id="modifica">
+        
+        
+        <div class="contenitore-flex">
+            @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
+            
+            @can('see-contract', $accomodation)
+            <div class='margin-t-mid'>
+                <div class="contenitore-flex justify-content-end">
                     <a href="{{ route('contract', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15">Visualizza contratto</a>
-                </li>
-            </ul>
+                </div>
+            </div>
+            @endcan
         </div>
-        @endcan
-
-        @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
 
     </div>
 </div>
