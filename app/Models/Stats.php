@@ -51,16 +51,25 @@ class Stats {
         
         $optioned = AccomodationStudent::where('relationship', $state)->get();
         $type=$this->getType($state);
+        if($filter){
+            $filterList = $request->except(['_token', 'tipology']);
+                foreach ($filterList as $field => $value) {
+                    if ($value) {
+                        $condition = $this->getCondition($field);
+
+                        if ($field == 'dateStart' || $field == 'dateFinish') {
+                            $value = new \DateTime($value);
+                        }
+                        $optioned = $optioned->where($type, $condition, $value);
+                    }
+                }
+        }
+        
+        
         
         $number=0;
         foreach($optioned as $option){
-            if($filter){
-                if($option->$type <= $request->dateFinish && $option->$type >= $request->dateStart){
-                    $number+=Accomodation::where('accId',$option->accId)->where('tipology',$tipology)->get()->count();
-                }
-            }else{
                 $number+=Accomodation::where('accId',$option->accId)->where('tipology',$tipology)->get()->count();
-            }
             
         }
         return $number;
