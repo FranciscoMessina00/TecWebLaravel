@@ -85,24 +85,15 @@ class AuthServiceProvider extends ServiceProvider {
         });
 
         Gate::define('see-contract', function ($user, $accomodation) {
-            $assignedStudent = $accomodation->assignedStudents->first();
+            $isOwner = false;
 
-            if ($assignedStudent) {
-                $isAssignedStudent = $assignedStudent->userId === $user->userId;
-                $isOwner = false;
-                
-                if (!$isAssignedStudent) {
-                    $isLocator = $user->hasRole('locator');
-                    
-                    if ($isLocator) {
-                        $isOwner = $user->userId === $accomodation->locator->userId;
-                    }
-                }
+            $isLocator = $user->hasRole('locator');
 
-                return $isAssignedStudent || $isOwner;
-            } else {
-                return false;
+            if ($isLocator) {
+                $isOwner = $user->userId === $accomodation->locator->userId;
             }
+
+            return $isOwner;
         });
     }
 
