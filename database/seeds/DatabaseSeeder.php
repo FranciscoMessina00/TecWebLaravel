@@ -61,22 +61,29 @@ class DatabaseSeeder extends Seeder
         
         DB::table('services')->insert([
             ['serviceId' => 1, 'tipology' => 0, 'name' => 'Locale Ricreativo'],
-            ['serviceId' => 2, 'tipology' => 0, 'name' => 'Bagno'],
-            ['serviceId' => 3, 'tipology' => 0,  'name' => 'Cucina',],
+            ['serviceId' => 2, 'tipology' => 0,  'name' => 'Cucina',],
+            ['serviceId' => 3, 'tipology' => 0,  'name' => 'Garage',],
             ['serviceId' => 4, 'tipology' => 1, 'name' => 'Angolo Studio'],
-            ['serviceId' => 5, 'tipology' => 2, 'name' => 'Wi-fi']
+            ['serviceId' => 5, 'tipology' => 1, 'name' => 'Bagno in camera'],
+            ['serviceId' => 6, 'tipology' => 2, 'name' => 'Aria condizionata'],
+            ['serviceId' => 7, 'tipology' => 2, 'name' => 'Wi-fi'],
+            ['serviceId' => 8, 'tipology' => 2, 'name' => 'Lavatrice'],
+            ['serviceId' => 9, 'tipology' => 2, 'name' => 'Asciugatrice'],
+            ['serviceId' => 10, 'tipology' => 2, 'name' => 'Allarme antincendio'],
+            
         ]);
         
         DB::table('accomodation_service')->insert([
             ['accServId' => 1, 'accId' => 1, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accServId' => 2, 'accId' => 1, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accServId' => 3, 'accId' => 1, 'serviceId' => 3, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 4, 'accId' => 1, 'serviceId' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 4, 'accId' => 1, 'serviceId' => 6, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accServId' => 5, 'accId' => 2, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 6, 'accId' => 2, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 7, 'accId' => 4, 'serviceId' => 1, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 8, 'accId' => 3, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 9, 'accId' => 3, 'serviceId' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['accServId' => 6, 'accId' => 2, 'serviceId' => 7, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 7, 'accId' => 2, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 8, 'accId' => 4, 'serviceId' => 7, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 9, 'accId' => 3, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 10, 'accId' => 6, 'serviceId' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
     }
 }

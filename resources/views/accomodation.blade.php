@@ -110,7 +110,7 @@ if ($user->role == 'student') {
                         <li class="">Numero totale di posti letto nell'alloggio: {{$accomodation->totBeds}}</li>
                         @switch($accomodation->tipology)
                         @case(0)
-                        <li class="">Numero totale di camere nell'appartamento: {{$accomodation->rooms}}</li>
+                        <li class="">Numero totale di camere nell'alloggio: {{$accomodation->rooms}}</li>
                         @break
                         @case(1)
                         @switch($accomodation->totBedRoom)
@@ -208,7 +208,13 @@ if ($user->role == 'student') {
         
         
         <div class="contenitore-flex">
+            @can('edit-accomodation', $accomodation)
             @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
+            @endcan
+            
+            @can('isStudent')
+            @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
+            @endcan
             
             @can('see-contract', $accomodation)
             <div class='margin-t-mid'>
