@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Resources\Accomodation;
 use App\Models\Resources\Service;
+use App\Models\Resources\AccomodationStudent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\User;
@@ -14,18 +15,13 @@ class Stats {
         $accomodations = Accomodation::where('tipology', $tipo);
 
         if ($filter) {
-            $accomodations = $this->dateFilter($accomodations, $request);
-        }
-
-
-        $assigned = 0;
-        $optioned = 0;
-
-        $number = $accomodations->count();
-
-        foreach ($accomodations->get() as $accomodation) {
-            $assigned += $accomodation->assigned();
-            $optioned += $accomodation->requests();
+            $number = $this->dateFilter($accomodations, $request)->count();
+            $assigned = $this->dateFilterState($tipo, $request,'assigned',true);
+            $optioned = $this->dateFilterState($tipo, $request,'optioned',true);
+        }else{
+            $assigned = $this->dateFilterState($tipo, $request,'assigned',false);
+            $optioned = $this->dateFilterState($tipo, $request,'optioned',false);
+            $number = $accomodations->count();
         }
 
         $result = collect(['number' => $number, 'assigned' => $assigned, 'optioned' => $optioned]);
@@ -34,7 +30,7 @@ class Stats {
 
     public function dateFilter($accomodationPartial, $request) {
 
-        $filterList = $request->except(['_token','tipology']);
+        $filterList = $request->except(['_token', 'tipology']);
         foreach ($filterList as $field => $value) {
             if ($value) {
                 $condition = $this->getCondition($field);
@@ -43,12 +39,31 @@ class Stats {
                     $value = new \DateTime($value);
                 }
 
-                $accomodationPartial = $accomodationPartial->where($field, $condition, $value);
+                $accomodationPartial = $accomodationPartial->where('dateOffer', $condition, $value);
             }
         }
 
 
         return $accomodationPartial;
+    }
+
+    public function dateFilterState($tipology,$request,$state,$filter) {
+        
+        $optioned = AccomodationStudent::where('relationship', $state)->get();
+        $type=$this->getType($state);
+        
+        $number=0;
+        foreach($optioned as $option){
+            if($filter){
+                if($option->$type <= $request->dateFinish && $option->$type >= $request->dateStart){
+                    $number+=Accomodation::where('accId',$option->accId)->where('tipology',$tipology)->get()->count();
+                }
+            }else{
+                $number+=Accomodation::where('accId',$option->accId)->where('tipology',$tipology)->get()->count();
+            }
+            
+        }
+        return $number;
     }
 
     private function getCondition($field) {
@@ -62,5 +77,13 @@ class Stats {
 
         return $condition;
     }
-
+    private function getType($state){
+        if($state=='optioned'){
+            return 'dateOption';
+        }elseif ($state=='assigned') {
+            return 'dateAssign';
+        }else{
+            return null;
+        }
+    }
 }
