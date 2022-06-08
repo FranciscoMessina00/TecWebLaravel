@@ -6,27 +6,6 @@ $services = App\Models\Resources\Service::all();
 @csrf
 
 <fieldset name="generic" class=" border-t pad-lr-small margin-b-30">
-    <h2 class="margin-t-x-small">Quali alloggi vuoi visualizzare?</h2>
-    
-    <div class="pad-lr-small margin-t-x-small">
-<!--        {{ Form::label('requests', 'Quali alloggi?') }}-->
-        {{ Form::select(
-                    'requests',
-                    [null => "Seleziona un'opzione", '0' => 'Solo alloggi che hai opzionato', '1' => 'Solo alloggi a te assegnati', '2' => 'Tutti'], 
-                    $request ? $request->requests : 2, 
-                    ['class' => 'form-element','id' => 'requests'],
-                    [null => ['disabled' => true]]
-                    )}}
-        @if ($errors->first('requests'))
-        <ul class="errors">
-            @foreach ($errors->get('tipology') as $message)
-            <li>{{ $message }}</li>
-            @endforeach
-        </ul>
-        @endif
-
-    </div>
-    
     <h2 class="margin-t-x-small">Informazioni alloggio</h2>
     
     <div class="pad-lr-small margin-t-x-small">
@@ -130,6 +109,8 @@ $services = App\Models\Resources\Service::all();
     </div>
 
     <div id ="appartamento" class="{{$isAppartmentSelected ? '' : 'nascondi'}}">
+        <br>
+        <h1>Specifici appartamento</h1>
         <div class="pad-lr-small margin-t-x-small">
             {{ Form::label('dimensioneA', 'Dimensione appartamento') }}
             {{Form::number('dimAppartment', $request ? $request->dimAppartment : '' , ['class' => 'form-element','placeholder' => 'Dimensione appartamento','id'=> 'dimensioneA'])}}
@@ -158,6 +139,8 @@ $services = App\Models\Resources\Service::all();
     </div>
 
     <div id="postoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
+        <br>
+        <h1>Specifici posto letto</h1>
         <div class="pad-lr-small margin-t-x-small">
             {{ Form::label('dimensione', 'Dimensione camera del posto letto') }}
             {{Form::number('dimBedroom', $request ? $request->dimBedroom : '' , ['class' => 'form-element','placeholder' => 'Dimensione camera','id'=> 'dimensione'])}}
@@ -209,6 +192,32 @@ $services = App\Models\Resources\Service::all();
             @include('catalog.filter_forms.checkbox_service', ['services' => $services->where('tipology', 1), 'checkedServices' => $checkedServices])
         </div>
     </div>
+</fieldset>
+<br>
+<fieldset class=" border-t pad-lr-small ">
+    <div>
+        <h2 class="margin-t-x-small">Quali alloggi vuoi visualizzare?</h2>
+    
+    <div class="pad-lr-small margin-t-x-small">
+<!--        {{ Form::label('requests', 'Quali alloggi?') }}-->
+        {{ Form::select(
+                    'requests',
+                    [null => "Seleziona un'opzione", '0' => 'Solo alloggi che hai opzionato', '1' => 'Solo alloggi a te assegnati', '2' => 'Tutti'], 
+                    $request ? $request->requests : 2, 
+                    ['class' => 'form-element','id' => 'requests'],
+                    [null => ['disabled' => true]]
+                    )}}
+        @if ($errors->first('requests'))
+        <ul class="errors">
+            @foreach ($errors->get('tipology') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+        @endif
+
+    </div>
+    </div>
+    
 </fieldset>
 
 <div id='filtra1' class="margin-t-small text-center">
