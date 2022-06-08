@@ -2,228 +2,217 @@
 
 namespace App\Http\Controllers;
 
-/*Import Application Models*/
+/* Import Application Models */
+
 use App\Models\Catalog;
 
-/*Import Resource Models*/
+/* Import Resource Models */
 use App\User;
 use App\Models\Resources\Accomodation;
 use \App\Models\Resources\AccomodationStudent;
 use \App\Models\Resources\AccomodationService;
 use \App\Models\Resources\Image;
-
-
 use \Carbon\Carbon;
 
-
-/*Import Form Requests*/
+/* Import Form Requests */
 use App\Http\Requests\AccomodationRequest;
 
-/*Facade Auth di laravel ui*/
+/* Facade Auth di laravel ui */
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
-/*Tools*/
+/* Tools */
 use Illuminate\Support\Facades\Log;
-
 
 class LocatorController extends Controller {
 
     protected $_catalogModel;
 
     public function __construct() {
-        /*Permette soltanto agli utenti di tipo locator di accedere ai metodi del controller*/
+        /* Permette soltanto agli utenti di tipo locator di accedere ai metodi del controller */
         $this->middleware('can:isLocator');
-        
+
         $this->_catalogModel = new Catalog;
-        
     }
-    
-    public function my_accomodations($filter = false)
-    {
+
+    public function my_accomodations($filter = false) {
         $my_accomodations = $this->_catalogModel->getMyAccomodations();
-        
+
         return view('my-accomodations')
-            ->with('filter', $filter)
-            ->with('accomodations', $my_accomodations);
+                        ->with('filter', $filter)
+                        ->with('accomodations', $my_accomodations);
     }
-    
-    public function showAccomodation($accId)
-    {
+
+    public function showAccomodation($accId) {
         $accomodation = Accomodation::find($accId);
-        
+
         return view('accomodation')
-            ->with('accomodation', $accomodation);
+                        ->with('accomodation', $accomodation);
     }
-    
-    public function assignAccomodation($accId, $userId)
-    {
+
+    public function assignAccomodation($accId, $userId) {
+        if (Gate::allows('edit-accomodation', $accId)) {
+            $accomodation = Accomodation::find($accId);
+
+            $accomodation->optioningStudents()->updateExistingPivot($userId, [
+                'relationship' => 'assigned',
+                'dateAssign' => Carbon::now()->toDateTimeString()
+            ]);
+
+            $this->_catalogModel->deleteAllRequests($accId);
+        }
+
+
+        return redirect()->route('catalog.accomodation', $accId);
+    }
+
+    public function cancelAssignAccomodation($accId) {
         $accomodation = Accomodation::find($accId);
-        
-        $accomodation->optioningStudents()->updateExistingPivot($userId, [
-            'relationship' => 'assigned',
-            'dateAssign' => Carbon::now()->toDateTimeString()
-                ]);
-        
-        $this->_catalogModel->deleteAllRequests($accId);
-        
-        return redirect()->route('my-accomodations');
+
+        $assignedStudent = $accomodation->assignedStudents()->first();
+        if ($assignedStudent) {
+            $assignedStudent->assignedAccomodations()->detach($accId);
+        }
+
+
+        return redirect()->route('catalog.accomodation', $accId);
     }
-    
-    public function showNewAccomodationForm()
-    {
+
+    public function showNewAccomodationForm() {
         return view('accomodation-add')
-        ->with('accomodation', null);
+                        ->with('accomodation', null);
     }
-    
-    public function showEditAccomodationForm($accId)
-    {
+
+    public function showEditAccomodationForm($accId) {
         $accomodation = Accomodation::find($accId);
-        
+
         return view('accomodation-edit')
-        ->with('accomodation', $accomodation);
+                        ->with('accomodation', $accomodation);
     }
-    
-    public function addAccomodation(AccomodationRequest $request)
-    {
+
+    public function addAccomodation(AccomodationRequest $request) {
         $user = Auth::user();
-        
-        if($request->hasFile('image'))
-        {
+
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $imageName = $file->getClientOriginalName();
-        }
-        else
-        {
+        } else {
             $imageName = null;
         }
-        
+
         $accomodation = new Accomodation;
         $accomodation->fill($request->validated());
-        
-        if($imageName)
-        {
-            /*Crea un nuovo record nella tabella*/
+
+        if ($imageName) {
+            /* Crea un nuovo record nella tabella */
             $image = new Image;
-            
+
             $image->imageName = $imageName;
             $image->save();
-            
-            /*Associa l'alloggio all'immagine creata*/
+
+            /* Associa l'alloggio all'immagine creata */
             $accomodation->image()->associate($image);
         }
-        
-        /*Associa l'alloggio all'utente loggato*/
+
+        /* Associa l'alloggio all'utente loggato */
         $accomodation->locator()->associate($user);
-        
-        /*Registra la data i cui è stata caricata l'offerta*/
+
+        /* Registra la data i cui è stata caricata l'offerta */
         $accomodation->dateOffer = Carbon::now()->toDateTimeString();
-        
+
         $accomodation->save();
-        
-        /*Aggiunta servizi*/
-        if($request->filled('services'))
-        {
+
+        /* Aggiunta servizi */
+        if ($request->filled('services')) {
             $serviceIds = $request->input('services');
 
             foreach ($serviceIds as $serviceId) {
                 $accomodation->services()->attach($serviceId);
             }
         }
-        
-        if (!is_null($imageName))
-        {
+
+        if (!is_null($imageName)) {
             $destinationPath = public_path() . '/images/accomodations';
             $file->move($destinationPath, $imageName);
         }
-        
+
         return response()->json(['redirect' => url('/locator/my-acc')]);
     }
-    
-    public function updateAccomodation(AccomodationRequest $request)
-    {
-        if($request->hasFile('image'))
-        {
+
+    public function updateAccomodation(AccomodationRequest $request) {
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $imageName = $file->getClientOriginalName();
-        }
-        else
-        {
+        } else {
             $imageName = null;
         }
-        /*Chiamo il metodo validate per generare l'eccezione nel caso in cui i dati siano errati. Se il programma prosegue, i dati sono validi*/
+        /* Chiamo il metodo validate per generare l'eccezione nel caso in cui i dati siano errati. Se il programma prosegue, i dati sono validi */
         $request->validated();
-        
+
         $validated = $request->except(['image', 'services', '_token']);
-        
+
         $accId = $request->input('accId');
         $accomodation = Accomodation::find($accId);
-        
-        if($imageName)
-        {
-            /*Crea un nuovo record nella tabella e sovrascrive quello vecchio*/
+
+        if ($imageName) {
+            /* Crea un nuovo record nella tabella e sovrascrive quello vecchio */
             $image = new Image;
-            
+
             $image->imageName = $imageName;
             $image->save();
-            
+
             $accomodation->image()->dissociate();
             $accomodation->image()->associate($image);
         }
-        
-        /*Aggiorno le informazioni dell'alloggio*/
+
+        /* Aggiorno le informazioni dell'alloggio */
         Accomodation::where('accId', $accId)
                 ->update($validated);
-        
+
         $accomodation->updated_at = Carbon::now()->toDateTimeString();
         $accomodation->save();
-        
-        /*Aggiungo servizi*/
-        if($request->filled('services'))
-        {
+
+        /* Aggiungo servizi */
+        if ($request->filled('services')) {
             $serviceIds = $request->input('services');
             $myServiceIds = $accomodation->serviceIds();
 
-            /*Se l'utente ha selezionato un nuovo servizio lo aggiungo*/
+            /* Se l'utente ha selezionato un nuovo servizio lo aggiungo */
             foreach ($serviceIds as $serviceId) {
-                if (!$myServiceIds->contains($serviceId))
-                {
+                if (!$myServiceIds->contains($serviceId)) {
                     $accomodation->services()->attach($serviceId);
                 }
             }
-            
+
             $serviceIds = collect($request->input('services'));
-            /*Se l'utente ha deselezionato un servizio, allora lo cancello*/
-            foreach ($myServiceIds as $myService)
-            {
-                if(!$serviceIds->contains($myService))
-                {
+            /* Se l'utente ha deselezionato un servizio, allora lo cancello */
+            foreach ($myServiceIds as $myService) {
+                if (!$serviceIds->contains($myService)) {
                     $accomodation->services()->detach($myService);
                 }
             }
         }
-        
-        if (!is_null($imageName))
-        {
+
+        if (!is_null($imageName)) {
             $destinationPath = public_path() . '/images/accomodations';
             $file->move($destinationPath, $imageName);
         }
-        
+
         return response()->json(['redirect' => url('/locator/my-acc')]);
     }
-    
-    public function deleteAccomodation($accId)
-    {
-        /*Elimino le richieste assoicate all'appartamento eliminato*/
+
+    public function deleteAccomodation($accId) {
+        /* Elimino le richieste assoicate all'appartamento eliminato */
         AccomodationStudent::where('accId', $accId)
                 ->delete();
-        /*Elimino i servizi assoicati all'appartamento eliminato*/
+        /* Elimino i servizi assoicati all'appartamento eliminato */
         AccomodationService::where('accId', $accId)
                 ->delete();
-        
+
         Accomodation::where('accId', $accId)
                 ->delete();
-        
+
         return redirect()->route('my-accomodations');
     }
-    
+
 }

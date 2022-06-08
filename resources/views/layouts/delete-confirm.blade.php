@@ -1,5 +1,5 @@
-<li class="nav-item " id="elimina">
-    <a class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">Elimina</a>
+<li class="" id="elimina">
+    <a class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">{{$text}}</a>
 </li>
 <li class="nav-item nascondi" id="sicuro">
     <div class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">Sicuro?</div>

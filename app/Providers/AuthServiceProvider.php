@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use \App\Models\Resources\Accomodation;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AuthServiceProvider extends ServiceProvider {
 
@@ -58,7 +62,10 @@ class AuthServiceProvider extends ServiceProvider {
             return $isStudent || ($isLocator and $belongsToLocator);
         });
 
-        Gate::define('edit-accomodation', function ($user, $accomodation) {
+        Gate::define('edit-accomodation', function ($user, $accId) {
+            Log::info($accId);
+            
+            $accomodation = Accomodation::find($accId);
 
             $isLocator = $user->hasRole('locator');
             $belongsToLocator = $user->userId === $accomodation->locator->userId;
@@ -93,7 +100,7 @@ class AuthServiceProvider extends ServiceProvider {
                 $isOwner = $user->userId === $accomodation->locator->userId;
             }
 
-            return $isOwner;
+            return $isOwner && $accomodation->hasBeenAssigned();
         });
     }
 

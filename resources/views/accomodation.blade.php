@@ -23,55 +23,74 @@ if ($user->role == 'student') {
 
     <div class="container-big margin-lr pad-lr-mid">
         <h1 class="text-center text-gold">{{$accomodation->name}}</h1>
-        <div class="offerta contenitore-flex">
-            <div class="img-catalogo pad-lr-large" >
+        <div class="offerta contenitore-flex pad-tb-small">
+            <div class="img-catalogo pad-lr-large margin-t-mid" >
                 <img src="{{ asset('images/accomodations/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
             <div class="auto-margin-tb">
+                
                 @if($accomodation->hasBeenAssigned())
                 <div class="contenitore-flex">
-                    <a class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center"><h1>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}}</h1></a>
+                    <div class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center">
+                        <h1>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}}</h1>
+                    </div>
                 </div>
                 @endif
-
-
-                @can('edit-accomodation', $accomodation)
-                <div class="contenitore-flex ">
-                    <ul class="nav navbar-nav">
-
-                        <li class="nav-item justify-center" id="modifica">
-                            <a href="{{route('accomodation.edit', $accomodation->accId)}}" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
-                        </li>
-                        @include('layouts.delete-confirm', ['confirm' => 'accomodation.delete', 'params' => $accomodation->accId])
-                    </ul>
-                </div>
-                @endcan
 
                 @can('isStudent')
                 <div class="contenitore-flex ">
                     <ul class="nav navbar-nav justify-center text-center">
                         @if ($canOption)
                         <li class="nav-item justify-center">
-                            <a href="{{ route('accomodation.option',$accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15"><h1>Opziona alloggio</h1></a>
+                            <a href="{{ route('accomodation.option',$accomodation->accId) }}" class="tm-btn-green text-white nav-link margin-b-15">
+                                <h1>Opziona alloggio</h1>
+                            </a>
                         </li>
                         @elseif($user->hasOptioned($accomodation->accId))
                         <li class="nav-item justify-center">
-                            <div class="tm-btn-red text-white nav-link margin-b-15 no-select"><h1>Hai già opzionato il {{$accomodation->dateOption(Auth::id())}} alle {{$accomodation->timeOption(Auth::id())}}</h1></div>
+                            <div class="contenitore-flex">
+                                <ul class="nav navbar-nav">
+                                    <li class="nav-item justify-center" id="modifica">
+                                        <div class="tm-btn-red text-white nav-link margin-b-15 no-select">
+                                            <h1>Hai già opzionato il {{$accomodation->dateOption(Auth::id())}} alle {{$accomodation->timeOption(Auth::id())}}</h1>
+                                        </div>
+                                    </li>
+                                    @include('layouts.delete-confirm', ['text' => 'Annulla la richiesta','confirm' => 'accomodation.cancel-option', 'params' => $accomodation->accId])
+                                </ul>
+                            </div>
                         </li>
                         @endif
                         <br>
                         <li class="nav-item no-float">
-                            <a href="{{ route('messages.new', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15"><h1>Contatta l'host</h1></a>
+                            <a href="{{ route('messages.new', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15">
+                                <h1>Contatta l'host</h1>
+                            </a>
                         </li>
                     </ul>
                 </div>
-
                 @endcan
             </div>
 
         </div>
 
-        <div class="pad-lr-small margin-t-small pad-tb-small">
+        @can('edit-accomodation', $accomodation->accId)
+        <div class="margin-t-small ">
+            <h2 class='pad-tb-small'>Gestisci alloggio</h2>
+            <div class="">
+                <ul class="nav navbar-nav">
+
+                    <li class="nav-item justify-center" id="modifica">
+                        <a href="{{route('accomodation.edit', $accomodation->accId)}}" class="tm-btn text-white nav-link margin-b-15">Modifica</a>
+                    </li>
+                    @include('layouts.delete-confirm', ['text'=>'Elimina', 'confirm' => 'accomodation.delete', 'params' => $accomodation->accId])
+                </ul>
+            </div>
+        </div>
+        @endcan
+        <br>
+
+        <div class="margin-t-small border-t">
+            <h2 class='pad-tb-small'>Informazioni</h2>
             <div class="contenitore-flex">
                 <div>
                     <h4>Tipologia</h4>
@@ -88,7 +107,7 @@ if ($user->role == 'student') {
                         @endswitch
                     </ul>
                     <br>
-                    
+
                     <h4>Dimensioni</h4>
 
                     <ul>
@@ -166,18 +185,18 @@ if ($user->role == 'student') {
                         <li>Cognome: {{$accomodation->locator->surname}}</li>
                         <li>Username: {{$accomodation->locator->username}}</li>
                     </ul>
-                    
+
                 </div>
             </div>
         </div>
 
-        <div class="margin-t-small border-t">
-            <h2 class='pad-tb-small'>Info sull'alloggio</h2>
+        <div class="margin-t-small">
+            <h2 class='pad-tb-small'>Descrizione</h2>
             <p>{{$accomodation->description}}</p>
         </div>
         <br>
 
-        @can('edit-accomodation', $accomodation)
+        @can('edit-accomodation', $accomodation->accId)
         @if($accomodation->hasRequests())
         <div>
             <h2 class='pad-tb-small border-t'>Richieste</h2>
@@ -190,32 +209,44 @@ if ($user->role == 'student') {
         @endif
 
         @if($accomodation->hasBeenAssigned())
-        <h2 class='pad-tb-small border-t'>Richieste</h2>
-        <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a 
-            {{$accomodation->assignedStudents->first()->name}}
-            {{$accomodation->assignedStudents->first()->surname}} 
-            ({{$accomodation->assignedStudents->first()->gender}}) di 
-            {{$accomodation->assignedStudents->first()->age()}} anni</p>
+        <div class='margin-t-small border-t'>
+            <h2 class='pad-tb-small'>Richieste</h2>
+            <p>
+                Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a 
+                {{$accomodation->assignedStudents->first()->name}}
+                {{$accomodation->assignedStudents->first()->surname}} 
+                ({{$accomodation->assignedStudents->first()->gender}}) di 
+                {{$accomodation->assignedStudents->first()->age()}} anni
+                <span class="contenitore-flex margin-t-small">
+                    <ul class="nav navbar-nav">
+                        @include('layouts.delete-confirm', ['text' => 'Annulla assegnazione','confirm' => 'my-accomodations.accomodation.cancel-assign', 'params' => $accomodation->accId])
+                    </ul>
+                </span>
+            </p>
+        </div>
+
         @endif
         @endcan
 
         @can('is-assigned-student', $accomodation)
         @if($accomodation->hasBeenAssigned())
-        <h2 class='pad-tb-small border-t'>Contratto</h2>
-        <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a te</p>
+        <div class='margin-t-small border-t'>
+            <h2 class='pad-tb-small border-t'>Contratto</h2>
+            <p>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}} a te</p>
+        </div>
         @endif
         @endcan
-        
-        
-        <div class="contenitore-flex">
-            @can('edit-accomodation', $accomodation)
+
+
+        <div class="contenitore-flex border-t margin-t-mid">
+            @can('edit-accomodation', $accomodation->accId)
             @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
             @endcan
-            
+
             @can('isStudent')
             @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
             @endcan
-            
+
             @can('see-contract', $accomodation)
             <div class='margin-t-mid'>
                 <div class="contenitore-flex justify-content-end">

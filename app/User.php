@@ -54,6 +54,11 @@ class User extends Authenticatable {
         return $this->belongsToMany(Accomodation::class, 'accomodation_student', 'userId', 'accId')
                         ->wherePivot('relationship', 'optioned');
     }
+    
+    public function assignedAccomodations() {
+        return $this->belongsToMany(Accomodation::class, 'accomodation_student', 'userId', 'accId')
+                        ->wherePivot('relationship', 'assigned');
+    }
 
     public function hasOptioned($accId) {
         $optioningStudents = Accomodation::find($accId)->optioningStudents()->get();

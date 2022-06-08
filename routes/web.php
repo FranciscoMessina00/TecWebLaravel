@@ -37,8 +37,11 @@ Route::view('/services', 'services')->name('services');    /*Attiva vista Modali
 Route::get('/locator/my-acc/{filter?}', 'LocatorController@my_accomodations')       /*I miei alloggi*/
         ->name('my-accomodations');
 
-Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorController@assignAccomodation')  /*Apertura pagina alloggio locatore*/
+Route::get('/locator/my-acc/accomodation/assign/{accId}/{userId}', 'LocatorController@assignAccomodation')  /*Assegnazione alloggio*/
        ->name('my-accomodations.accomodation.assign'); 
+
+Route::get('/locator/my-acc/accomodation/cancel-assign/{accId}', 'LocatorController@cancelAssignAccomodation')  /*Cancellare assegnazione*/
+       ->name('my-accomodations.accomodation.cancel-assign'); 
 
 Route::get('/locator/new-accomodation', 'LocatorController@showNewAccomodationForm')  /*Apertura form di inserimento nuovo alloggio*/
        ->name('accomodation.new'); 
@@ -62,6 +65,9 @@ Route::get('/catalog/filter', 'StudentController@showFilteredCatalog')  /*Apertu
 
 Route::get('/catalog/accomodation/option/{accId}' , 'StudentController@accomodationOption')
        ->name('accomodation.option');
+
+Route::get('/catalog/accomodation/cancel-option/{accId}' , 'StudentController@accomodationCancelOption')
+       ->name('accomodation.cancel-option');
 
 
 /*Rotte specifiche livello 4: admin*/

@@ -52,5 +52,12 @@ class StudentController extends Controller {
         return redirect()->route('messages.new',[$accId,true]);
 
     }
+    
+    public function accomodationCancelOption($accId) {
+        $student = Auth::user();
+        $student->optionedAccomodations()->detach($accId);
+        
+        return redirect()->route('catalog.accomodation', $accId);
+    }
 
 }
