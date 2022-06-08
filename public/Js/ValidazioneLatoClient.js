@@ -2,47 +2,61 @@ $(function () {
     $(':input').on('change', function (event) {
         var element = $(this);
         element.removeClass('tagError');
-        $('.errors').hide();
-
-        if (element.val() === '')
-        {
-            element.addClass('tagError');
-            element.after('<p class="errors">Campo obbligatorio</p>');
-        } 
-        else{
             switch (element.attr('id')) {
                 case 'name':
-                case 'surname':
                     var pattern = /^([A-Za-z])+$/;
-
+                    $('#lettereNome').remove();
                     if (!pattern.test(element.val())) {
                         element.addClass('tagError');
-                        element.after('<p class="errors">Inserire solo lettere maiuscole o minuscole</p>');
+                        if(element.val()!==''){
+                            element.after('<p class="errors" id="lettereNome">Inserire solo lettere maiuscole o minuscole</p>');
+                        }
+                        
+                    }
+                    break;
+                case 'surname':
+                    var pattern = /^([A-Za-z])+$/;
+                    $('#lettereCognome').remove();
+                    if (!pattern.test(element.val())) {
+                        element.addClass('tagError');
+                        if(element.val()!==''){
+                            element.after('<p class="errors" id="lettereCognome">Inserire solo lettere maiuscole o minuscole</p>');
+                        }
                     }
                     break;
                 case 'username':
                     var pattern = /^([A-Za-z0-9_\-\.\@])+$/;
-
+                    $('#usNonValido').remove();
                     if (!pattern.test(element.val())) {
                         element.addClass('tagError');
-                        element.after('<p class="errors">Username non valido</p>');
+                        if(element.val()!==''){
+                            element.after('<p class="errors" id="usNonValido">Username non valido</p>');
+                        }
                     }
                     break;
                 case 'password':
+                    $('#corto').remove();
                     if (element.val().length < 4) {
                         element.addClass('tagError');
-                        element.after('<p class="errors">Password troppo corta</p>');
+                        if(element.val()!==''){
+                            element.after('<p class="errors" id="corto">Password troppo corta</p>');
+                        }
+                        
                     }
                     break;
                 case 'email':
                     var pattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,6})$/;
+                    $('#mailNonValido').remove();
                     if (!pattern.test(element.val())) {
                         element.addClass('tagError');
-                        element.after('<p class="errors">E-mail non valida</p>');
+                        if(element.val()!==''){
+                            element.after('<p class="errors" id="mailNonValido">E-mail non valida</p>');
+                        }
+                        
                     }
                     break;
             }
-        }
+        
 
     });
 

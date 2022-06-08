@@ -27,6 +27,20 @@ if ($user->role == 'student') {
             <div class="img-catalogo pad-lr-large margin-t-mid" >
                 <img src="{{ asset('images/accomodations/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
+            @can('edit-accomodation', $accomodation->accId)
+            
+                @if($accomodation->hasBeenAssigned())
+                <div class="auto-margin-tb">
+                <div class="contenitore-flex">
+                    <div class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center">
+                        <h1>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}}</h1>
+                    </div>
+                </div>
+                </div>
+                @endif
+            
+            @endcan
+            @can('isStudent')
             <div class="auto-margin-tb">
                 
                 @if($accomodation->hasBeenAssigned())
@@ -37,7 +51,7 @@ if ($user->role == 'student') {
                 </div>
                 @endif
 
-                @can('isStudent')
+                
                 <div class="contenitore-flex ">
                     <ul class="nav navbar-nav justify-center text-center">
                         @if ($canOption)
@@ -68,9 +82,8 @@ if ($user->role == 'student') {
                         </li>
                     </ul>
                 </div>
-                @endcan
             </div>
-
+            @endcan
         </div>
 
         @can('edit-accomodation', $accomodation->accId)

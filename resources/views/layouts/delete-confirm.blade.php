@@ -1,4 +1,7 @@
-<li class="nav-item " id="elimina">
+@php
+$route=Route::currentRouteName();
+@endphp
+<li class="nav-item {{ $route == 'catalog.accomodation' ? 'no-float' : '' }}" id="elimina">
     <a class="tm-btn tm-btn-brown text-white nav-link margin-b-15 no-select">{{$text}}</a>
 </li>
 <li class="nav-item nascondi" id="sicuro">
