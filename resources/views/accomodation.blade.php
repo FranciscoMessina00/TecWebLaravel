@@ -265,12 +265,14 @@ if ($user) {
 
 
         <div class="contenitore-flex border-t margin-t-mid">
+            @can('isLocator')
             @can('edit-accomodation', $accomodation->accId)
             @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
             @endcan
             
             @cannot('edit-accomodation', $accomodation->accId)
             @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
+            @endcan
             @endcan
 
             @can('isStudent')
