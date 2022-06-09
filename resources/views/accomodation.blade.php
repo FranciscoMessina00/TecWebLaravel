@@ -170,6 +170,12 @@ if ($user->role == 'student') {
                         <li>Indirizzo: {{$accomodation->address}}</li>
                         <li>Città: {{$accomodation->city}}</li>
                     </ul>
+                    <br>
+                    <h4>Preferenza di genere</h4>
+
+                    <ul>
+                        <li>{{$accomodation->gender()}}</li>
+                    </ul>
                 </div>
 
                 <div>

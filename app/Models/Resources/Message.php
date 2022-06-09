@@ -20,5 +20,7 @@ class Message extends Model {
     {
         return $this->hasOne(User::class, 'userId', 'senderId');
     }
+    
+    
 
 }

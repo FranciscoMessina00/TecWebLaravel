@@ -65,6 +65,7 @@ class AccomodationRequest extends FormRequest {
             'ageMax' => 'integer|numeric|gt:0|required',
             'ageMin' => 'integer|numeric|gt:0|required',
             'price' => 'integer|numeric|gt:0|required',
+            'gender' => 'string|required',
             'dateStart' => ['date', 'date_format:Y-m-d', 'required'],
             'dateFinish' => ['date', 'date_format:Y-m-d', 'required']
         ];

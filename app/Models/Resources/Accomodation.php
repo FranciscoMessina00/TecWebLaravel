@@ -17,7 +17,7 @@ class Accomodation extends Model {
     
     protected $fillable = [
         'name', 'tipology', 'city', 'address', 'description', 'dimBedroom', 'dimAppartment', 'rooms', 'totBeds'
-        , 'totBedRoom', 'ageMax', 'ageMin', 'price', 'dateStart', 'dateFinish'
+        , 'totBedRoom', 'ageMax', 'ageMin', 'price', 'gender', 'dateStart', 'dateFinish'
     ];
     
     protected $guarded = [
@@ -122,6 +122,27 @@ class Accomodation extends Model {
         return Carbon::parse($this->dateFinish)->format('d/m/Y');
     }
     
+    public function gender()
+    {
+        $gender = $this->gender;
+        
+        switch($gender)
+        {
+            case('uomo'):
+                $genderText = 'Solo ragazzi';
+                break;
+            case('donna'):
+                $genderText = 'Solo ragazze';
+                break;
+            case('dont-care'):
+                $genderText = 'Nessuna preferenza di genere';
+                break;
+            default:
+                $genderText = 'Nessuna preferenza di genere';
+        }
+        
+        return $genderText;
+    }
     
 
 }

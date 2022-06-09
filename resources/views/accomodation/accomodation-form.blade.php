@@ -103,6 +103,20 @@ if ($accomodation) {
         {{ Form::textarea('description', $accomodation ? $accomodation->description : '', ['class' => 'form-element','id' => 'description','placeholder'=>"Descrivi l'alloggio"]) }}
     </div>
 </div>
+<!-- Genere richiesto -->
+<div>
+    <div class="text-left">
+        {{ Form::label('gender', "Preferenza di genere", ['class' => 'text-mid']) }}
+    </div>
+    <div class="margin-b-40">
+        {{ Form::select(
+                    'gender',
+                    ['dont-care' => "Nessuna preferenza di genere", 'uomo' => 'Solo ragazzi', 'donna' => 'Solo ragazze'], 
+                    $accomodation ? $accomodation->gender : 'dont-care', 
+                    ['class' => 'form-element','id' => 'gender']
+                    )}}
+    </div>
+</div>
 <!-- Numero totale posti letto nell'alloggio -->
 <div>
     <div class="text-left">
