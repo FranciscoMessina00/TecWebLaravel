@@ -96,40 +96,65 @@ function validateElement(id, actionUrl, formId, ids = ["tipology"])
         }
 
         sendAjaxRequest(formData);
-    }
-
-
-
+}
 }
 
 function validateForm(actionUrl, formId)
 {
-    var formData = new FormData(document.getElementById(formId));
+    var sendAjax = true;
 
-    $.ajax({
-        type: 'POST',
-        url: actionUrl,
-        data: formData,
-        dataType: "json",
-        error: function (data)
+    var image = $("#image");
+    if (image)
+    {
+        if (image.attr('type') === 'file')
         {
-            if (data.status === 403)
+            if (image.val() !== '')
             {
-                var errMessages = JSON.parse(data.responseText);
-
-                $.each(errMessages, function (id)
-                {
-                    $("#" + id).parent().find('.errors').html(' ');
-                    $("#" + id).after(getErrorHtml(errMessages[id]));
-                });
+                inputVal = image.get(0).files[0];
+            } else
+            {
+                inputVal = new File([""], "");
             }
-        },
-        success: function (data)
-        {
-            window.location = data.redirect;
-        },
-        contentType: false,
-        processData: false
-    });
+
+            if (inputVal.size > 5000000)
+            {
+                $("#image").parent().find('.errors').html(' ');
+                $("#image").after(getFileErrorHtml());
+
+                sendAjax = false;
+            }
+        }
+    }
+
+    if (sendAjax)
+    {
+        var formData = new FormData(document.getElementById(formId));
+
+        $.ajax({
+            type: 'POST',
+            url: actionUrl,
+            data: formData,
+            dataType: "json",
+            error: function (data)
+            {
+                if (data.status === 403)
+                {
+                    var errMessages = JSON.parse(data.responseText);
+
+                    $.each(errMessages, function (id)
+                    {
+                        $("#" + id).parent().find('.errors').html(' ');
+                        $("#" + id).after(getErrorHtml(errMessages[id]));
+                    });
+                }
+            },
+            success: function (data)
+            {
+                window.location = data.redirect;
+            },
+            contentType: false,
+            processData: false
+        });
+    }
 }
 
