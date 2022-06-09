@@ -46,7 +46,7 @@ $services = App\Models\Resources\Service::all();
 
     <div class="pad-lr-small margin-t-x-small">
 
-        {{ Form::label('price', 'Prezzo') }}
+        {{ Form::label('price', 'Canone mensile') }}
         <div class="contenitore-flex">
             {{Form::number('priceMin', $request ? $request->priceMin : '' , ['class' => 'form-element','placeholder' => 'Min','id' => 'price'])}}
             @if ($errors->first('priceMin'))
@@ -112,7 +112,7 @@ $services = App\Models\Resources\Service::all();
         <br>
         <h1>Specifici appartamento</h1>
         <div class="pad-lr-small margin-t-x-small">
-            {{ Form::label('dimensioneA', 'Dimensione appartamento') }}
+            {{ Form::label('dimensioneA', 'Dimensione appartamento (mq)') }}
             {{Form::number('dimAppartment', $request ? $request->dimAppartment : '' , ['class' => 'form-element','placeholder' => 'Dimensione appartamento','id'=> 'dimensioneA'])}}
             @if ($errors->first('dimAppartment'))
             <ul class="errors">
@@ -142,7 +142,7 @@ $services = App\Models\Resources\Service::all();
         <br>
         <h1>Specifici posto letto</h1>
         <div class="pad-lr-small margin-t-x-small">
-            {{ Form::label('dimensione', 'Dimensione camera del posto letto') }}
+            {{ Form::label('dimensione', 'Dimensione camera del posto letto (mq)') }}
             {{Form::number('dimBedroom', $request ? $request->dimBedroom : '' , ['class' => 'form-element','placeholder' => 'Dimensione camera','id'=> 'dimensione'])}}
             @if ($errors->first('dimBedroom'))
             <ul class="errors">
