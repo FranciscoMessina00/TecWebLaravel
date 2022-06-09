@@ -55,7 +55,7 @@ class AccomodationRequest extends FormRequest {
             'tipology' => 'required',
             'city' => 'required|max:20',
             'address' => 'required',
-            'image' => 'nullable|file|size:5000',
+            'image' => 'nullable|file|max:5000',
             'description' => 'required',
             'totBeds' => 'integer|numeric|gt:0|required',
             'dimBedroom' => 'integer|numeric|gt:0' . $bedroomRule,
