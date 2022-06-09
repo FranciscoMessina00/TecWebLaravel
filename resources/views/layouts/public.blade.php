@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         @section('scripts')
-        <script src="{{ asset('Js/funzioni.js') }}"></script> 
+        <script src="{{ asset('Js/menu.js') }}"></script> 
         @show
 
     </head>
