@@ -44,7 +44,7 @@
             <input class="tm-btn" type="submit" value="Salva">
         </div>
         {{Form::close()}}
-        @include('layouts.back_button')
+        @include('layouts.back_button', ['route' => null])
     </div>
 </div>
 
