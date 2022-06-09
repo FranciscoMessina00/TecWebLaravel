@@ -32,8 +32,8 @@
     <h4>Disponibilità</h4>
     <br>
     <ul class="servizi">
-        <li>Dal: {{date('d-m-Y', strtotime($accomodation->dateStart()))}}</li>
-        <li>Al: {{date('d-m-Y', strtotime($accomodation->dateFinish()))}}</li>
+        <li>Dal: {{$accomodation->dateStart()}}</li>
+        <li>Al: {{$accomodation->dateFinish()}}</li>
     </ul>
     <br><br>
 </div>

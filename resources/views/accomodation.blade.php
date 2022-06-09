@@ -25,7 +25,7 @@ if ($user->role == 'student') {
         <h1 class="text-center text-gold">{{$accomodation->name}}</h1>
         <div class="offerta contenitore-flex pad-tb-small">
             <div class="img-catalogo pad-lr-large margin-t-mid" >
-                <img src="{{ asset('images/accomodations/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
+                <img src="{{ asset('storage/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
             @can('edit-accomodation', $accomodation->accId)
             
@@ -187,8 +187,8 @@ if ($user->role == 'student') {
                     <br>
                     <h4>Disponibilità</h4>
                     <ul>
-                        <li>Dal: {{date('d-m-Y', strtotime($accomodation->dateStart()))}}</li>
-                        <li>Al: {{date('d-m-Y', strtotime($accomodation->dateFinish()))}}</li>
+                        <li>Dal: {{$accomodation->dateStart()}}</li>
+                        <li>Al: {{$accomodation->dateFinish()}}</li>
                     </ul>
                     <br>
                     <h4>Informazioni locatore</h4>

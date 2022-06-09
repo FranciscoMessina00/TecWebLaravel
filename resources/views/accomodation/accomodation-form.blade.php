@@ -86,7 +86,7 @@ if ($accomodation) {
     </div>
     @if($accomodation)
     <div class="img-catalogo pad-lr-large" >
-        <img src="{{ asset('images/accomodations/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg margin-b-20" style="width:100%"/>
+        <img src="{{ asset('storage/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg margin-b-20" style="width:100%"/>
     </div>
     @endif
     <div class="margin-b-40">

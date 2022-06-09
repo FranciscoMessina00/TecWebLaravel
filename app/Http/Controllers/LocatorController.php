@@ -94,7 +94,7 @@ class LocatorController extends Controller {
         $user = Auth::user();
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
+            $file = $request->image;
             $imageName = $file->getClientOriginalName();
         } else {
             $imageName = null;
@@ -130,10 +130,10 @@ class LocatorController extends Controller {
                 $accomodation->services()->attach($serviceId);
             }
         }
-
+//        Log::info($imageName);
         if (!is_null($imageName)) {
-            $destinationPath = public_path() . '/images/accomodations';
-            $file->move($destinationPath, $imageName);
+            $destinationPath = '';
+            $file->storeAs($destinationPath, $imageName, 'public');
         }
 
         return response()->json(['redirect' => url('/locator/my-acc')]);
@@ -141,7 +141,8 @@ class LocatorController extends Controller {
 
     public function updateAccomodation(AccomodationRequest $request) {
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
+//            $file = $request->file('image');
+            $file = $request->image;
             $imageName = $file->getClientOriginalName();
         } else {
             $imageName = null;
@@ -194,8 +195,9 @@ class LocatorController extends Controller {
         }
 
         if (!is_null($imageName)) {
-            $destinationPath = public_path() . '/images/accomodations';
-            $file->move($destinationPath, $imageName);
+//            $destinationPath = public_path() . '/images/accomodations';
+            $destinationPath = '';
+            $file->storeAs($destinationPath, $imageName, 'public');
         }
 
         return response()->json(['redirect' => url('/locator/my-acc')]);
