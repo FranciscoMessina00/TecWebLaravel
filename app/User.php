@@ -88,8 +88,21 @@ class User extends Authenticatable {
     }
     
     public function age() 
-{
-    return $this->bornDate->diffInYears(Carbon::now());
-}
+    {
+        return $this->bornDate->diffInYears(Carbon::now());
+    }
+    
+    public function role() 
+    {
+        if($this->role=='admin'){
+            $role='admin';
+        }elseif($this->role=='locator'){
+            $role='locatore';
+        }else{
+            $role='studente';
+        }
+        
+        return $role;
+    }
 
 }

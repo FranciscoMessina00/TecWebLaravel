@@ -183,7 +183,7 @@ if ($user->role == 'student') {
                 <div>
                     <h4>Prezzi</h4>
                     <ul>
-                        <li>Canone mensile: {{$accomodation->price}}&#8364</li>
+                        <li>Canone: {{$accomodation->price}}&#8364/mese</li>
                     </ul>
                     <br>
                     <h4>Servizi inclusi</h4>

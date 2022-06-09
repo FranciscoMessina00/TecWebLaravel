@@ -12,5 +12,5 @@
 
     <h4>Indirizzo: {{$accomodation->address}}, {{$accomodation->city}}</h4>
 
-    <h4>Canone d'affitto: {{$accomodation->price}}</h4>
+    <h4>Canone d'affitto: {{$accomodation->price}}&#8364/mese</h4>
 </div>

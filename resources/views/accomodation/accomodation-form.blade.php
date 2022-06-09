@@ -147,7 +147,7 @@ if ($accomodation) {
 <!-- Canone d'affitto -->
 <div>
     <div class="text-left">
-        {{ Form::label('price', "Canone d'affitto", ['class' => 'text-mid']) }}
+        {{ Form::label('price', "Canone d'affitto (€/mese)", ['class' => 'text-mid']) }}
     </div>
     <div class="margin-b-40">
         {{ Form::text('price', $accomodation ? $accomodation->price : '', ['class' => 'form-element','id' => 'price','placeholder'=>"Canone mensile"]) }}
@@ -176,7 +176,7 @@ if ($accomodation) {
 <div id ="appartamento" class="{{$isAppartmentSelected ? '' : 'nascondi'}}">
     <div>
         <div class="text-left">
-            {{ Form::label('dimAppartment', 'Dimensione appartamento', ['class' => 'text-mid']) }}
+            {{ Form::label('dimAppartment', 'Dimensione appartamento (mq)', ['class' => 'text-mid']) }}
         </div>
         <div class="margin-b-40">
             {{ Form::text('dimAppartment', $accomodation ? $accomodation->dimAppartment : '', ['class' => 'form-element','id' => 'dimAppartment','placeholder'=>"Di quanti metri quadri?"]) }}
@@ -197,7 +197,7 @@ if ($accomodation) {
 <div id="postoLetto" class="{{$isBedRoomSelected ? '' : 'nascondi'}}">
     <div>
         <div class="text-left">
-            {{ Form::label('dimBedroom', 'Dimensione posto letto', ['class' => 'text-mid']) }}
+            {{ Form::label('dimBedroom', 'Dimensione posto letto (mq)', ['class' => 'text-mid']) }}
         </div>
         <div class="margin-b-40">
             {{ Form::text('dimBedroom', $accomodation ? $accomodation->dimBedroom : '', ['class' => 'form-element','id' => 'dimBedroom','placeholder'=>"Di quanti metri quadri?"]) }}

@@ -19,7 +19,7 @@ $role = Auth::user()->role;
 
                 <!<!-- Messaggio di benvenuto di prova. -->
                 @if(Auth::check())
-                    <p class="pad-tb-mid pad-lr-small">Benvenut* {{Auth::user()->username}}({{Auth::user()->role}})<p>
+                    <p class="pad-tb-mid pad-lr-small">Benvenut* {{Auth::user()->username}} ({{Auth::user()->role()}})<p>
                 @endif
             </div>
 
