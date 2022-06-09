@@ -96,7 +96,10 @@ class LocatorController extends Controller {
 
         if ($request->hasFile('image')) {
             $file = $request->image;
-            $imageName = $file->getClientOriginalName();
+            $destinationPath = '';
+            $file->store($destinationPath, 'public');
+            $imageName=$file->hashName();
+            
         } else {
             $imageName = null;
         }
@@ -105,14 +108,10 @@ class LocatorController extends Controller {
         $accomodation->fill($request->validated());
 
         if ($imageName) {
-            if (Storage::disk('public')->exists($imageName)) {
-                $image = Image::where('imageName', $imageName)->first();
-            } else {
                 /* Crea un nuovo record nella tabella */
                 $image = new Image;
                 $image->imageName = $imageName;
                 $image->save();
-            }
             /* Associa l'alloggio all'immagine creata */
             $accomodation->image()->associate($image);
         }
@@ -134,19 +133,17 @@ class LocatorController extends Controller {
             }
         }
 //        Log::info($imageName);
-        if (!is_null($imageName)) {
-            $destinationPath = '';
-            $file->storeAs($destinationPath, $imageName, 'public');
-        }
 
         return response()->json(['redirect' => url('/locator/my-acc')]);
     }
 
     public function updateAccomodation(AccomodationRequest $request) {
         if ($request->hasFile('image')) {
-//            $file = $request->file('image');
             $file = $request->image;
-            $imageName = $file->getClientOriginalName();
+            $destinationPath = '';
+            $file->store($destinationPath, 'public');
+            $imageName=$file->hashName();
+            
         } else {
             $imageName = null;
         }
@@ -159,21 +156,12 @@ class LocatorController extends Controller {
         $accomodation = Accomodation::find($accId);
 
         if ($imageName) {
-            if (Storage::disk('public')->exists($imageName)) {
-                $image = Image::where('imageName', $imageName)->first();
-
-                if (!$image) {
-                    /* Crea un nuovo record nella tabella */
-                    $image = new Image;
-                    $image->imageName = $imageName;
-                    $image->save();
-                }
-            } else {
+            
                 /* Crea un nuovo record nella tabella */
                 $image = new Image;
                 $image->imageName = $imageName;
                 $image->save();
-            }
+            
 
             $accomodation->image()->dissociate();
             $accomodation->image()->associate($image);
@@ -205,12 +193,6 @@ class LocatorController extends Controller {
                     $accomodation->services()->detach($myService);
                 }
             }
-        }
-
-        if (!is_null($imageName)) {
-//            $destinationPath = public_path() . '/images/accomodations';
-            $destinationPath = '';
-            $file->storeAs($destinationPath, $imageName, 'public');
         }
 
         return response()->json(['redirect' => url('/locator/my-acc')]);
