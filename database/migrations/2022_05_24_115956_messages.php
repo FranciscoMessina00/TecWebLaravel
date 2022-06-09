@@ -20,7 +20,7 @@ class Messages extends Migration
             $table->foreign('senderId')->references('userId')->on('users');
             $table->bigInteger('recipientId')->unsigned();
             $table->foreign('recipientId')->references('userId')->on('users');
-            $table->string('text');
+            $table->longText('text');
             
             $table->timestamps();
         });

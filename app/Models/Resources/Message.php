@@ -4,6 +4,7 @@ namespace App\Models\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Carbon\Carbon;
 
 class Message extends Model {
 
@@ -20,7 +21,13 @@ class Message extends Model {
     {
         return $this->hasOne(User::class, 'userId', 'senderId');
     }
-    
-    
+
+    public function dateSent(){
+        return Carbon::parse($this->created_at)->format('d/m/Y');
+    }
+    public function timeSent(){
+        return Carbon::parse($this->created_at)->format('H:i');
+    }
+
 
 }

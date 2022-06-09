@@ -17,7 +17,7 @@ function getErrorHtml(elemErrors)
 
 function getFileErrorHtml()
 {
-    return '<p class="errors">Il file è troppo grande. Dimensione massima 5Mb.</p>';
+    return '<p class="errors">Il file è troppo grande. Dimensione massima 2Mb.</p>';
 }
 
 function validateElement(id, actionUrl, formId, ids = ["tipology"])
@@ -69,7 +69,7 @@ function validateElement(id, actionUrl, formId, ids = ["tipology"])
             inputVal = new File([""], "");
         }
 
-        if (inputVal.size > 5000000)
+        if (inputVal.size > 2097152)
         {
             $("#" + id).parent().find('.errors').html(' ');
             $("#" + id).after(getFileErrorHtml());
