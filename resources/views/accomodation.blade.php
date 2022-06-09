@@ -1,10 +1,14 @@
 @extends('layouts.public')
 <?php
 $user = Auth::user();
-if ($user->role == 'student') {
-    $canOption = !$user->hasOptioned($accomodation->accId) && !$accomodation->hasBeenAssigned();
-} else {
-    $canOption = false;
+$canOption = false;
+
+if ($user) {
+    if ($user->role == 'student') {
+        $canOption = !$user->hasOptioned($accomodation->accId) && !$accomodation->hasBeenAssigned();
+    } else {
+        $canOption = false;
+    }
 }
 ?>
 
@@ -28,21 +32,21 @@ if ($user->role == 'student') {
                 <img src="{{ asset('storage/'.$accomodation->image->imageName) }}" alt="Immagine" class="bord-rad-lg" style="width:100%"/>
             </div>
             @can('edit-accomodation', $accomodation->accId)
-            
-                @if($accomodation->hasBeenAssigned())
-                <div class="auto-margin-tb">
+
+            @if($accomodation->hasBeenAssigned())
+            <div class="auto-margin-tb">
                 <div class="contenitore-flex">
                     <div class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center">
                         <h1>Assegnato il {{$accomodation->dateAssign()}} alle {{$accomodation->timeAssign()}}</h1>
                     </div>
                 </div>
-                </div>
-                @endif
-            
+            </div>
+            @endif
+
             @endcan
             @can('isStudent')
             <div class="auto-margin-tb">
-                
+
                 @if($accomodation->hasBeenAssigned())
                 <div class="contenitore-flex">
                     <div class="tm-btn tm-btn-gray text-white nav-link margin-b-15 no-select text-center">
@@ -51,7 +55,7 @@ if ($user->role == 'student') {
                 </div>
                 @endif
 
-                
+
                 <div class="contenitore-flex ">
                     <ul class="nav navbar-nav justify-center text-center">
                         @if ($canOption)
@@ -249,6 +253,7 @@ if ($user->role == 'student') {
         @endif
         @endcan
 
+        
         @can('is-assigned-student', $accomodation)
         @if($accomodation->hasBeenAssigned())
         <div class='margin-t-small border-t'>
@@ -263,10 +268,18 @@ if ($user->role == 'student') {
             @can('edit-accomodation', $accomodation->accId)
             @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
             @endcan
+            
+            @cannot('edit-accomodation', $accomodation->accId)
+            @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
+            @endcan
 
             @can('isStudent')
             @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
             @endcan
+            
+            @if(!$user)
+            @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
+            @endif
 
             @can('see-contract', $accomodation)
             <div class='margin-t-mid'>
