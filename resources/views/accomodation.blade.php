@@ -87,6 +87,7 @@ if ($user->role == 'student') {
         </div>
 
         @can('edit-accomodation', $accomodation->accId)
+        @if(!$accomodation->hasBeenAssigned())
         <div class="margin-t-small ">
             <h2 class='pad-tb-small'>Gestisci alloggio</h2>
             <div class="">
@@ -99,6 +100,7 @@ if ($user->role == 'student') {
                 </ul>
             </div>
         </div>
+        @endif
         @endcan
         <br>
 
