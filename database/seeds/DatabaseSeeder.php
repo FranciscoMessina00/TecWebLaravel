@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
             ['accId' => 3, 'userId' => 6, 'imageId' => 4, 'name' => 'Posto letto da Maria', 'tipology' => 1,'city'=>'Torino', 'address'=>'via caio, 16','description'=>'Scritta di prova','dimBedroom'=>12,'dimAppartment'=>null,'rooms'=>null,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>25,'ageMin'=>20,'price'=>200, 'gender' => 'dont-care' ,'dateOffer'=>date('Y-m-d H:i:s'),'dateStart'=>'2022-10-4','dateFinish'=>'2022-12-12','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accId' => 4, 'userId' => 6, 'imageId' => 2, 'name' => 'Appartamento Tavernelle', 'tipology' => 0,'city'=>'Milano', 'address'=>'via tizio caio, 16','description'=>'Scritta di prova','dimBedroom'=>null,'dimAppartment'=>200,'rooms'=>4,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>25,'ageMin'=>20, 'gender' => 'donna' ,'price'=>200,'dateOffer'=>date('Y-m-d H:i:s'),'dateStart'=>'2022-09-21','dateFinish'=>'2023-02-28','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accId' => 5, 'userId' => 2, 'imageId' => 1, 'name' => "Appartamento Monte D'Ago", 'tipology' => 0,'city'=>'Ancona', 'address'=>'via tizio, 16','description'=>'Scritta di prova','dimBedroom'=>null,'dimAppartment'=>220,'rooms'=>3,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>25,'ageMin'=>20,'price'=>400, 'gender' => 'dont-care', 'dateOffer'=>date('Y-m-d H:i:s'),'dateStart'=>'2022-10-01','dateFinish'=>'2023-08-01','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accId' => 6, 'userId' => 2, 'imageId' => 2, 'name' => 'Posto letto Grazie', 'tipology' => 1,'city'=>'Napoli', 'address'=>'via caio, 16','description'=>'Scritta di prova','dimBedroom'=>23,'dimAppartment'=>null,'rooms'=>null,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>25,'ageMin'=>20,'price'=>500, 'gender' => 'uomo' ,'dateOffer'=>date('Y-m-d H:i:s'),'dateStart'=>'2022-08-01','dateFinish'=>'2023-08-01','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['accId' => 6, 'userId' => 2, 'imageId' => 2, 'name' => 'Posto letto Grazie', 'tipology' => 1,'city'=>'Napoli', 'address'=>'via caio, 16','description'=>'Scritta di prova','dimBedroom'=>23,'dimAppartment'=>null,'rooms'=>null,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>25,'ageMin'=>20,'price'=>500, 'gender' => 'uomo' ,'dateOffer'=>date('Y-m-d H:i:s'),'dateStart'=>'2022-08-01','dateFinish'=>'2023-08-01','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accId' => 7, 'userId' => 6, 'imageId' => 4, 'name' => 'Posto letto Pinocchio', 'tipology' => 1,'city'=>'Ancona', 'address'=>'via del Pinocchio, 23','description'=>'Scritta di prova','dimBedroom'=>30,'dimAppartment'=>null,'rooms'=>null,'totBeds'=>2,'totBedRoom'=>1,'ageMax'=>18,'ageMin'=>30,'price'=>600, 'gender' => 'dont-care' ,'dateOffer'=>date('Y-m-d H:i:s'),'dateStart'=>'2022-06-01','dateFinish'=>'2022-09-01','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
         
         DB::table('accomodation_student')->insert([
@@ -50,6 +51,7 @@ class DatabaseSeeder extends Seeder
             ['accStudId' => 3, 'userId' => 1, 'accId' => 3, 'relationship' => 'optioned', 'dateOption' => date('Y-m-d H:i:s'), 'dateAssign' => date('Y-m-d H:i:s'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accStudId' => 4, 'userId' => 5, 'accId' => 3, 'relationship' => 'optioned', 'dateOption' => date('Y-m-d H:i:s'), 'dateAssign' => date('Y-m-d H:i:s'),'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
+        
         DB::table('messages')->insert([
             ['messageId' => 1, 'senderId' => 1, 'recipientId' => 2, 'text' => 'Messaggio da Mario a Marco','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['messageId' => 2, 'senderId' => 2, 'recipientId' => 4, 'text' => 'Messaggio da Marco a Giovanni','created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
@@ -83,7 +85,9 @@ class DatabaseSeeder extends Seeder
             ['accServId' => 7, 'accId' => 2, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accServId' => 8, 'accId' => 4, 'serviceId' => 7, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
             ['accServId' => 9, 'accId' => 3, 'serviceId' => 4, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
-            ['accServId' => 10, 'accId' => 6, 'serviceId' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
+            ['accServId' => 10, 'accId' => 6, 'serviceId' => 5, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 11, 'accId' => 7, 'serviceId' => 2, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')],
+            ['accServId' => 12, 'accId' => 7, 'serviceId' => 10, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]
         ]);
     }
 }
