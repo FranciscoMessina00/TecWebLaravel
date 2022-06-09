@@ -22,6 +22,9 @@
         <div class="margin-t-mid margin-b-15">
             <h4 class="margin-b-20">Info</h4>
             <p>
+                <a href="{{asset('documentazione.pdf')}}" class="text-white text-underline" target="_blanck">Documentazione</a>
+            </p>
+            <p>
                 <a href="https://goo.gl/maps/BCR6uznsnvZcp9Wu8" target="_blanck" class="text-white text-underline">Via Brecce Bianche, 12, 60131 Ancona AN</a>
             </p>
         </div>

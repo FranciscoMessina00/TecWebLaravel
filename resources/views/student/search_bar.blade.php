@@ -6,7 +6,7 @@
     @csrf
     <div class="pad-lr-small border-r">
         <h2>Dove</h2>
-        {{ Form::text('city', '' , ['class' => 'form-element','id' => 'where','placeholder' => 'Inserisci città']) }}
+        {{ Form::text('city', '' , ['class' => 'form-element','id' => 'city', 'placeholder' => 'Inserisci città']) }}
         @if ($errors->first('city'))
         <ul class="errors">
             @foreach ($errors->get('city') as $message)
@@ -20,11 +20,11 @@
         <h2>Quando</h2>
 
         <div class="contenitore-flex">
-            {{ Form::date('dateStart','',['class' => 'form-element'])}}
+            {{ Form::date('dateStart','',['class' => 'form-element', 'id' => 'dateStart'])}}
             
             <h2 class="auto-margin-tb">-</h2>
             
-            {{ Form::date('dateFinish','',['class' => 'form-element'])}}
+            {{ Form::date('dateFinish','',['class' => 'form-element', 'id' => 'dateFinish'])}}
         </div>
         <div class="contenitore-flex">
             @if ($errors->first('dateStart'))
@@ -48,7 +48,7 @@
         <h2>
             Tipologia
         </h2>
-        {{ Form::select('tipology', ['0' => 'Appartamento', '1' => 'Posto letto', '2' => 'Entrambi'], '',['class' => 'form-element'])}}
+        {{ Form::select('tipology', ['0' => 'Appartamento', '1' => 'Posto letto', '2' => 'Entrambi'], '2',['class' => 'form-element', 'id' => 'tipology'])}}
         @if ($errors->first('tipology'))
         <ul class="errors">
             @foreach ($errors->get('tipology') as $message)
