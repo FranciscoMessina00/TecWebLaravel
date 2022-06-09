@@ -108,7 +108,6 @@ $mailTo = "mailto:".$student->email;
         </div>
 
         <div class="offerta contenitore-flex">
-            @include('layouts.back_button', ['route' => 'catalog.accomodation', 'parameters' => [$accomodation->accId] ])
             <div class='margin-t-mid'>
                 <div class="contenitore-flex justify-content-end">
                     <a href="" class="tm-btn tm-btn-brown text-white nav-link margin-b-15">Stampa</a>

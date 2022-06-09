@@ -265,28 +265,14 @@ if ($user) {
 
 
         <div class="contenitore-flex border-t margin-t-mid">
-            @can('isLocator')
-            @can('edit-accomodation', $accomodation->accId)
-            @include('layouts.back_button', ['route' => 'my-accomodations', 'parameters' => [] ])
-            @endcan
-            
-            @cannot('edit-accomodation', $accomodation->accId)
-            @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
-            @endcan
-            @endcan
-
             @can('isStudent')
             @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
             @endcan
-            
-            @if(!$user)
-            @include('layouts.back_button', ['route' => null, 'parameters' => [] ])
-            @endif
 
             @can('see-contract', $accomodation)
             <div class='margin-t-mid'>
                 <div class="contenitore-flex justify-content-end">
-                    <a href="{{ route('contract', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15">Visualizza contratto</a>
+                    <a href="{{ route('contract', $accomodation->accId) }}" class="tm-btn text-white nav-link margin-b-15" target="_blanck">Visualizza contratto</a>
                 </div>
             </div>
             @endcan
