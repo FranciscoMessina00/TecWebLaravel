@@ -93,24 +93,27 @@ class Catalog {
                 }
             }
 
-            /*Filtro gli alloggi opzionati dall'utente loggato oppure assegnati all'utente*/
-            $myRequests = $request->requests;
-            $userId = Auth::id();
-            if ($myRequests !== 2) {
-                if ($myRequests == 0) {
-                    $accomodationPartial = $accomodationPartial
-                            ->whereHas('students', function ($query) use($userId) {
-                        $query->where('accomodation_student.relationship', '=', 'optioned')
-                                ->where('accomodation_student.userId', '=', $userId);
-                    });
-                } elseif ($myRequests == 1) {
-                    $accomodationPartial = $accomodationPartial
-                            ->whereHas('students', function ($query) use($userId){
-                        $query->where('accomodation_student.relationship', '=', 'assigned')
-                                ->where('accomodation_student.userId', '=', $userId);
-                    });
+            /* Filtro gli alloggi opzionati dall'utente loggato oppure assegnati all'utente */
+            if ($request->filled('requests')) {
+                $myRequests = $request->requests;
+                $userId = Auth::id();
+                if ($myRequests !== 2) {
+                    if ($myRequests == 0) {
+                        $accomodationPartial = $accomodationPartial
+                                ->whereHas('students', function ($query) use ($userId) {
+                            $query->where('accomodation_student.relationship', '=', 'optioned')
+                            ->where('accomodation_student.userId', '=', $userId);
+                        });
+                    } elseif ($myRequests == 1) {
+                        $accomodationPartial = $accomodationPartial
+                                ->whereHas('students', function ($query) use ($userId) {
+                            $query->where('accomodation_student.relationship', '=', 'assigned')
+                            ->where('accomodation_student.userId', '=', $userId);
+                        });
+                    }
                 }
             }
+
 
             /* Se sono al primo ciclo di foreach, allora valorizzo la variabile accomodations, mentre dal secondo ciclo in poi ne aggiorno il valore
               realizzando una union con i risultati estratti al ciclo precedente */
