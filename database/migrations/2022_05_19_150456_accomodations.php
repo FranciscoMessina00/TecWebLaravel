@@ -34,7 +34,7 @@ class Accomodations extends Migration
             $table->integer('ageMax');
             $table->integer('ageMin');
             $table->float('price');
-            $table->boolean('state')-> default(false);
+            $table->string('gender')-> default('dont-care');
             $table->dateTime('dateOffer')->default(Carbon::now()->toDateTimeString());;
             $table->dateTime('dateStart');
             $table->dateTime('dateFinish');
