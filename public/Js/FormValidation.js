@@ -4,7 +4,7 @@ function getErrorHtml(elemErrors)
     {
         return;
     }
-    
+
     var out = '<div><ul class="errors">';
     for (var i = 0; i < elemErrors.length; i++)
     {
@@ -15,16 +15,21 @@ function getErrorHtml(elemErrors)
     return out;
 }
 
+function getFileErrorHtml()
+{
+    return '<p class="errors">Il file è troppo grande. Dimensione massima 5Mb.</p>';
+}
+
 function validateElement(id, actionUrl, formId, ids = ["tipology"])
 {
     var formData;
-    
+
     function addFormToken(formData)
     {
         var token = $("#" + formId + " input[name=_token]").val();
         formData.append('_token', token);
     }
-    
+
     function addElement(formData, id)
     {
         var element = $("#" + id);
@@ -52,7 +57,7 @@ function validateElement(id, actionUrl, formId, ids = ["tipology"])
             processData: false
         });
     }
-
+    var sendAjax = true;
     var element = $("#" + id);
     if (element.attr('type') === 'file')
     {
@@ -63,24 +68,38 @@ function validateElement(id, actionUrl, formId, ids = ["tipology"])
         {
             inputVal = new File([""], "");
         }
+
+        if (inputVal.size > 5000000)
+        {
+            $("#" + id).parent().find('.errors').html(' ');
+            $("#" + id).after(getFileErrorHtml());
+
+            sendAjax = false;
+        }
     } else
     {
         inputVal = element.val();
     }
 
-    formData = new FormData();
-    formData.append(id, inputVal);
-    addFormToken(formData);
-    
-    for(var i=0; i<ids.length; i++)
+    if (sendAjax)
     {
-        if(id != ids[i])
+        formData = new FormData();
+        formData.append(id, inputVal);
+        addFormToken(formData);
+
+        for (var i = 0; i < ids.length; i++)
         {
-            addElement(formData, ids[i]);
+            if (id != ids[i])
+            {
+                addElement(formData, ids[i]);
+            }
         }
+
+        sendAjaxRequest(formData);
     }
-    
-    sendAjaxRequest(formData);
+
+
+
 }
 
 function validateForm(actionUrl, formId)

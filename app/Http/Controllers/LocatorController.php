@@ -105,9 +105,9 @@ class LocatorController extends Controller {
         $accomodation->fill($request->validated());
 
         if ($imageName) {
-            if(Storage::disk('public')->exists($imageName)){
-                $image = Image::where('imageName',$imageName)->first();
-            }else{
+            if (Storage::disk('public')->exists($imageName)) {
+                $image = Image::where('imageName', $imageName)->first();
+            } else {
                 /* Crea un nuovo record nella tabella */
                 $image = new Image;
                 $image->imageName = $imageName;
@@ -159,9 +159,16 @@ class LocatorController extends Controller {
         $accomodation = Accomodation::find($accId);
 
         if ($imageName) {
-            if(Storage::disk('public')->exists($imageName)){
-                $image = Image::where('imageName',$imageName)->first();
-            }else{
+            if (Storage::disk('public')->exists($imageName)) {
+                $image = Image::where('imageName', $imageName)->first();
+
+                if (!$image) {
+                    /* Crea un nuovo record nella tabella */
+                    $image = new Image;
+                    $image->imageName = $imageName;
+                    $image->save();
+                }
+            } else {
                 /* Crea un nuovo record nella tabella */
                 $image = new Image;
                 $image->imageName = $imageName;
