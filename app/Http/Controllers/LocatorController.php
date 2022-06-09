@@ -20,6 +20,7 @@ use App\Http\Requests\AccomodationRequest;
 /* Facade Auth di laravel ui */
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 /* Tools */
 use Illuminate\Support\Facades\Log;
@@ -104,12 +105,14 @@ class LocatorController extends Controller {
         $accomodation->fill($request->validated());
 
         if ($imageName) {
-            /* Crea un nuovo record nella tabella */
-            $image = new Image;
-
-            $image->imageName = $imageName;
-            $image->save();
-
+            if(Storage::disk('public')->exists($imageName)){
+                $image = Image::where('imageName',$imageName)->first();
+            }else{
+                /* Crea un nuovo record nella tabella */
+                $image = new Image;
+                $image->imageName = $imageName;
+                $image->save();
+            }
             /* Associa l'alloggio all'immagine creata */
             $accomodation->image()->associate($image);
         }
@@ -156,11 +159,14 @@ class LocatorController extends Controller {
         $accomodation = Accomodation::find($accId);
 
         if ($imageName) {
-            /* Crea un nuovo record nella tabella e sovrascrive quello vecchio */
-            $image = new Image;
-
-            $image->imageName = $imageName;
-            $image->save();
+            if(Storage::disk('public')->exists($imageName)){
+                $image = Image::where('imageName',$imageName)->first();
+            }else{
+                /* Crea un nuovo record nella tabella */
+                $image = new Image;
+                $image->imageName = $imageName;
+                $image->save();
+            }
 
             $accomodation->image()->dissociate();
             $accomodation->image()->associate($image);

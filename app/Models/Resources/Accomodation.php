@@ -21,7 +21,7 @@ class Accomodation extends Model {
     ];
     
     protected $guarded = [
-        'accId', 'userId'
+        'accId', 'userId','imageId'
     ];
 
     public function locator() {
