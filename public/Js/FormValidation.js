@@ -116,7 +116,7 @@ function validateForm(actionUrl, formId)
                 inputVal = new File([""], "");
             }
 
-            if (inputVal.size > 5000000)
+            if (inputVal.size > 2097152)
             {
                 $("#image").parent().find('.errors').html(' ');
                 $("#image").after(getFileErrorHtml());
