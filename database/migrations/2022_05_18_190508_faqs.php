@@ -16,7 +16,7 @@ class Faqs extends Migration
         Schema::create('faqs', function(Blueprint $table)
         {
             $table->bigIncrements('faqId');
-            $table->string('question');
+            $table->longText('question');
             $table->longText('answer');
             
             $table->timestamps();
